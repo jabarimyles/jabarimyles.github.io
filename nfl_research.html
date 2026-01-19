@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFL Team Tiering | Jabari Myles</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Page-specific styles for NFL research */
+        .research-hero {
+            padding: 100px 0 60px;
+            background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .research-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .research-hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+        }
+
+        .research-hero .meta {
+            font-size: 0.95rem;
+            color: var(--red);
+            font-weight: 500;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--navy);
+        }
+
+        /* Methodology content */
+        .methodology-section {
+            margin-bottom: 48px;
+        }
+
+        .methodology-section h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .methodology-section h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin: 24px 0 12px;
+        }
+
+        .methodology-section p {
+            color: var(--gray-600);
+            font-size: 1rem;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .methodology-section ul, .methodology-section ol {
+            color: var(--gray-600);
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        .methodology-section li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-left: 4px solid var(--navy);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+
+        .highlight-box.key-insight {
+            border-left-color: var(--red);
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        .highlight-box p:not(:last-child) {
+            margin-bottom: 12px;
+        }
+
+        .formula-box {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 20px 0;
+            font-family: 'Georgia', serif;
+            font-size: 1.05rem;
+            overflow-x: auto;
+            text-align: center;
+        }
+
+        .formula-box.left-align {
+            text-align: left;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .formula-box code {
+            color: var(--navy);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin: 20px 0;
+        }
+
+        .stat-category {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .stat-category h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .stat-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .stat-item {
+            background: var(--gray-100);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--gray-700);
+        }
+
+        .stat-item.negative {
+            background: #fef2f2;
+            color: #991b1b;
+        }
+
+        /* Two column layout for methodology */
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin: 24px 0;
+        }
+
+        .column-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .column-card h5 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .column-card p {
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .column-card ul {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+        }
+
+        /* Tier cards */
+        .tiers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 32px;
+            margin-top: 32px;
+        }
+
+        .tier-section-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 28px;
+        }
+
+        .tier-section-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .tier-group {
+            margin-bottom: 20px;
+        }
+
+        .tier-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .tier-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .tier-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--white);
+        }
+
+        .tier-1 .tier-badge { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+        .tier-2 .tier-badge { background: linear-gradient(135deg, #9ca3af, #6b7280); }
+        .tier-3 .tier-badge { background: linear-gradient(135deg, #d97706, #b45309); }
+        .tier-4 .tier-badge { background: var(--navy); }
+        .tier-5 .tier-badge { background: var(--gray-500); }
+        .tier-6 .tier-badge { background: var(--gray-400); }
+
+        .tier-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+        }
+
+        .teams-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .team-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--gray-100);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-700);
+            transition: var(--transition);
+        }
+
+        .team-chip:hover {
+            background: var(--gray-200);
+        }
+
+        .team-chip img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        /* Data tables */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--gray-200);
+            padding-bottom: 8px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border: 1px solid var(--gray-200);
+            background: var(--white);
+            color: var(--gray-600);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .tab-btn:hover {
+            background: var(--gray-50);
+            color: var(--navy);
+        }
+
+        .tab-btn.active {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: var(--white);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .table-container {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .table-header h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .table-header p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin: 0;
+        }
+
+        .table-filter {
+            padding: 8px 14px;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            background: var(--white);
+        }
+
+        .table-filter:focus {
+            outline: none;
+            border-color: var(--navy);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th, td {
+            padding: 10px 12px;
+            text-align: center;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        th {
+            background: var(--gray-50);
+            font-weight: 600;
+            color: var(--gray-700);
+            position: sticky;
+            top: 0;
+            white-space: nowrap;
+        }
+
+        td:first-child, th:first-child {
+            position: sticky;
+            left: 0;
+            background: var(--white);
+            font-weight: 600;
+            z-index: 1;
+            text-align: left;
+        }
+
+        th:first-child {
+            background: var(--gray-50);
+            z-index: 2;
+        }
+
+        tr:hover td {
+            background: var(--gray-50);
+        }
+
+        tr:hover td:first-child {
+            background: var(--gray-50);
+        }
+
+        .cell-high { background: rgba(34, 197, 94, 0.15); }
+        .cell-mid { background: rgba(234, 179, 8, 0.15); }
+        .cell-low { background: rgba(239, 68, 68, 0.1); }
+
+        .team-cell {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .team-cell img {
+            width: 20px;
+            height: 20px;
+            object-fit: contain;
+        }
+
+        /* Footer */
+        .research-footer {
+            margin-top: 60px;
+            padding: 32px 0;
+            background: var(--gray-50);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .research-footer p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .research-footer a {
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .research-footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .research-hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .two-column, .stat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tiers-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Jabari Myles</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">About</a></li>
+                <li><a href="index.html#papers" class="nav-link">Research</a></li>
+                <li><a href="index.html#projects" class="nav-link active">Projects</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="research-hero">
+        <div class="container">
+            <a href="index.html#projects" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                Back to Projects
+            </a>
+            <h1>From Rankings to Tiers: NFL Team Clustering</h1>
+            <p class="subtitle">Applying Cut Imbalance Clustering to NFL Team Performance Analysis</p>
+            <p class="meta">2024 Season Data | nflverse Play-by-Play Statistics</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Methodology Section -->
+        <section class="section" id="methodology">
+            <div class="container">
+                <h2 class="section-title">Research Methodology</h2>
+
+                <!-- Why Tiers -->
+                <div class="methodology-section">
+                    <h3>Why Tiers Instead of Rankings?</h3>
+                    <p>
+                        Traditional rankings assign a unique position to each item, but this level of granularity often
+                        overstates our ability to distinguish between similar items. When comparing NFL teams, is the
+                        difference between the 8th and 9th ranked team meaningful, or are they essentially equivalent?
+                    </p>
+                    <div class="highlight-box key-insight">
+                        <p><strong>Key Insight:</strong> Tiering provides a more honest representation of comparative
+                        relationships. Teams within the same tier are considered statistically indistinguishable, while
+                        teams in different tiers show clear performance gaps.</p>
+                    </div>
+                    <p>
+                        This approach is particularly valuable in sports analytics where noise, variance, and sample
+                        size limitations make precise ordinal rankings unreliable. A tier-based system acknowledges
+                        uncertainty while still providing actionable insights about team quality.
+                    </p>
+                </div>
+
+                <!-- Cut Imbalance Clustering -->
+                <div class="methodology-section">
+                    <h3>Cut Imbalance Clustering</h3>
+                    <p>
+                        Cut imbalance clustering is a method for partitioning items into hierarchical tiers based on
+                        pairwise preference data. The core idea comes from analyzing the "cuts" between adjacent tiers
+                        in a partition.
+                    </p>
+
+                    <h4>The Intuition</h4>
+                    <p>
+                        Consider a partition of teams into tiers. For any two tiers, we can examine all pairwise
+                        comparisons between teams across those tiers. If teams are correctly grouped:
+                    </p>
+                    <ul>
+                        <li><strong>Within a tier:</strong> Comparisons should be roughly balanced (teams are similar)</li>
+                        <li><strong>Across tiers:</strong> Comparisons should be imbalanced (higher tier teams dominate)</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <p><strong>Cut Imbalance Definition:</strong> The cut imbalance between two tiers measures the
+                        net preference of the higher tier over the lower tier. A high cut imbalance indicates a clear
+                        separation between tiers.</p>
+                    </div>
+
+                    <h4>Cumulative Cut Imbalance</h4>
+                    <p>
+                        For a partition into K tiers, the <em>cumulative cut imbalance</em> sums the imbalances across
+                        all pairs of tiers. This serves as our objective function&mdash;we seek the partition that
+                        maximizes cumulative cut imbalance.
+                    </p>
+                    <div class="formula-box">
+                        CI = &Sigma;<sub>k&lt;l</sub> &Sigma;<sub>i&isin;C<sub>k</sub>, j&isin;C<sub>l</sub></sub> (w<sub>ij</sub> - w<sub>ji</sub>)
+                    </div>
+                    <p>
+                        Where w<sub>ij</sub> is the normalized preference of team i over team j, and C<sub>k</sub>
+                        denotes the set of teams in tier k (with lower indices being higher/better tiers).
+                    </p>
+                </div>
+
+                <!-- Preference Matrix -->
+                <div class="methodology-section">
+                    <h3>Preference Matrix Construction</h3>
+                    <p>
+                        The foundation of our analysis is a <em>preference matrix</em> W where entry w<sub>ij</sub>
+                        represents how strongly team i is preferred over team j based on statistical comparisons.
+                    </p>
+
+                    <h4>Pairwise Stat Comparisons</h4>
+                    <p>
+                        For each pair of teams, we compare them across 10 key statistics. The raw preference count
+                        is simply the number of stats where team i outperforms team j. We then normalize so that
+                        w<sub>ij</sub> + w<sub>ji</sub> = 1 for all pairs.
+                    </p>
+
+                    <div class="stat-grid">
+                        <div class="stat-category">
+                            <h5>Offensive Statistics (10)</h5>
+                            <div class="stat-list">
+                                <span class="stat-item">Points Scored</span>
+                                <span class="stat-item">Total Yards</span>
+                                <span class="stat-item">Passing Yards</span>
+                                <span class="stat-item">Rushing Yards</span>
+                                <span class="stat-item">Yards Per Play</span>
+                                <span class="stat-item">Completion %</span>
+                                <span class="stat-item">Total TDs</span>
+                                <span class="stat-item negative">Turnovers (lower)</span>
+                                <span class="stat-item">3rd Down %</span>
+                                <span class="stat-item">Red Zone TD %</span>
+                            </div>
+                        </div>
+                        <div class="stat-category">
+                            <h5>Defensive Statistics (10)</h5>
+                            <div class="stat-list">
+                                <span class="stat-item negative">Points Allowed</span>
+                                <span class="stat-item negative">Yards Allowed</span>
+                                <span class="stat-item negative">Pass Yds Allowed</span>
+                                <span class="stat-item negative">Rush Yds Allowed</span>
+                                <span class="stat-item negative">Yds/Play Allowed</span>
+                                <span class="stat-item negative">TDs Allowed</span>
+                                <span class="stat-item">Turnovers Forced</span>
+                                <span class="stat-item">Sacks</span>
+                                <span class="stat-item negative">3rd Down % Allowed</span>
+                                <span class="stat-item negative">Red Zone % Allowed</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--gray-500); margin-top: 8px;">
+                        <em>Red items indicate "lower is better" statistics where the comparison direction is reversed.</em>
+                    </p>
+
+                    <h4>Normalization</h4>
+                    <p>
+                        Raw preference counts are normalized to ensure w<sub>ij</sub> + w<sub>ji</sub> = 1:
+                    </p>
+                    <div class="formula-box">
+                        w<sub>ij</sub> = (raw count i beats j) / (raw count i beats j + raw count j beats i)
+                    </div>
+                    <p>
+                        This normalization ensures the preference matrix captures relative strength. A value of
+                        w<sub>ij</sub> = 0.7 means team i beats team j on 70% of their head-to-head stat comparisons.
+                    </p>
+                </div>
+
+                <!-- PNoRanking Formulation -->
+                <div class="methodology-section">
+                    <h3>The PNoRanking Formulation</h3>
+                    <p>
+                        A key contribution of this research is the <strong>PNoRanking</strong> (Partition with No
+                        Ranking) formulation, which finds optimal tiers <em>without requiring an initial ranking</em>
+                        of items.
+                    </p>
+
+                    <div class="highlight-box key-insight">
+                        <p><strong>Why This Matters:</strong> Traditional tiering methods first rank items, then
+                        partition that ranking. PNoRanking jointly determines both the tier assignments and the
+                        implicit tier ordering, avoiding bias from a potentially suboptimal initial ranking.</p>
+                    </div>
+
+                    <h4>Mixed Integer Linear Program (MILP)</h4>
+                    <p>
+                        The optimal clustering can be found exactly via a MILP formulation:
+                    </p>
+                    <div class="formula-box left-align">
+                        <code>
+maximize:  (1/2) * &Sigma;<sub>k&lt;l</sub> &Sigma;<sub>i&ne;j</sub> (w<sub>ij</sub> - w<sub>ji</sub>) * z<sub>ijkl</sub>
+
+subject to:
+    &Sigma;<sub>k</sub> x<sub>ik</sub> = 1          &forall; i     (each team in exactly one tier)
+
+    z<sub>ijkl</sub> &le; x<sub>ik</sub>           &forall; i,j,k,l  (linearization)
+    z<sub>ijkl</sub> &le; x<sub>jl</sub>           &forall; i,j,k,l
+    z<sub>ijkl</sub> &ge; x<sub>ik</sub> + x<sub>jl</sub> - 1   &forall; i,j,k,l
+
+    x<sub>ik</sub> &isin; {0,1}
+    z<sub>ijkl</sub> &isin; {0,1}
+                        </code>
+                    </div>
+                    <p>
+                        Where x<sub>ik</sub> = 1 if team i is assigned to tier k, and z<sub>ijkl</sub> = 1 if team i
+                        is in tier k AND team j is in tier l.
+                    </p>
+
+                    <h4>Coupled Probability Updating (Heuristic)</h4>
+                    <p>
+                        For larger instances where the MILP becomes computationally expensive, we use a
+                        <em>Coupled Probability Updating</em> algorithm that iteratively refines soft cluster
+                        assignments using simulated annealing:
+                    </p>
+                    <ol>
+                        <li>Initialize uniform probability distributions over tiers for each team</li>
+                        <li>Compute contribution scores based on expected cut imbalance gains</li>
+                        <li>Update probabilities via softmax with temperature annealing</li>
+                        <li>Apply momentum to smooth updates and avoid oscillation</li>
+                        <li>Periodically extract integer solutions and track the best</li>
+                    </ol>
+                </div>
+
+                <!-- Selecting K -->
+                <div class="methodology-section">
+                    <h3>Selecting the Number of Tiers (K)</h3>
+                    <p>
+                        A key question in any clustering problem is: how many clusters (tiers) should we use?
+                        The choice of K significantly impacts the results.
+                    </p>
+                    <div class="two-column">
+                        <div class="column-card">
+                            <h5>Too Few Tiers</h5>
+                            <p>
+                                If K is too small, we force dissimilar teams into the same tier, reducing within-tier
+                                balance and leaving cut imbalance "on the table."
+                            </p>
+                        </div>
+                        <div class="column-card">
+                            <h5>Too Many Tiers</h5>
+                            <p>
+                                If K is too large, tiers become too granular. We may separate teams that are
+                                statistically indistinguishable, and tiers may be nearly empty.
+                            </p>
+                        </div>
+                    </div>
+
+                    <h4>In This NFL Example</h4>
+                    <p>
+                        For this demonstration, we use a simplified approach: we test several values of K
+                        (from 2 to 6), solve the clustering problem for each, and select the K that maximizes
+                        cumulative cut imbalance. This grid search approach is practical for quick analyses
+                        and works well when the range of reasonable K values is small.
+                    </p>
+                    <p>
+                        For the 2024 NFL season, this approach found <strong>6 offensive tiers</strong> and
+                        <strong>6 defensive tiers</strong> to provide the best stratification.
+                    </p>
+
+                    <div class="highlight-box key-insight">
+                        <p><strong>In the Research Paper:</strong> The full paper presents a more rigorous
+                        approach that <em>optimizes over all possible numbers of tiers simultaneously</em>.
+                        Rather than fixing K and solving, we formulate an extended model where K itself becomes
+                        a decision variable. This allows the algorithm to automatically discover the optimal
+                        number of tiers without requiring a grid search, and provides theoretical guarantees
+                        about the solution quality.</p>
+                    </div>
+                </div>
+
+                <!-- Interpretation -->
+                <div class="methodology-section">
+                    <h3>Interpreting the Results</h3>
+                    <p>
+                        The resulting tiers should be interpreted as follows:
+                    </p>
+                    <ul>
+                        <li><strong>Teams in the same tier</strong> are statistically similar&mdash;pairwise comparisons
+                        between them are relatively balanced</li>
+                        <li><strong>Teams in different tiers</strong> show clear separation&mdash;higher tier teams
+                        consistently outperform lower tier teams across the stat comparisons</li>
+                        <li><strong>Tier ordering</strong> is determined by dominance&mdash;Tier 1 teams dominate
+                        all other tiers, Tier 2 teams dominate Tiers 3+, etc.</li>
+                    </ul>
+                    <div class="highlight-box">
+                        <p><strong>Note:</strong> Offense and defense are tiered separately because a team's offensive
+                        strength may differ significantly from its defensive strength (e.g., Houston Texans: Tier 4
+                        offense but Tier 1 defense in 2024).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="section section-alt" id="results">
+            <div class="container">
+                <h2 class="section-title">2024 Season Tier Results</h2>
+                <p class="section-subtitle">
+                    Teams clustered into tiers based on offensive and defensive performance across the season.
+                </p>
+
+                <div class="tiers-container">
+                    <div class="tier-section-card">
+                        <h3>Offensive Tiers</h3>
+                        <div id="offense-tiers"></div>
+                    </div>
+
+                    <div class="tier-section-card">
+                        <h3>Defensive Tiers</h3>
+                        <div id="defense-tiers"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Data Section -->
+        <section class="section" id="data">
+            <div class="container">
+                <h2 class="section-title">Preference Matrices</h2>
+                <p class="section-subtitle">
+                    Explore the raw pairwise preference data underlying the tier assignments.
+                </p>
+
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="pref-offense">Offensive Preferences</button>
+                    <button class="tab-btn" data-tab="pref-defense">Defensive Preferences</button>
+                </div>
+
+                <!-- Offense Matrix Tab -->
+                <div id="pref-offense" class="tab-content active">
+                    <div class="table-container">
+                        <div class="table-header">
+                            <div>
+                                <h4>Offensive Preference Matrix</h4>
+                                <p>Entry (i, j) = number of offensive stats where row team i outperforms column team j (out of 10)</p>
+                            </div>
+                            <input type="text" class="table-filter" id="filter-offense" placeholder="Filter teams...">
+                        </div>
+                        <div class="table-wrapper">
+                            <table id="offense-matrix-table">
+                                <thead></thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Defense Matrix Tab -->
+                <div id="pref-defense" class="tab-content">
+                    <div class="table-container">
+                        <div class="table-header">
+                            <div>
+                                <h4>Defensive Preference Matrix</h4>
+                                <p>Entry (i, j) = number of defensive stats where row team i outperforms column team j (out of 10)</p>
+                            </div>
+                            <input type="text" class="table-filter" id="filter-defense" placeholder="Filter teams...">
+                        </div>
+                        <div class="table-wrapper">
+                            <table id="defense-matrix-table">
+                                <thead></thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="research-footer">
+        <div class="container">
+            <p>Data Source: <a href="https://github.com/nflverse" target="_blank">nflverse</a> Play-by-Play Data (2024 Season)</p>
+            <p>Methodology: "From Rankings to Tiers: Cut Imbalance Clustering" (Myles et al.)</p>
+        </div>
+    </footer>
+
+    <script>
+        // Team data
+        const teamTiers = {
+            "BAL": { offense: 1, defense: 2 }, "BUF": { offense: 1, defense: 3 },
+            "DET": { offense: 1, defense: 3 }, "TB": { offense: 1, defense: 3 },
+            "ARI": { offense: 2, defense: 3 }, "CIN": { offense: 2, defense: 5 },
+            "GB": { offense: 2, defense: 1 }, "PHI": { offense: 2, defense: 1 },
+            "SF": { offense: 2, defense: 5 }, "WAS": { offense: 2, defense: 4 },
+            "ATL": { offense: 3, defense: 5 }, "DEN": { offense: 3, defense: 1 },
+            "KC": { offense: 3, defense: 2 }, "LA": { offense: 3, defense: 3 },
+            "LAC": { offense: 3, defense: 1 }, "MIN": { offense: 3, defense: 1 },
+            "SEA": { offense: 3, defense: 2 }, "HOU": { offense: 4, defense: 1 },
+            "IND": { offense: 4, defense: 5 }, "MIA": { offense: 4, defense: 2 },
+            "NO": { offense: 4, defense: 4 }, "NYJ": { offense: 4, defense: 3 },
+            "PIT": { offense: 4, defense: 2 }, "CAR": { offense: 5, defense: 6 },
+            "DAL": { offense: 5, defense: 6 }, "JAX": { offense: 5, defense: 6 },
+            "LV": { offense: 5, defense: 4 }, "TEN": { offense: 5, defense: 4 },
+            "CHI": { offense: 6, defense: 3 }, "CLE": { offense: 6, defense: 4 },
+            "NE": { offense: 6, defense: 5 }, "NYG": { offense: 6, defense: 4 }
+        };
+
+        const teamLogoMap = {
+            "ARI": "ari", "ATL": "atl", "BAL": "bal", "BUF": "buf",
+            "CAR": "car", "CHI": "chi", "CIN": "cin", "CLE": "cle",
+            "DAL": "dal", "DEN": "den", "DET": "det", "GB": "gb",
+            "HOU": "hou", "IND": "ind", "JAX": "jax", "KC": "kc",
+            "LA": "lar", "LAC": "lac", "LV": "lv", "MIA": "mia",
+            "MIN": "min", "NE": "ne", "NO": "no", "NYG": "nyg",
+            "NYJ": "nyj", "PHI": "phi", "PIT": "pit", "SEA": "sea",
+            "SF": "sf", "TB": "tb", "TEN": "ten", "WAS": "wsh"
+        };
+
+        const tierNames = { 1: "Elite", 2: "Great", 3: "Good", 4: "Above Avg", 5: "Below Avg", 6: "Bottom" };
+
+        // Preference matrices
+        const offenseMatrix = {"ARI":{"ARI":0,"ATL":7,"BAL":0,"BUF":2,"CAR":8,"CHI":9,"CIN":3,"CLE":9,"DAL":9,"DEN":6,"DET":0,"GB":2,"HOU":8,"IND":9,"JAX":9,"KC":6,"LA":8,"LAC":7,"LV":9,"MIA":8,"MIN":6,"NE":10,"NO":9,"NYG":10,"NYJ":7,"PHI":5,"PIT":9,"SEA":8,"SF":6,"TB":1,"TEN":10,"WAS":2},"ATL":{"ARI":2,"ATL":0,"BAL":1,"BUF":2,"CAR":7,"CHI":8,"CIN":2,"CLE":10,"DAL":10,"DEN":4,"DET":0,"GB":3,"HOU":8,"IND":8,"JAX":8,"KC":4,"LA":7,"LAC":6,"LV":9,"MIA":7,"MIN":4,"NE":9,"NO":9,"NYG":9,"NYJ":6,"PHI":3,"PIT":8,"SEA":6,"SF":2,"TB":0,"TEN":10,"WAS":2},"BAL":{"ARI":9,"ATL":9,"BAL":0,"BUF":7,"CAR":10,"CHI":10,"CIN":9,"CLE":10,"DAL":10,"DEN":10,"DET":6,"GB":10,"HOU":10,"IND":10,"JAX":10,"KC":10,"LA":9,"LAC":9,"LV":10,"MIA":10,"MIN":9,"NE":10,"NO":10,"NYG":10,"NYJ":10,"PHI":9,"PIT":10,"SEA":9,"SF":9,"TB":8,"TEN":10,"WAS":10},"BUF":{"ARI":8,"ATL":8,"BAL":2,"BUF":0,"CAR":10,"CHI":10,"CIN":6,"CLE":10,"DAL":9,"DEN":9,"DET":1,"GB":6,"HOU":9,"IND":10,"JAX":10,"KC":8,"LA":9,"LAC":9,"LV":9,"MIA":8,"MIN":9,"NE":10,"NO":10,"NYG":10,"NYJ":9,"PHI":8,"PIT":10,"SEA":8,"SF":7,"TB":4,"TEN":10,"WAS":5},"CAR":{"ARI":2,"ATL":3,"BAL":0,"BUF":0,"CAR":0,"CHI":8,"CIN":1,"CLE":8,"DAL":4,"DEN":0,"DET":0,"GB":1,"HOU":3,"IND":3,"JAX":5,"KC":2,"LA":3,"LAC":3,"LV":7,"MIA":3,"MIN":2,"NE":8,"NO":3,"NYG":6,"NYJ":4,"PHI":1,"PIT":2,"SEA":3,"SF":2,"TB":0,"TEN":7,"WAS":0},"CHI":{"ARI":1,"ATL":2,"BAL":0,"BUF":0,"CAR":2,"CHI":0,"CIN":2,"CLE":7,"DAL":4,"DEN":1,"DET":1,"GB":1,"HOU":2,"IND":3,"JAX":2,"KC":2,"LA":1,"LAC":1,"LV":4,"MIA":2,"MIN":2,"NE":5,"NO":2,"NYG":5,"NYJ":3,"PHI":2,"PIT":2,"SEA":2,"SF":2,"TB":1,"TEN":2,"WAS":0},"CIN":{"ARI":7,"ATL":7,"BAL":1,"BUF":4,"CAR":9,"CHI":8,"CIN":0,"CLE":9,"DAL":9,"DEN":8,"DET":1,"GB":7,"HOU":8,"IND":9,"JAX":9,"KC":8,"LA":8,"LAC":8,"LV":10,"MIA":8,"MIN":9,"NE":9,"NO":8,"NYG":9,"NYJ":9,"PHI":4,"PIT":8,"SEA":8,"SF":7,"TB":2,"TEN":9,"WAS":4},"CLE":{"ARI":1,"ATL":0,"BAL":0,"BUF":0,"CAR":2,"CHI":2,"CIN":1,"CLE":0,"DAL":0,"DEN":1,"DET":0,"GB":0,"HOU":0,"IND":2,"JAX":1,"KC":0,"LA":0,"LAC":0,"LV":1,"MIA":0,"MIN":0,"NE":3,"NO":1,"NYG":3,"NYJ":1,"PHI":1,"PIT":1,"SEA":0,"SF":0,"TB":0,"TEN":1,"WAS":0},"DAL":{"ARI":1,"ATL":0,"BAL":0,"BUF":1,"CAR":5,"CHI":6,"CIN":1,"CLE":10,"DAL":0,"DEN":2,"DET":0,"GB":1,"HOU":4,"IND":4,"JAX":5,"KC":2,"LA":1,"LAC":2,"LV":6,"MIA":4,"MIN":0,"NE":7,"NO":4,"NYG":7,"NYJ":5,"PHI":1,"PIT":3,"SEA":1,"SF":0,"TB":0,"TEN":6,"WAS":1},"DEN":{"ARI":4,"ATL":6,"BAL":0,"BUF":1,"CAR":9,"CHI":9,"CIN":1,"CLE":9,"DAL":8,"DEN":0,"DET":0,"GB":4,"HOU":5,"IND":6,"JAX":10,"KC":5,"LA":6,"LAC":6,"LV":9,"MIA":6,"MIN":4,"NE":9,"NO":6,"NYG":10,"NYJ":7,"PHI":3,"PIT":7,"SEA":5,"SF":4,"TB":1,"TEN":10,"WAS":0},"DET":{"ARI":10,"ATL":10,"BAL":4,"BUF":9,"CAR":10,"CHI":9,"CIN":8,"CLE":10,"DAL":10,"DEN":9,"DET":0,"GB":10,"HOU":9,"IND":10,"JAX":10,"KC":9,"LA":9,"LAC":9,"LV":10,"MIA":9,"MIN":10,"NE":10,"NO":9,"NYG":10,"NYJ":9,"PHI":8,"PIT":9,"SEA":9,"SF":10,"TB":9,"TEN":10,"WAS":9},"GB":{"ARI":7,"ATL":7,"BAL":0,"BUF":4,"CAR":9,"CHI":9,"CIN":3,"CLE":10,"DAL":9,"DEN":6,"DET":0,"GB":0,"HOU":7,"IND":10,"JAX":9,"KC":7,"LA":8,"LAC":8,"LV":9,"MIA":7,"MIN":7,"NE":10,"NO":9,"NYG":10,"NYJ":7,"PHI":4,"PIT":8,"SEA":7,"SF":6,"TB":1,"TEN":10,"WAS":1},"HOU":{"ARI":2,"ATL":2,"BAL":0,"BUF":1,"CAR":7,"CHI":8,"CIN":1,"CLE":10,"DAL":6,"DEN":4,"DET":0,"GB":3,"HOU":0,"IND":5,"JAX":7,"KC":2,"LA":3,"LAC":4,"LV":7,"MIA":5,"MIN":2,"NE":9,"NO":5,"NYG":9,"NYJ":3,"PHI":1,"PIT":4,"SEA":2,"SF":1,"TB":1,"TEN":8,"WAS":0},"IND":{"ARI":1,"ATL":2,"BAL":0,"BUF":0,"CAR":6,"CHI":7,"CIN":1,"CLE":8,"DAL":6,"DEN":3,"DET":0,"GB":0,"HOU":5,"IND":0,"JAX":6,"KC":3,"LA":5,"LAC":4,"LV":6,"MIA":6,"MIN":1,"NE":8,"NO":6,"NYG":8,"NYJ":5,"PHI":1,"PIT":5,"SEA":6,"SF":1,"TB":0,"TEN":6,"WAS":0},"JAX":{"ARI":1,"ATL":1,"BAL":0,"BUF":0,"CAR":5,"CHI":7,"CIN":1,"CLE":9,"DAL":5,"DEN":0,"DET":0,"GB":1,"HOU":2,"IND":4,"JAX":0,"KC":1,"LA":2,"LAC":1,"LV":8,"MIA":3,"MIN":1,"NE":8,"NO":2,"NYG":7,"NYJ":2,"PHI":2,"PIT":4,"SEA":2,"SF":1,"TB":0,"TEN":7,"WAS":0},"KC":{"ARI":4,"ATL":5,"BAL":0,"BUF":2,"CAR":8,"CHI":8,"CIN":2,"CLE":10,"DAL":8,"DEN":5,"DET":1,"GB":3,"HOU":7,"IND":7,"JAX":8,"KC":0,"LA":4,"LAC":7,"LV":8,"MIA":5,"MIN":3,"NE":9,"NO":8,"NYG":9,"NYJ":7,"PHI":3,"PIT":8,"SEA":5,"SF":5,"TB":1,"TEN":9,"WAS":1},"LA":{"ARI":2,"ATL":3,"BAL":1,"BUF":1,"CAR":7,"CHI":8,"CIN":2,"CLE":10,"DAL":9,"DEN":4,"DET":1,"GB":2,"HOU":7,"IND":4,"JAX":8,"KC":6,"LA":0,"LAC":5,"LV":9,"MIA":7,"MIN":2,"NE":9,"NO":8,"NYG":8,"NYJ":7,"PHI":2,"PIT":7,"SEA":4,"SF":2,"TB":1,"TEN":8,"WAS":1},"LAC":{"ARI":2,"ATL":3,"BAL":0,"BUF":1,"CAR":7,"CHI":9,"CIN":2,"CLE":10,"DAL":8,"DEN":4,"DET":1,"GB":2,"HOU":6,"IND":6,"JAX":9,"KC":3,"LA":5,"LAC":0,"LV":7,"MIA":6,"MIN":1,"NE":9,"NO":8,"NYG":10,"NYJ":6,"PHI":1,"PIT":7,"SEA":5,"SF":2,"TB":1,"TEN":8,"WAS":1},"LV":{"ARI":1,"ATL":1,"BAL":0,"BUF":1,"CAR":3,"CHI":5,"CIN":0,"CLE":9,"DAL":3,"DEN":1,"DET":0,"GB":1,"HOU":3,"IND":3,"JAX":2,"KC":2,"LA":1,"LAC":3,"LV":0,"MIA":1,"MIN":1,"NE":5,"NO":3,"NYG":7,"NYJ":3,"PHI":2,"PIT":3,"SEA":0,"SF":0,"TB":0,"TEN":4,"WAS":1},"MIA":{"ARI":2,"ATL":3,"BAL":0,"BUF":2,"CAR":6,"CHI":8,"CIN":1,"CLE":10,"DAL":5,"DEN":3,"DET":0,"GB":3,"HOU":3,"IND":4,"JAX":7,"KC":5,"LA":3,"LAC":4,"LV":8,"MIA":0,"MIN":3,"NE":9,"NO":5,"NYG":9,"NYJ":6,"PHI":3,"PIT":4,"SEA":2,"SF":2,"TB":1,"TEN":8,"WAS":1},"MIN":{"ARI":3,"ATL":6,"BAL":1,"BUF":1,"CAR":8,"CHI":8,"CIN":1,"CLE":10,"DAL":10,"DEN":6,"DET":0,"GB":2,"HOU":8,"IND":9,"JAX":9,"KC":6,"LA":8,"LAC":9,"LV":9,"MIA":7,"MIN":0,"NE":9,"NO":8,"NYG":10,"NYJ":7,"PHI":2,"PIT":7,"SEA":6,"SF":3,"TB":1,"TEN":10,"WAS":1},"NE":{"ARI":0,"ATL":0,"BAL":0,"BUF":0,"CAR":2,"CHI":5,"CIN":1,"CLE":7,"DAL":2,"DEN":1,"DET":0,"GB":0,"HOU":1,"IND":2,"JAX":1,"KC":1,"LA":1,"LAC":1,"LV":2,"MIA":1,"MIN":1,"NE":0,"NO":2,"NYG":5,"NYJ":1,"PHI":0,"PIT":1,"SEA":1,"SF":0,"TB":0,"TEN":3,"WAS":0},"NO":{"ARI":1,"ATL":1,"BAL":0,"BUF":0,"CAR":6,"CHI":8,"CIN":2,"CLE":9,"DAL":6,"DEN":3,"DET":1,"GB":1,"HOU":5,"IND":4,"JAX":8,"KC":2,"LA":2,"LAC":2,"LV":7,"MIA":5,"MIN":2,"NE":8,"NO":0,"NYG":8,"NYJ":4,"PHI":1,"PIT":4,"SEA":2,"SF":1,"TB":1,"TEN":9,"WAS":0},"NYG":{"ARI":0,"ATL":1,"BAL":0,"BUF":0,"CAR":2,"CHI":5,"CIN":1,"CLE":6,"DAL":3,"DEN":0,"DET":0,"GB":0,"HOU":1,"IND":2,"JAX":3,"KC":1,"LA":2,"LAC":0,"LV":3,"MIA":1,"MIN":0,"NE":5,"NO":0,"NYG":0,"NYJ":1,"PHI":1,"PIT":0,"SEA":1,"SF":1,"TB":0,"TEN":2,"WAS":0},"NYJ":{"ARI":2,"ATL":3,"BAL":0,"BUF":1,"CAR":6,"CHI":7,"CIN":0,"CLE":9,"DAL":5,"DEN":2,"DET":0,"GB":3,"HOU":5,"IND":5,"JAX":7,"KC":1,"LA":3,"LAC":3,"LV":7,"MIA":3,"MIN":2,"NE":9,"NO":5,"NYG":9,"NYJ":0,"PHI":2,"PIT":5,"SEA":2,"SF":1,"TB":1,"TEN":9,"WAS":0},"PHI":{"ARI":5,"ATL":6,"BAL":1,"BUF":2,"CAR":9,"CHI":8,"CIN":5,"CLE":9,"DAL":9,"DEN":7,"DET":2,"GB":5,"HOU":9,"IND":9,"JAX":8,"KC":7,"LA":8,"LAC":9,"LV":8,"MIA":7,"MIN":8,"NE":10,"NO":9,"NYG":9,"NYJ":8,"PHI":0,"PIT":9,"SEA":7,"SF":4,"TB":2,"TEN":9,"WAS":5},"PIT":{"ARI":1,"ATL":2,"BAL":0,"BUF":0,"CAR":7,"CHI":8,"CIN":2,"CLE":9,"DAL":6,"DEN":3,"DET":1,"GB":2,"HOU":6,"IND":5,"JAX":6,"KC":1,"LA":2,"LAC":3,"LV":7,"MIA":5,"MIN":3,"NE":9,"NO":5,"NYG":10,"NYJ":4,"PHI":1,"PIT":0,"SEA":3,"SF":1,"TB":1,"TEN":10,"WAS":0},"SEA":{"ARI":2,"ATL":4,"BAL":1,"BUF":2,"CAR":7,"CHI":8,"CIN":1,"CLE":10,"DAL":9,"DEN":4,"DET":0,"GB":3,"HOU":7,"IND":4,"JAX":8,"KC":5,"LA":5,"LAC":4,"LV":10,"MIA":7,"MIN":4,"NE":9,"NO":8,"NYG":9,"NYJ":7,"PHI":3,"PIT":7,"SEA":0,"SF":3,"TB":1,"TEN":8,"WAS":1},"SF":{"ARI":4,"ATL":6,"BAL":1,"BUF":3,"CAR":7,"CHI":8,"CIN":3,"CLE":10,"DAL":10,"DEN":5,"DET":0,"GB":4,"HOU":9,"IND":8,"JAX":8,"KC":5,"LA":8,"LAC":8,"LV":10,"MIA":8,"MIN":7,"NE":9,"NO":9,"NYG":9,"NYJ":9,"PHI":6,"PIT":9,"SEA":7,"SF":0,"TB":1,"TEN":10,"WAS":3},"TB":{"ARI":9,"ATL":10,"BAL":2,"BUF":6,"CAR":9,"CHI":9,"CIN":8,"CLE":10,"DAL":10,"DEN":9,"DET":1,"GB":8,"HOU":9,"IND":10,"JAX":10,"KC":9,"LA":9,"LAC":9,"LV":10,"MIA":9,"MIN":9,"NE":10,"NO":9,"NYG":9,"NYJ":9,"PHI":6,"PIT":9,"SEA":9,"SF":9,"TB":0,"TEN":10,"WAS":7},"TEN":{"ARI":0,"ATL":0,"BAL":0,"BUF":0,"CAR":3,"CHI":7,"CIN":1,"CLE":8,"DAL":4,"DEN":0,"DET":0,"GB":0,"HOU":2,"IND":4,"JAX":2,"KC":1,"LA":2,"LAC":1,"LV":6,"MIA":2,"MIN":0,"NE":7,"NO":1,"NYG":8,"NYJ":1,"PHI":1,"PIT":0,"SEA":2,"SF":0,"TB":0,"TEN":0,"WAS":0},"WAS":{"ARI":8,"ATL":8,"BAL":0,"BUF":5,"CAR":10,"CHI":9,"CIN":5,"CLE":10,"DAL":9,"DEN":10,"DET":1,"GB":9,"HOU":10,"IND":10,"JAX":10,"KC":9,"LA":8,"LAC":9,"LV":9,"MIA":9,"MIN":8,"NE":10,"NO":10,"NYG":10,"NYJ":10,"PHI":5,"PIT":10,"SEA":9,"SF":7,"TB":3,"TEN":10,"WAS":0}};
+
+        const defenseMatrix = {"ARI":{"ARI":0,"ATL":7,"BAL":3,"BUF":6,"CAR":9,"CHI":4,"CIN":6,"CLE":7,"DAL":7,"DEN":1,"DET":5,"GB":1,"HOU":1,"IND":8,"JAX":10,"KC":2,"LA":5,"LAC":0,"LV":6,"MIA":1,"MIN":2,"NE":8,"NO":8,"NYG":6,"NYJ":3,"PHI":0,"PIT":4,"SEA":1,"SF":5,"TB":4,"TEN":5,"WAS":5},"ATL":{"ARI":2,"ATL":0,"BAL":2,"BUF":2,"CAR":9,"CHI":3,"CIN":6,"CLE":5,"DAL":7,"DEN":1,"DET":3,"GB":0,"HOU":0,"IND":5,"JAX":7,"KC":0,"LA":3,"LAC":0,"LV":2,"MIA":1,"MIN":1,"NE":4,"NO":4,"NYG":5,"NYJ":2,"PHI":0,"PIT":1,"SEA":0,"SF":5,"TB":2,"TEN":5,"WAS":4},"BAL":{"ARI":6,"ATL":8,"BAL":0,"BUF":8,"CAR":8,"CHI":5,"CIN":8,"CLE":8,"DAL":6,"DEN":2,"DET":6,"GB":3,"HOU":4,"IND":8,"JAX":10,"KC":5,"LA":7,"LAC":4,"LV":8,"MIA":4,"MIN":6,"NE":9,"NO":6,"NYG":8,"NYJ":5,"PHI":2,"PIT":5,"SEA":6,"SF":7,"TB":7,"TEN":7,"WAS":8},"BUF":{"ARI":4,"ATL":8,"BAL":2,"BUF":0,"CAR":9,"CHI":5,"CIN":7,"CLE":7,"DAL":7,"DEN":2,"DET":5,"GB":2,"HOU":1,"IND":9,"JAX":9,"KC":1,"LA":4,"LAC":2,"LV":4,"MIA":2,"MIN":2,"NE":7,"NO":6,"NYG":6,"NYJ":4,"PHI":0,"PIT":2,"SEA":2,"SF":5,"TB":5,"TEN":6,"WAS":6},"CAR":{"ARI":0,"ATL":1,"BAL":1,"BUF":1,"CAR":0,"CHI":0,"CIN":1,"CLE":1,"DAL":2,"DEN":1,"DET":1,"GB":0,"HOU":0,"IND":1,"JAX":2,"KC":0,"LA":0,"LAC":0,"LV":1,"MIA":0,"MIN":1,"NE":2,"NO":1,"NYG":0,"NYJ":0,"PHI":0,"PIT":1,"SEA":0,"SF":0,"TB":1,"TEN":0,"WAS":0},"CHI":{"ARI":4,"ATL":7,"BAL":5,"BUF":5,"CAR":10,"CHI":0,"CIN":6,"CLE":4,"DAL":8,"DEN":4,"DET":5,"GB":1,"HOU":2,"IND":7,"JAX":9,"KC":4,"LA":7,"LAC":1,"LV":7,"MIA":3,"MIN":2,"NE":6,"NO":9,"NYG":6,"NYJ":5,"PHI":1,"PIT":4,"SEA":3,"SF":6,"TB":5,"TEN":6,"WAS":6},"CIN":{"ARI":4,"ATL":4,"BAL":2,"BUF":3,"CAR":9,"CHI":3,"CIN":0,"CLE":4,"DAL":8,"DEN":2,"DET":4,"GB":0,"HOU":0,"IND":5,"JAX":8,"KC":2,"LA":4,"LAC":0,"LV":1,"MIA":1,"MIN":1,"NE":4,"NO":5,"NYG":3,"NYJ":1,"PHI":0,"PIT":1,"SEA":1,"SF":3,"TB":2,"TEN":4,"WAS":3},"CLE":{"ARI":2,"ATL":5,"BAL":2,"BUF":3,"CAR":9,"CHI":5,"CIN":6,"CLE":0,"DAL":8,"DEN":2,"DET":3,"GB":0,"HOU":1,"IND":6,"JAX":7,"KC":2,"LA":4,"LAC":0,"LV":3,"MIA":2,"MIN":1,"NE":6,"NO":6,"NYG":4,"NYJ":2,"PHI":0,"PIT":2,"SEA":2,"SF":4,"TB":2,"TEN":5,"WAS":3},"DAL":{"ARI":3,"ATL":3,"BAL":3,"BUF":2,"CAR":8,"CHI":1,"CIN":2,"CLE":2,"DAL":0,"DEN":2,"DET":2,"GB":1,"HOU":1,"IND":4,"JAX":6,"KC":3,"LA":3,"LAC":1,"LV":3,"MIA":2,"MIN":2,"NE":3,"NO":6,"NYG":3,"NYJ":3,"PHI":1,"PIT":2,"SEA":3,"SF":3,"TB":3,"TEN":3,"WAS":4},"DEN":{"ARI":9,"ATL":9,"BAL":8,"BUF":8,"CAR":9,"CHI":6,"CIN":8,"CLE":8,"DAL":8,"DEN":0,"DET":7,"GB":5,"HOU":6,"IND":8,"JAX":10,"KC":8,"LA":9,"LAC":5,"LV":9,"MIA":6,"MIN":7,"NE":9,"NO":10,"NYG":9,"NYJ":7,"PHI":2,"PIT":7,"SEA":8,"SF":8,"TB":8,"TEN":8,"WAS":9},"DET":{"ARI":5,"ATL":7,"BAL":3,"BUF":5,"CAR":9,"CHI":5,"CIN":5,"CLE":6,"DAL":8,"DEN":2,"DET":0,"GB":3,"HOU":4,"IND":6,"JAX":10,"KC":4,"LA":5,"LAC":2,"LV":6,"MIA":3,"MIN":2,"NE":7,"NO":7,"NYG":6,"NYJ":6,"PHI":1,"PIT":3,"SEA":5,"SF":6,"TB":5,"TEN":7,"WAS":6},"GB":{"ARI":9,"ATL":10,"BAL":6,"BUF":8,"CAR":10,"CHI":9,"CIN":10,"CLE":9,"DAL":9,"DEN":5,"DET":7,"GB":0,"HOU":4,"IND":10,"JAX":10,"KC":8,"LA":8,"LAC":4,"LV":10,"MIA":7,"MIN":4,"NE":9,"NO":9,"NYG":9,"NYJ":8,"PHI":0,"PIT":7,"SEA":8,"SF":9,"TB":8,"TEN":8,"WAS":9},"HOU":{"ARI":9,"ATL":10,"BAL":6,"BUF":8,"CAR":10,"CHI":8,"CIN":10,"CLE":9,"DAL":9,"DEN":4,"DET":6,"GB":5,"HOU":0,"IND":10,"JAX":10,"KC":8,"LA":8,"LAC":6,"LV":10,"MIA":6,"MIN":5,"NE":10,"NO":9,"NYG":9,"NYJ":7,"PHI":1,"PIT":6,"SEA":9,"SF":9,"TB":8,"TEN":9,"WAS":9},"IND":{"ARI":1,"ATL":3,"BAL":2,"BUF":1,"CAR":9,"CHI":3,"CIN":4,"CLE":4,"DAL":6,"DEN":1,"DET":3,"GB":0,"HOU":0,"IND":0,"JAX":8,"KC":1,"LA":3,"LAC":1,"LV":2,"MIA":1,"MIN":1,"NE":2,"NO":5,"NYG":3,"NYJ":1,"PHI":0,"PIT":0,"SEA":1,"SF":4,"TB":2,"TEN":5,"WAS":4},"JAX":{"ARI":0,"ATL":3,"BAL":0,"BUF":1,"CAR":8,"CHI":1,"CIN":2,"CLE":1,"DAL":4,"DEN":0,"DET":0,"GB":0,"HOU":0,"IND":2,"JAX":0,"KC":0,"LA":1,"LAC":0,"LV":1,"MIA":0,"MIN":1,"NE":2,"NO":1,"NYG":2,"NYJ":1,"PHI":0,"PIT":0,"SEA":0,"SF":2,"TB":1,"TEN":4,"WAS":2},"KC":{"ARI":7,"ATL":9,"BAL":5,"BUF":9,"CAR":10,"CHI":5,"CIN":8,"CLE":8,"DAL":7,"DEN":2,"DET":6,"GB":1,"HOU":2,"IND":9,"JAX":10,"KC":0,"LA":6,"LAC":3,"LV":9,"MIA":4,"MIN":3,"NE":9,"NO":8,"NYG":7,"NYJ":6,"PHI":0,"PIT":8,"SEA":5,"SF":7,"TB":7,"TEN":6,"WAS":7},"LA":{"ARI":4,"ATL":6,"BAL":3,"BUF":4,"CAR":10,"CHI":3,"CIN":6,"CLE":6,"DAL":7,"DEN":1,"DET":5,"GB":2,"HOU":1,"IND":7,"JAX":9,"KC":4,"LA":0,"LAC":1,"LV":5,"MIA":3,"MIN":2,"NE":6,"NO":9,"NYG":6,"NYJ":4,"PHI":1,"PIT":3,"SEA":2,"SF":6,"TB":5,"TEN":6,"WAS":7},"LAC":{"ARI":10,"ATL":10,"BAL":6,"BUF":8,"CAR":10,"CHI":8,"CIN":9,"CLE":10,"DAL":9,"DEN":5,"DET":8,"GB":6,"HOU":4,"IND":9,"JAX":10,"KC":7,"LA":9,"LAC":0,"LV":9,"MIA":7,"MIN":5,"NE":9,"NO":10,"NYG":10,"NYJ":7,"PHI":3,"PIT":8,"SEA":9,"SF":7,"TB":9,"TEN":7,"WAS":9},"LV":{"ARI":4,"ATL":8,"BAL":2,"BUF":5,"CAR":9,"CHI":3,"CIN":7,"CLE":7,"DAL":7,"DEN":1,"DET":4,"GB":0,"HOU":0,"IND":8,"JAX":9,"KC":1,"LA":5,"LAC":1,"LV":0,"MIA":1,"MIN":3,"NE":6,"NO":5,"NYG":5,"NYJ":3,"PHI":0,"PIT":2,"SEA":2,"SF":5,"TB":3,"TEN":6,"WAS":6},"MIA":{"ARI":8,"ATL":9,"BAL":5,"BUF":8,"CAR":9,"CHI":7,"CIN":8,"CLE":8,"DAL":8,"DEN":4,"DET":6,"GB":3,"HOU":3,"IND":8,"JAX":10,"KC":6,"LA":7,"LAC":2,"LV":9,"MIA":0,"MIN":4,"NE":9,"NO":8,"NYG":8,"NYJ":5,"PHI":0,"PIT":6,"SEA":7,"SF":6,"TB":7,"TEN":6,"WAS":7},"MIN":{"ARI":8,"ATL":9,"BAL":4,"BUF":7,"CAR":9,"CHI":8,"CIN":9,"CLE":9,"DAL":8,"DEN":3,"DET":8,"GB":5,"HOU":5,"IND":9,"JAX":9,"KC":6,"LA":7,"LAC":5,"LV":7,"MIA":6,"MIN":0,"NE":9,"NO":8,"NYG":9,"NYJ":7,"PHI":3,"PIT":8,"SEA":7,"SF":7,"TB":9,"TEN":7,"WAS":9},"NE":{"ARI":2,"ATL":6,"BAL":1,"BUF":3,"CAR":8,"CHI":4,"CIN":5,"CLE":4,"DAL":7,"DEN":1,"DET":3,"GB":1,"HOU":0,"IND":8,"JAX":7,"KC":1,"LA":4,"LAC":1,"LV":2,"MIA":1,"MIN":1,"NE":0,"NO":4,"NYG":5,"NYJ":0,"PHI":0,"PIT":1,"SEA":1,"SF":4,"TB":1,"TEN":3,"WAS":5},"NO":{"ARI":2,"ATL":5,"BAL":3,"BUF":4,"CAR":9,"CHI":0,"CIN":5,"CLE":4,"DAL":3,"DEN":0,"DET":2,"GB":1,"HOU":1,"IND":5,"JAX":9,"KC":1,"LA":1,"LAC":0,"LV":5,"MIA":2,"MIN":2,"NE":6,"NO":0,"NYG":5,"NYJ":4,"PHI":0,"PIT":1,"SEA":1,"SF":6,"TB":3,"TEN":6,"WAS":4},"NYG":{"ARI":3,"ATL":5,"BAL":1,"BUF":3,"CAR":9,"CHI":4,"CIN":7,"CLE":5,"DAL":7,"DEN":1,"DET":3,"GB":0,"HOU":0,"IND":7,"JAX":8,"KC":2,"LA":3,"LAC":0,"LV":5,"MIA":1,"MIN":1,"NE":5,"NO":5,"NYG":0,"NYJ":1,"PHI":0,"PIT":2,"SEA":1,"SF":5,"TB":1,"TEN":3,"WAS":5},"NYJ":{"ARI":6,"ATL":8,"BAL":3,"BUF":5,"CAR":9,"CHI":5,"CIN":9,"CLE":8,"DAL":7,"DEN":2,"DET":4,"GB":2,"HOU":2,"IND":9,"JAX":9,"KC":4,"LA":5,"LAC":3,"LV":7,"MIA":4,"MIN":3,"NE":10,"NO":6,"NYG":7,"NYJ":0,"PHI":0,"PIT":4,"SEA":3,"SF":8,"TB":3,"TEN":7,"WAS":9},"PHI":{"ARI":10,"ATL":10,"BAL":8,"BUF":9,"CAR":10,"CHI":9,"CIN":10,"CLE":10,"DAL":9,"DEN":7,"DET":9,"GB":10,"HOU":9,"IND":10,"JAX":10,"KC":10,"LA":9,"LAC":6,"LV":10,"MIA":10,"MIN":6,"NE":10,"NO":10,"NYG":10,"NYJ":10,"PHI":0,"PIT":10,"SEA":10,"SF":9,"TB":9,"TEN":9,"WAS":10},"PIT":{"ARI":6,"ATL":9,"BAL":4,"BUF":8,"CAR":9,"CHI":6,"CIN":8,"CLE":7,"DAL":8,"DEN":3,"DET":6,"GB":1,"HOU":3,"IND":10,"JAX":10,"KC":2,"LA":7,"LAC":2,"LV":7,"MIA":4,"MIN":2,"NE":8,"NO":7,"NYG":8,"NYJ":6,"PHI":0,"PIT":0,"SEA":4,"SF":7,"TB":6,"TEN":7,"WAS":8},"SEA":{"ARI":7,"ATL":10,"BAL":4,"BUF":7,"CAR":10,"CHI":6,"CIN":9,"CLE":8,"DAL":7,"DEN":2,"DET":5,"GB":1,"HOU":1,"IND":9,"JAX":10,"KC":3,"LA":7,"LAC":0,"LV":8,"MIA":2,"MIN":3,"NE":9,"NO":9,"NYG":8,"NYJ":7,"PHI":0,"PIT":6,"SEA":0,"SF":7,"TB":7,"TEN":7,"WAS":9},"SF":{"ARI":4,"ATL":5,"BAL":2,"BUF":4,"CAR":9,"CHI":4,"CIN":5,"CLE":5,"DAL":7,"DEN":2,"DET":4,"GB":1,"HOU":1,"IND":6,"JAX":7,"KC":2,"LA":4,"LAC":3,"LV":4,"MIA":3,"MIN":2,"NE":6,"NO":4,"NYG":4,"NYJ":1,"PHI":1,"PIT":3,"SEA":3,"SF":0,"TB":3,"TEN":3,"WAS":4},"TB":{"ARI":5,"ATL":8,"BAL":1,"BUF":5,"CAR":8,"CHI":5,"CIN":7,"CLE":8,"DAL":7,"DEN":2,"DET":4,"GB":1,"HOU":2,"IND":8,"JAX":9,"KC":2,"LA":5,"LAC":1,"LV":6,"MIA":2,"MIN":1,"NE":8,"NO":6,"NYG":7,"NYJ":6,"PHI":1,"PIT":2,"SEA":2,"SF":6,"TB":0,"TEN":6,"WAS":7},"TEN":{"ARI":4,"ATL":5,"BAL":2,"BUF":4,"CAR":8,"CHI":4,"CIN":6,"CLE":4,"DAL":7,"DEN":2,"DET":3,"GB":2,"HOU":1,"IND":5,"JAX":5,"KC":3,"LA":4,"LAC":3,"LV":4,"MIA":3,"MIN":2,"NE":7,"NO":4,"NYG":6,"NYJ":2,"PHI":1,"PIT":3,"SEA":3,"SF":5,"TB":3,"TEN":0,"WAS":5},"WAS":{"ARI":4,"ATL":5,"BAL":2,"BUF":3,"CAR":10,"CHI":3,"CIN":7,"CLE":5,"DAL":6,"DEN":1,"DET":4,"GB":1,"HOU":1,"IND":6,"JAX":7,"KC":2,"LA":2,"LAC":1,"LV":4,"MIA":3,"MIN":1,"NE":5,"NO":4,"NYG":5,"NYJ":1,"PHI":0,"PIT":2,"SEA":1,"SF":6,"TB":3,"TEN":4,"WAS":0}};
+
+        function getLogoUrl(team) {
+            const code = teamLogoMap[team] || team.toLowerCase();
+            return `https://a.espncdn.com/i/teamlogos/nfl/500/${code}.png`;
+        }
+
+        // Render tier cards
+        function renderTierCards() {
+            const offenseContainer = document.getElementById('offense-tiers');
+            const defenseContainer = document.getElementById('defense-tiers');
+
+            const offenseTiers = {}, defenseTiers = {};
+            Object.entries(teamTiers).forEach(([team, tiers]) => {
+                if (!offenseTiers[tiers.offense]) offenseTiers[tiers.offense] = [];
+                if (!defenseTiers[tiers.defense]) defenseTiers[tiers.defense] = [];
+                offenseTiers[tiers.offense].push(team);
+                defenseTiers[tiers.defense].push(team);
+            });
+
+            function renderTiers(container, tiersData) {
+                container.innerHTML = '';
+                Object.keys(tiersData).sort((a, b) => a - b).forEach(tierNum => {
+                    const teams = tiersData[tierNum];
+                    const tierDiv = document.createElement('div');
+                    tierDiv.className = `tier-group tier-${tierNum}`;
+                    tierDiv.innerHTML = `
+                        <div class="tier-label">
+                            <span class="tier-badge">${tierNum}</span>
+                            <span class="tier-name">${tierNames[tierNum] || `Tier ${tierNum}`}</span>
+                        </div>
+                        <div class="teams-row">
+                            ${teams.map(team => `
+                                <div class="team-chip">
+                                    <img src="${getLogoUrl(team)}" alt="${team}" onerror="this.style.display='none'">
+                                    <span>${team}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    container.appendChild(tierDiv);
+                });
+            }
+
+            renderTiers(offenseContainer, offenseTiers);
+            renderTiers(defenseContainer, defenseTiers);
+        }
+
+        // Render preference matrix table
+        function renderMatrixTable(tableId, matrix, filterId) {
+            const table = document.getElementById(tableId);
+            const teams = Object.keys(matrix).sort();
+
+            const thead = table.querySelector('thead');
+            thead.innerHTML = `<tr><th>Team</th>${teams.map(t => `<th>${t}</th>`).join('')}</tr>`;
+
+            const tbody = table.querySelector('tbody');
+
+            function renderRows(filterText = '') {
+                const filtered = filterText ? teams.filter(t => t.toLowerCase().includes(filterText.toLowerCase())) : teams;
+                tbody.innerHTML = filtered.map(rowTeam => `
+                    <tr>
+                        <td>
+                            <div class="team-cell">
+                                <img src="${getLogoUrl(rowTeam)}" onerror="this.style.display='none'">
+                                ${rowTeam}
+                            </div>
+                        </td>
+                        ${teams.map(colTeam => {
+                            const val = matrix[rowTeam][colTeam];
+                            let cellClass = '';
+                            if (rowTeam !== colTeam) {
+                                if (val >= 7) cellClass = 'cell-high';
+                                else if (val >= 4) cellClass = 'cell-mid';
+                                else cellClass = 'cell-low';
+                            }
+                            return `<td class="${cellClass}">${val}</td>`;
+                        }).join('')}
+                    </tr>
+                `).join('');
+            }
+
+            renderRows();
+            if (filterId) {
+                document.getElementById(filterId).addEventListener('input', (e) => renderRows(e.target.value));
+            }
+        }
+
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Mobile nav
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTierCards();
+            renderMatrixTable('offense-matrix-table', offenseMatrix, 'filter-offense');
+            renderMatrixTable('defense-matrix-table', defenseMatrix, 'filter-defense');
+        });
+    </script>
+</body>
+</html>
