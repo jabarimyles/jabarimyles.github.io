@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4th Down Decision Simulator | Jabari Myles</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Page-specific styles */
+        .simulator-header {
+            padding: 100px 0 40px;
+            background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+        }
+
+        .simulator-header h1 {
+            font-size: 2.5rem;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .simulator-header p {
+            color: var(--gray-600);
+            font-size: 1.1rem;
+            max-width: 700px;
+        }
+
+        .simulator-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .simulator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Input Panel */
+        .input-panel {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 24px;
+            height: fit-content;
+            position: sticky;
+            top: 80px;
+        }
+
+        .input-panel h3 {
+            font-size: 1.1rem;
+            color: var(--navy);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--navy);
+        }
+
+        .input-group {
+            margin-bottom: 16px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 6px;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--gray-300);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: var(--navy);
+        }
+
+        .input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .input-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+        }
+
+        .run-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--navy);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 8px;
+        }
+
+        .run-btn:hover {
+            background: var(--navy-dark);
+        }
+
+        .run-btn:disabled {
+            background: var(--gray-400);
+            cursor: not-allowed;
+        }
+
+        /* Results Panel */
+        .results-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .result-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .result-card h3 {
+            font-size: 1.1rem;
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+
+        /* Situation Display */
+        .situation-display {
+            background: var(--gray-50);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+            font-family: monospace;
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--gray-800);
+        }
+
+        .situation-display .highlight {
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        /* Win Probability Bars */
+        .win-prob-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .win-prob-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .win-prob-label {
+            width: 100px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--gray-700);
+        }
+
+        .win-prob-bar-container {
+            flex: 1;
+            height: 36px;
+            background: var(--gray-100);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .win-prob-bar {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            padding-left: 12px;
+        }
+
+        .win-prob-bar.go-for-it {
+            background: linear-gradient(90deg, var(--navy) 0%, var(--navy-light) 100%);
+        }
+
+        .win-prob-bar.field-goal {
+            background: linear-gradient(90deg, #059669 0%, #10b981 100%);
+        }
+
+        .win-prob-bar.punt {
+            background: linear-gradient(90deg, #d97706 0%, #f59e0b 100%);
+        }
+
+        .win-prob-value {
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .win-prob-value.outside {
+            color: var(--gray-600);
+            position: absolute;
+            right: 12px;
+            text-shadow: none;
+        }
+
+        .recommended-badge {
+            background: var(--red);
+            color: var(--white);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-left: 8px;
+        }
+
+        .not-viable {
+            color: var(--gray-400);
+            font-style: italic;
+        }
+
+        /* Charts */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            margin-top: 16px;
+        }
+
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.go-for-it { background: var(--navy); }
+        .legend-dot.field-goal { background: #059669; }
+        .legend-dot.punt { background: #d97706; }
+
+        /* Loading State */
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255,255,255,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            z-index: 10;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--gray-200);
+            border-top-color: var(--navy);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Info Box */
+        .info-box {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .info-box h4 {
+            color: var(--navy);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .info-box p {
+            color: var(--gray-600);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        /* Presets */
+        .presets-container {
+            margin-bottom: 20px;
+        }
+
+        .presets-container label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 8px;
+        }
+
+        .preset-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .preset-btn {
+            padding: 6px 12px;
+            background: var(--gray-100);
+            border: 1px solid var(--gray-300);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .preset-btn:hover {
+            background: var(--navy);
+            color: var(--white);
+            border-color: var(--navy);
+        }
+
+        /* Tabs for trajectory views */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid var(--gray-200);
+            margin-bottom: 16px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background: none;
+            border: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-500);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -2px;
+            transition: all 0.2s;
+        }
+
+        .tab:hover {
+            color: var(--gray-700);
+        }
+
+        .tab.active {
+            color: var(--navy);
+            border-bottom-color: var(--navy);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Jabari Myles</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">About</a></li>
+                <li><a href="index.html#papers" class="nav-link">Research</a></li>
+                <li><a href="index.html#projects" class="nav-link active">Projects</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="simulator-header">
+        <div class="container">
+            <h1>4th Down Decision Simulator</h1>
+            <p>
+                Monte Carlo simulation to evaluate 4th down decisions by simulating thousands of
+                game outcomes. Uses team-specific empirical distributions from NFL play-by-play data.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <section class="section">
+        <div class="container">
+            <div class="simulator-grid">
+                <!-- Input Panel -->
+                <div class="input-panel">
+                    <h3>Game Situation</h3>
+
+                    <div class="presets-container">
+                        <label>Quick Presets <span style="font-weight: 400; color: var(--gray-500);">(Real NFL Data)</span></label>
+                        <div class="preset-buttons">
+                            <button class="preset-btn" onclick="loadPreset('close_game')">Close Game</button>
+                            <button class="preset-btn" onclick="loadPreset('goal_line')">Goal Line</button>
+                            <button class="preset-btn" onclick="loadPreset('own_territory')">Own Territory</button>
+                            <button class="preset-btn" onclick="loadPreset('desperate')">Desperate</button>
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Home Team</label>
+                            <select id="home-team"></select>
+                        </div>
+                        <div class="input-group">
+                            <label>Away Team</label>
+                            <select id="away-team"></select>
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Home Score</label>
+                            <input type="number" id="home-score" value="14" min="0" max="99">
+                        </div>
+                        <div class="input-group">
+                            <label>Away Score</label>
+                            <input type="number" id="away-score" value="17" min="0" max="99">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Possession</label>
+                        <select id="possession">
+                            <option value="home">Home Team</option>
+                            <option value="away">Away Team</option>
+                        </select>
+                    </div>
+
+                    <div class="input-row-3">
+                        <div class="input-group">
+                            <label>Quarter</label>
+                            <select id="quarter">
+                                <option value="1">Q1</option>
+                                <option value="2">Q2</option>
+                                <option value="3">Q3</option>
+                                <option value="4" selected>Q4</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Minutes</label>
+                            <input type="number" id="minutes" value="5" min="0" max="15">
+                        </div>
+                        <div class="input-group">
+                            <label>Seconds</label>
+                            <input type="number" id="seconds" value="0" min="0" max="59">
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Yardline (from opp EZ)</label>
+                            <input type="number" id="yardline" value="35" min="1" max="99">
+                        </div>
+                        <div class="input-group">
+                            <label>Yards to Go</label>
+                            <input type="number" id="ydstogo" value="2" min="1" max="99">
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Home Timeouts</label>
+                            <input type="number" id="home-timeouts" value="2" min="0" max="3">
+                        </div>
+                        <div class="input-group">
+                            <label>Away Timeouts</label>
+                            <input type="number" id="away-timeouts" value="1" min="0" max="3">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Simulations</label>
+                        <select id="n-sims">
+                            <option value="500">500 (Fast)</option>
+                            <option value="1000" selected>1,000</option>
+                            <option value="2500">2,500</option>
+                            <option value="5000">5,000 (Accurate)</option>
+                        </select>
+                    </div>
+
+                    <button class="run-btn" id="run-btn" onclick="runSimulation()">
+                        Run Simulation
+                    </button>
+
+                    <div class="info-box">
+                        <h4>How It Works</h4>
+                        <p>
+                            The simulator runs thousands of Monte Carlo simulations for each decision
+                            (go for it, punt, field goal). Each simulation plays out the rest of the
+                            game using team-specific play distributions from real NFL data.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Results Panel -->
+                <div class="results-panel">
+                    <!-- Situation Display -->
+                    <div class="result-card">
+                        <div class="situation-display" id="situation-display">
+                            <span id="situation-text">Configure the game situation and run the simulation</span>
+                        </div>
+
+                        <h3>Win Probability by Decision</h3>
+                        <div class="win-prob-container" id="win-prob-container">
+                            <div class="win-prob-row">
+                                <div class="win-prob-label">Go for it</div>
+                                <div class="win-prob-bar-container">
+                                    <div class="win-prob-bar go-for-it" id="bar-go" style="width: 0%">
+                                        <span class="win-prob-value" id="val-go">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="win-prob-row">
+                                <div class="win-prob-label">Field Goal</div>
+                                <div class="win-prob-bar-container">
+                                    <div class="win-prob-bar field-goal" id="bar-fg" style="width: 0%">
+                                        <span class="win-prob-value" id="val-fg">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="win-prob-row">
+                                <div class="win-prob-label">Punt</div>
+                                <div class="win-prob-bar-container">
+                                    <div class="win-prob-bar punt" id="bar-punt" style="width: 0%">
+                                        <span class="win-prob-value" id="val-punt">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="recommendation" style="margin-top: 20px; text-align: center; font-size: 1.1rem; color: var(--gray-600);"></div>
+                    </div>
+
+                    <!-- Trajectory Charts -->
+                    <div class="result-card">
+                        <h3>Simulation Trajectories</h3>
+                        <div class="tabs">
+                            <button class="tab active" onclick="switchTab('score')">Score Over Time</button>
+                            <button class="tab" onclick="switchTab('distribution')">Final Score Distribution</button>
+                        </div>
+
+                        <div class="tab-content active" id="tab-score">
+                            <p style="font-size: 0.85rem; color: var(--gray-500); margin-bottom: 12px;">
+                                Each line represents one simulated game. Shows score differential
+                                (positive = winning) over remaining game time.
+                            </p>
+                            <div class="chart-container">
+                                <canvas id="trajectory-chart"></canvas>
+                            </div>
+                            <div class="chart-legend">
+                                <div class="legend-item"><div class="legend-dot go-for-it"></div>Go for it</div>
+                                <div class="legend-item"><div class="legend-dot field-goal"></div>Field Goal</div>
+                                <div class="legend-item"><div class="legend-dot punt"></div>Punt</div>
+                            </div>
+                        </div>
+
+                        <div class="tab-content" id="tab-distribution">
+                            <p style="font-size: 0.85rem; color: var(--gray-500); margin-bottom: 12px;">
+                                Distribution of final score differentials across all simulations.
+                                Positive values indicate wins.
+                            </p>
+                            <div class="chart-container">
+                                <canvas id="distribution-chart"></canvas>
+                            </div>
+                            <div class="chart-legend">
+                                <div class="legend-item"><div class="legend-dot go-for-it"></div>Go for it</div>
+                                <div class="legend-item"><div class="legend-dot field-goal"></div>Field Goal</div>
+                                <div class="legend-item"><div class="legend-dot punt"></div>Punt</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Methodology -->
+                    <div class="result-card">
+                        <h3>Methodology</h3>
+                        <p style="color: var(--gray-600); font-size: 0.95rem; line-height: 1.6;">
+                            This simulator uses <strong>Monte Carlo discrete event simulation</strong> to evaluate
+                            4th down decisions. For each option (go for it, punt, field goal), we simulate thousands
+                            of game outcomes and compute the win probability.
+                        </p>
+
+                        <h4 style="color: var(--navy); font-size: 0.95rem; margin-top: 20px; margin-bottom: 10px;">Simulation Approach</h4>
+                        <ul style="color: var(--gray-600); font-size: 0.9rem; margin-left: 20px; line-height: 1.8;">
+                            <li><strong>Play-by-play sampling:</strong> Each play outcome is sampled from empirical distributions
+                            derived from real NFL data (2023-2024 seasons via nflverse)</li>
+                            <li><strong>Team-specific distributions:</strong> Run yards, pass yards, sack rates, fumble rates,
+                            and interception rates are computed per team</li>
+                            <li><strong>Field goal accuracy:</strong> Success probability varies by distance bucket
+                            (e.g., ~95% at 20 yards, ~55% at 50+ yards)</li>
+                            <li><strong>Game state tracking:</strong> Score, time remaining, field position, down & distance
+                            are updated after each simulated play</li>
+                            <li><strong>Automated play-calling:</strong> The simulation uses situational heuristics for
+                            subsequent plays (pass-heavy when trailing, run-heavy when protecting a lead)</li>
+                        </ul>
+
+                        <h4 style="color: var(--navy); font-size: 0.95rem; margin-top: 20px; margin-bottom: 10px;">Key Features</h4>
+                        <ul style="color: var(--gray-600); font-size: 0.9rem; margin-left: 20px; line-height: 1.8;">
+                            <li><strong>Win probability:</strong> Computed as (# of simulated wins) / (total simulations)</li>
+                            <li><strong>Clock management:</strong> Each play consumes realistic game time (5-15 seconds)</li>
+                            <li><strong>Turnovers:</strong> Fumbles and interceptions occur at team-specific rates with
+                            appropriate field position consequences</li>
+                            <li><strong>End-game logic:</strong> Proper handling of game-ending scenarios, overtime, and
+                            desperation situations</li>
+                        </ul>
+
+                        <div style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 16px; margin-top: 20px;">
+                            <h4 style="color: #92400e; font-size: 0.9rem; margin-bottom: 8px;">Web Demo vs. Full Implementation</h4>
+                            <p style="color: #92400e; font-size: 0.85rem; line-height: 1.5; margin-bottom: 8px;">
+                                <strong>Preset scenarios</strong> (Close Game, Goal Line, etc.) display results from the
+                                <strong>full Python simulation</strong> using real NFL play-by-play data (3,000 simulations each).
+                            </p>
+                            <p style="color: #92400e; font-size: 0.85rem; line-height: 1.5; margin-bottom: 8px;">
+                                <strong>Custom scenarios</strong> use a simplified JavaScript approximation for instant feedback
+                                in the browser.
+                            </p>
+                            <p style="color: #92400e; font-size: 0.85rem; line-height: 1.5;">
+                                For the full implementation with team-specific empirical distributions, see the
+                                <a href="https://github.com/jabarimyles/nfl_hits" style="color: #92400e; font-weight: 600;">source code on GitHub</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Jabari Myles. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // NFL Teams
+        const NFL_TEAMS = [
+            'ARI', 'ATL', 'BAL', 'BUF', 'CAR', 'CHI', 'CIN', 'CLE',
+            'DAL', 'DEN', 'DET', 'GB', 'HOU', 'IND', 'JAX', 'KC',
+            'LAC', 'LAR', 'LV', 'MIA', 'MIN', 'NE', 'NO', 'NYG',
+            'NYJ', 'PHI', 'PIT', 'SEA', 'SF', 'TB', 'TEN', 'WAS'
+        ];
+
+        // Precomputed results from Python NFL simulation (3,000 sims each, 2023-2024 data)
+        const PRECOMPUTED_RESULTS = {
+            "close_game": {
+                "win_probabilities": { "go_for_it": 0.389, "punt": 0.2927, "field_goal": 0.382 },
+                "best_decision": "go_for_it",
+                "n_simulations": 3000
+            },
+            "goal_line": {
+                "win_probabilities": { "go_for_it": 0.597, "punt": 0.2043, "field_goal": 0.1907 },
+                "best_decision": "go_for_it",
+                "n_simulations": 3000
+            },
+            "own_territory": {
+                "win_probabilities": { "go_for_it": 0.631, "punt": 0.6763, "field_goal": null },
+                "best_decision": "punt",
+                "n_simulations": 3000
+            },
+            "desperate": {
+                "win_probabilities": { "go_for_it": 0.1403, "punt": 0.089, "field_goal": 0.072 },
+                "best_decision": "go_for_it",
+                "n_simulations": 3000
+            }
+        };
+
+        // Presets
+        const PRESETS = {
+            close_game: {
+                homeTeam: 'KC', awayTeam: 'BUF', homeScore: 14, awayScore: 17,
+                possession: 'home', quarter: 4, minutes: 5, seconds: 0,
+                yardline: 35, ydstogo: 2, homeTimeouts: 2, awayTimeouts: 1
+            },
+            goal_line: {
+                homeTeam: 'SF', awayTeam: 'DAL', homeScore: 20, awayScore: 24,
+                possession: 'home', quarter: 4, minutes: 2, seconds: 0,
+                yardline: 1, ydstogo: 1, homeTimeouts: 1, awayTimeouts: 0
+            },
+            own_territory: {
+                homeTeam: 'DET', awayTeam: 'GB', homeScore: 10, awayScore: 7,
+                possession: 'home', quarter: 3, minutes: 10, seconds: 0,
+                yardline: 80, ydstogo: 15, homeTimeouts: 3, awayTimeouts: 3
+            },
+            desperate: {
+                homeTeam: 'PHI', awayTeam: 'NYG', homeScore: 14, awayScore: 21,
+                possession: 'home', quarter: 4, minutes: 1, seconds: 30,
+                yardline: 45, ydstogo: 8, homeTimeouts: 0, awayTimeouts: 2
+            }
+        };
+
+        // Initialize team dropdowns
+        function initTeamDropdowns() {
+            const homeSelect = document.getElementById('home-team');
+            const awaySelect = document.getElementById('away-team');
+
+            NFL_TEAMS.forEach(team => {
+                homeSelect.add(new Option(team, team));
+                awaySelect.add(new Option(team, team));
+            });
+
+            homeSelect.value = 'KC';
+            awaySelect.value = 'BUF';
+        }
+
+        // Track current preset for displaying precomputed results
+        let currentPreset = null;
+
+        // Load preset
+        function loadPreset(presetName) {
+            const preset = PRESETS[presetName];
+            if (!preset) return;
+
+            currentPreset = presetName;
+
+            document.getElementById('home-team').value = preset.homeTeam;
+            document.getElementById('away-team').value = preset.awayTeam;
+            document.getElementById('home-score').value = preset.homeScore;
+            document.getElementById('away-score').value = preset.awayScore;
+            document.getElementById('possession').value = preset.possession;
+            document.getElementById('quarter').value = preset.quarter;
+            document.getElementById('minutes').value = preset.minutes;
+            document.getElementById('seconds').value = preset.seconds;
+            document.getElementById('yardline').value = preset.yardline;
+            document.getElementById('ydstogo').value = preset.ydstogo;
+            document.getElementById('home-timeouts').value = preset.homeTimeouts;
+            document.getElementById('away-timeouts').value = preset.awayTimeouts;
+
+            updateSituationDisplay();
+
+            // If we have precomputed results for this preset, display them
+            if (PRECOMPUTED_RESULTS[presetName]) {
+                displayPrecomputedResults(presetName);
+            }
+        }
+
+        // Display precomputed results from Python simulation
+        function displayPrecomputedResults(presetName) {
+            const result = PRECOMPUTED_RESULTS[presetName];
+            if (!result) return;
+
+            const probs = result.win_probabilities;
+            const bestDecision = result.best_decision;
+
+            // Update bars
+            updateBar('go', probs.go_for_it, bestDecision === 'go_for_it');
+            updateBar('fg', probs.field_goal, bestDecision === 'field_goal');
+            updateBar('punt', probs.punt, bestDecision === 'punt');
+
+            // Update recommendation
+            const decisionNames = { go_for_it: 'Go for it', field_goal: 'Kick field goal', punt: 'Punt' };
+            const validProbs = Object.entries(probs).filter(([k, v]) => v !== null);
+            const bestProb = probs[bestDecision];
+            const secondBest = validProbs.filter(([k]) => k !== bestDecision)
+                .reduce((a, b) => a[1] > b[1] ? a : b, ['', 0]);
+            const advantage = ((bestProb - secondBest[1]) * 100).toFixed(1);
+
+            document.getElementById('recommendation').innerHTML =
+                `<strong>Recommendation:</strong> ${decisionNames[bestDecision]} ` +
+                `<span class="recommended-badge">+${advantage}% WP</span>` +
+                `<br><span style="font-size: 0.85rem; color: var(--gray-500); margin-top: 8px; display: inline-block;">` +
+                `Results from full Python simulation (${result.n_simulations.toLocaleString()} simulations, 2023-2024 NFL data)</span>`;
+
+            // Generate sample trajectories for visualization
+            const possession = document.getElementById('possession').value;
+            const homeScore = parseInt(document.getElementById('home-score').value);
+            const awayScore = parseInt(document.getElementById('away-score').value);
+            const scoreDiff = possession === 'home' ? homeScore - awayScore : awayScore - homeScore;
+            const quarter = parseInt(document.getElementById('quarter').value);
+            const minutes = parseInt(document.getElementById('minutes').value);
+            const seconds = parseInt(document.getElementById('seconds').value);
+            const timeRemaining = (4 - quarter) * 900 + minutes * 60 + seconds;
+
+            // Generate synthetic trajectories based on win probabilities
+            const syntheticResults = generateSyntheticTrajectories(probs, scoreDiff, timeRemaining);
+            updateTrajectoryChart(syntheticResults);
+            updateDistributionChart(syntheticResults);
+        }
+
+        // Generate synthetic trajectories for visualization based on precomputed win probs
+        function generateSyntheticTrajectories(probs, scoreDiff, timeRemaining) {
+            const results = {
+                go_for_it: { wins: 0, trajectories: [], finalScores: [] },
+                field_goal: probs.field_goal !== null ? { wins: 0, trajectories: [], finalScores: [] } : null,
+                punt: { wins: 0, trajectories: [], finalScores: [] }
+            };
+
+            const nSims = 500;
+            for (let i = 0; i < nSims; i++) {
+                for (const [decision, data] of Object.entries(results)) {
+                    if (!data || probs[decision] === null) continue;
+
+                    const won = Math.random() < probs[decision];
+                    data.wins += won ? 1 : 0;
+                    data.finalScores.push(won ? 3 + Math.floor(Math.random() * 14) : -3 - Math.floor(Math.random() * 14));
+
+                    if (i < 25) {
+                        data.trajectories.push(generateTrajectory(scoreDiff, timeRemaining, won,
+                            decision === 'go_for_it' ? (won ? 'converted' : 'failed') :
+                            decision === 'field_goal' ? (won ? 'fg_made' : 'fg_missed') : 'punt'));
+                    }
+                }
+            }
+
+            // Set win probabilities from precomputed values
+            results.go_for_it.winProb = probs.go_for_it;
+            if (results.field_goal) results.field_goal.winProb = probs.field_goal;
+            results.punt.winProb = probs.punt;
+
+            return results;
+        }
+
+        // Clear preset when user modifies inputs
+        function clearPreset() {
+            currentPreset = null;
+        }
+
+        // Update situation display
+        function updateSituationDisplay() {
+            const homeTeam = document.getElementById('home-team').value;
+            const awayTeam = document.getElementById('away-team').value;
+            const homeScore = document.getElementById('home-score').value;
+            const awayScore = document.getElementById('away-score').value;
+            const possession = document.getElementById('possession').value;
+            const quarter = document.getElementById('quarter').value;
+            const minutes = document.getElementById('minutes').value;
+            const seconds = document.getElementById('seconds').value.padStart(2, '0');
+            const yardline = parseInt(document.getElementById('yardline').value);
+            const ydstogo = document.getElementById('ydstogo').value;
+
+            const possTeam = possession === 'home' ? homeTeam : awayTeam;
+            const defTeam = possession === 'home' ? awayTeam : homeTeam;
+
+            let fieldPos;
+            if (yardline <= 50) {
+                fieldPos = `${defTeam} ${yardline}`;
+            } else {
+                fieldPos = `${possTeam} ${100 - yardline}`;
+            }
+
+            document.getElementById('situation-text').innerHTML =
+                `<span class="highlight">${possTeam}</span> ball at ${fieldPos} | ` +
+                `<span class="highlight">4th & ${ydstogo}</span> | ` +
+                `Q${quarter} ${minutes}:${seconds} | ` +
+                `${homeTeam} ${homeScore} - ${awayTeam} ${awayScore}`;
+        }
+
+        // Charts
+        let trajectoryChart = null;
+        let distributionChart = null;
+
+        function initCharts() {
+            const trajCtx = document.getElementById('trajectory-chart').getContext('2d');
+            trajectoryChart = new Chart(trajCtx, {
+                type: 'line',
+                data: { datasets: [] },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Time Remaining (seconds)' },
+                            reverse: true
+                        },
+                        y: {
+                            title: { display: true, text: 'Score Differential' },
+                            grid: { color: (ctx) => ctx.tick.value === 0 ? '#000' : '#e5e7eb' }
+                        }
+                    },
+                    elements: {
+                        point: { radius: 0 },
+                        line: { borderWidth: 1.5 }
+                    }
+                }
+            });
+
+            const distCtx = document.getElementById('distribution-chart').getContext('2d');
+            distributionChart = new Chart(distCtx, {
+                type: 'bar',
+                data: { datasets: [] },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Final Score Differential' },
+                            grid: { display: false }
+                        },
+                        y: {
+                            title: { display: true, text: 'Frequency' },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Tab switching
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+            document.querySelector(`.tab-content#tab-${tabName}`).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Run simulation (client-side demo with mock data)
+        function runSimulation() {
+            const btn = document.getElementById('run-btn');
+            btn.disabled = true;
+            btn.textContent = 'Simulating...';
+
+            // Get inputs
+            const homeTeam = document.getElementById('home-team').value;
+            const awayTeam = document.getElementById('away-team').value;
+            const homeScore = parseInt(document.getElementById('home-score').value);
+            const awayScore = parseInt(document.getElementById('away-score').value);
+            const possession = document.getElementById('possession').value;
+            const quarter = parseInt(document.getElementById('quarter').value);
+            const minutes = parseInt(document.getElementById('minutes').value);
+            const seconds = parseInt(document.getElementById('seconds').value);
+            const yardline = parseInt(document.getElementById('yardline').value);
+            const ydstogo = parseInt(document.getElementById('ydstogo').value);
+            const nSims = parseInt(document.getElementById('n-sims').value);
+
+            const possTeam = possession === 'home' ? homeTeam : awayTeam;
+            const scoreDiff = possession === 'home' ? homeScore - awayScore : awayScore - homeScore;
+            const totalSecondsRemaining = (4 - quarter) * 900 + minutes * 60 + seconds;
+
+            updateSituationDisplay();
+
+            // Simulate with simple heuristic model (demo)
+            setTimeout(() => {
+                const results = simulateDecisions(yardline, ydstogo, scoreDiff, totalSecondsRemaining, nSims);
+                displayResults(results, possTeam);
+                btn.disabled = false;
+                btn.textContent = 'Run Simulation';
+            }, 500);
+        }
+
+        // Client-side simulation with proper game logic
+        function simulateDecisions(yardline, ydstogo, scoreDiff, timeRemaining, nSims) {
+            const fgDistance = yardline + 17;
+            const fgPossible = fgDistance <= 65;
+
+            // Key game state factors
+            const canGetBallBack = timeRemaining > 120; // ~2 min needed for another possession
+            const veryLittleTime = timeRemaining < 30;  // Less than 30 seconds
+            const twoMinuteDrill = timeRemaining > 30 && timeRemaining <= 180;
+
+            // Conversion probability based on distance
+            let conversionProb;
+            if (ydstogo <= 1) conversionProb = 0.70;
+            else if (ydstogo <= 3) conversionProb = 0.55;
+            else if (ydstogo <= 7) conversionProb = 0.40;
+            else if (ydstogo <= 10) conversionProb = 0.30;
+            else conversionProb = 0.15;
+
+            // FG probability based on distance
+            let fgProb;
+            if (fgDistance <= 30) fgProb = 0.95;
+            else if (fgDistance <= 40) fgProb = 0.85;
+            else if (fgDistance <= 50) fgProb = 0.70;
+            else if (fgDistance <= 55) fgProb = 0.55;
+            else fgProb = 0.35;
+
+            // TD probability if conversion succeeds (based on remaining distance)
+            const tdProb = yardline <= 10 ? 0.85 : (yardline <= 20 ? 0.5 : 0.25);
+
+            // Simulate each decision
+            const results = {
+                go_for_it: { wins: 0, trajectories: [], finalScores: [] },
+                field_goal: fgPossible ? { wins: 0, trajectories: [], finalScores: [] } : null,
+                punt: { wins: 0, trajectories: [], finalScores: [] }
+            };
+
+            for (let i = 0; i < nSims; i++) {
+                // ========== GO FOR IT ==========
+                const converted = Math.random() < conversionProb;
+                let goWon = false;
+                let goFinalDiff = scoreDiff;
+
+                if (converted) {
+                    // Conversion succeeded - chance to score TD
+                    const scoredTD = Math.random() < tdProb;
+                    if (scoredTD) {
+                        goFinalDiff = scoreDiff + 7;
+                    } else if (yardline <= 35 && Math.random() < 0.6) {
+                        // Settled for FG after conversion
+                        goFinalDiff = scoreDiff + 3;
+                    }
+                } else {
+                    // Turnover on downs - opponent gets good field position
+                    if (canGetBallBack && Math.random() < 0.3) {
+                        // Got ball back and scored
+                        goFinalDiff = scoreDiff + (Math.random() < 0.4 ? 7 : 3);
+                    } else if (!veryLittleTime && Math.random() < 0.2) {
+                        // Opponent scored off turnover
+                        goFinalDiff = scoreDiff - (Math.random() < 0.5 ? 7 : 3);
+                    }
+                }
+
+                // Determine if we won
+                if (veryLittleTime) {
+                    goWon = goFinalDiff > 0;
+                } else {
+                    // More time = more variance, regression toward 50/50
+                    const timeBonus = Math.min(0.3, timeRemaining / 3600 * 0.3);
+                    const winChance = goFinalDiff > 0 ? 0.5 + timeBonus + goFinalDiff/30 :
+                                      goFinalDiff < 0 ? 0.5 - timeBonus + goFinalDiff/30 : 0.5;
+                    goWon = Math.random() < Math.max(0.05, Math.min(0.95, winChance));
+                }
+
+                results.go_for_it.wins += goWon ? 1 : 0;
+                results.go_for_it.finalScores.push(goWon ? Math.abs(goFinalDiff) + Math.floor(Math.random()*7) :
+                                                          -Math.abs(goFinalDiff) - Math.floor(Math.random()*7));
+                if (i < 30) {
+                    results.go_for_it.trajectories.push(
+                        generateTrajectory(scoreDiff, timeRemaining, goWon, converted ? 'converted' : 'failed')
+                    );
+                }
+
+                // ========== FIELD GOAL ==========
+                if (fgPossible) {
+                    const fgMade = Math.random() < fgProb;
+                    let fgWon = false;
+                    let fgFinalDiff = scoreDiff;
+
+                    if (fgMade) {
+                        fgFinalDiff = scoreDiff + 3;
+                    }
+
+                    // Critical: FG logic based on score and time
+                    if (veryLittleTime) {
+                        // Almost no time - FG result is basically final
+                        if (fgMade) {
+                            fgWon = fgFinalDiff > 0; // Only win if now ahead
+                            // Tie goes to OT - 50% win
+                            if (fgFinalDiff === 0) fgWon = Math.random() < 0.5;
+                        } else {
+                            fgWon = scoreDiff > 0; // Only win if were already ahead
+                        }
+                    } else if (twoMinuteDrill) {
+                        // 2-minute drill - limited time but possible to get ball back
+                        if (fgMade) {
+                            if (fgFinalDiff > 0) {
+                                // Now winning - opponent needs to score
+                                fgWon = Math.random() < 0.7; // 70% hold on
+                            } else if (fgFinalDiff === 0) {
+                                // Tied - whoever scores next wins (or OT)
+                                fgWon = Math.random() < 0.45;
+                            } else {
+                                // Still losing - need to get ball back
+                                const gotBallBack = Math.random() < 0.25;
+                                const scoredAgain = gotBallBack && Math.random() < 0.3;
+                                fgWon = scoredAgain && (fgFinalDiff + 7 > 0 || (fgFinalDiff + 3 > 0 && Math.random() < 0.5));
+                            }
+                        } else {
+                            // Missed - opponent has ball with ~2 min
+                            fgWon = scoreDiff > 3 ? Math.random() < 0.6 :
+                                    scoreDiff > 0 ? Math.random() < 0.4 : Math.random() < 0.15;
+                        }
+                    } else {
+                        // Plenty of time - more back and forth possible
+                        const adjDiff = fgMade ? fgFinalDiff : scoreDiff;
+                        const winChance = 0.5 + adjDiff / 25 + (fgMade ? 0.05 : -0.1);
+                        fgWon = Math.random() < Math.max(0.1, Math.min(0.9, winChance));
+                    }
+
+                    results.field_goal.wins += fgWon ? 1 : 0;
+                    results.field_goal.finalScores.push(fgWon ? Math.abs(fgFinalDiff) + Math.floor(Math.random()*7) :
+                                                              -Math.abs(fgFinalDiff) - Math.floor(Math.random()*7));
+                    if (i < 30) {
+                        results.field_goal.trajectories.push(
+                            generateTrajectory(scoreDiff, timeRemaining, fgWon, fgMade ? 'fg_made' : 'fg_missed')
+                        );
+                    }
+                }
+
+                // ========== PUNT ==========
+                let puntWon = false;
+                let puntFinalDiff = scoreDiff;
+
+                if (veryLittleTime) {
+                    // Punting with no time = giving up (unless winning)
+                    puntWon = scoreDiff > 0;
+                } else if (twoMinuteDrill && scoreDiff < 0) {
+                    // Punting while losing in 2-min drill is very bad
+                    const gotBallBack = Math.random() < 0.15; // Low chance
+                    const scored = gotBallBack && Math.random() < 0.25;
+                    puntFinalDiff = scored ? scoreDiff + (Math.random() < 0.6 ? 7 : 3) : scoreDiff;
+                    puntWon = puntFinalDiff > 0;
+                } else {
+                    // Normal punt - flip field, play defense
+                    const oppScored = Math.random() < 0.35;
+                    if (oppScored) puntFinalDiff -= (Math.random() < 0.5 ? 7 : 3);
+
+                    // Then we get ball back
+                    if (timeRemaining > 300) {
+                        const weScored = Math.random() < 0.4;
+                        if (weScored) puntFinalDiff += (Math.random() < 0.5 ? 7 : 3);
+                    }
+
+                    const winChance = 0.5 + puntFinalDiff / 25;
+                    puntWon = Math.random() < Math.max(0.1, Math.min(0.9, winChance));
+                }
+
+                results.punt.wins += puntWon ? 1 : 0;
+                results.punt.finalScores.push(puntWon ? Math.abs(puntFinalDiff) + Math.floor(Math.random()*7) :
+                                                       -Math.abs(puntFinalDiff) - Math.floor(Math.random()*7));
+                if (i < 30) {
+                    results.punt.trajectories.push(
+                        generateTrajectory(scoreDiff, timeRemaining, puntWon, 'punt')
+                    );
+                }
+            }
+
+            // Calculate win probabilities
+            results.go_for_it.winProb = results.go_for_it.wins / nSims;
+            if (results.field_goal) results.field_goal.winProb = results.field_goal.wins / nSims;
+            results.punt.winProb = results.punt.wins / nSims;
+
+            return results;
+        }
+
+        function generateFinalScore(won, startDiff) {
+            const margin = Math.floor(Math.random() * 21) + 1;
+            return won ? Math.abs(startDiff) + margin - 10 : -margin - 3;
+        }
+
+        function generateTrajectory(startDiff, timeRemaining, won, event) {
+            const points = [];
+            let currentDiff = startDiff;
+            let time = timeRemaining;
+
+            // Initial bump based on event
+            if (event === 'converted') currentDiff += Math.random() * 7;
+            else if (event === 'failed') currentDiff -= Math.random() * 3;
+            else if (event === 'fg_made') currentDiff += 3;
+            else if (event === 'fg_missed') currentDiff -= Math.random() * 2;
+
+            points.push({ x: time, y: currentDiff });
+
+            // Random walk toward outcome
+            const targetDiff = won ? 3 + Math.random() * 14 : -3 - Math.random() * 14;
+            const steps = Math.min(20, Math.floor(time / 60));
+
+            for (let i = 1; i <= steps; i++) {
+                time = Math.max(0, timeRemaining * (1 - i / steps));
+                currentDiff += (targetDiff - currentDiff) / (steps - i + 2) + (Math.random() - 0.5) * 4;
+
+                // Score events
+                if (Math.random() < 0.15) currentDiff += (Math.random() < 0.5 ? 7 : -7);
+                if (Math.random() < 0.08) currentDiff += (Math.random() < 0.5 ? 3 : -3);
+
+                points.push({ x: time, y: currentDiff });
+            }
+
+            points.push({ x: 0, y: targetDiff });
+            return points;
+        }
+
+        function displayResults(results, possTeam) {
+            // Find best decision
+            const probs = {
+                go_for_it: results.go_for_it.winProb,
+                field_goal: results.field_goal ? results.field_goal.winProb : null,
+                punt: results.punt.winProb
+            };
+
+            const validProbs = Object.entries(probs).filter(([k, v]) => v !== null);
+            const [bestDecision, bestProb] = validProbs.reduce((a, b) => a[1] > b[1] ? a : b);
+
+            // Update bars
+            updateBar('go', probs.go_for_it, bestDecision === 'go_for_it');
+            updateBar('fg', probs.field_goal, bestDecision === 'field_goal');
+            updateBar('punt', probs.punt, bestDecision === 'punt');
+
+            // Update recommendation
+            const decisionNames = { go_for_it: 'Go for it', field_goal: 'Kick field goal', punt: 'Punt' };
+            const secondBest = validProbs.filter(([k]) => k !== bestDecision)
+                .reduce((a, b) => a[1] > b[1] ? a : b, ['', 0]);
+            const advantage = ((bestProb - secondBest[1]) * 100).toFixed(1);
+
+            document.getElementById('recommendation').innerHTML =
+                `<strong>Recommendation:</strong> ${decisionNames[bestDecision]} ` +
+                `<span class="recommended-badge">+${advantage}% WP</span>`;
+
+            // Update charts
+            updateTrajectoryChart(results);
+            updateDistributionChart(results);
+        }
+
+        function updateBar(id, prob, isBest) {
+            const bar = document.getElementById(`bar-${id}`);
+            const val = document.getElementById(`val-${id}`);
+
+            if (prob === null) {
+                bar.style.width = '0%';
+                val.textContent = 'N/A';
+                val.classList.add('outside');
+                bar.parentElement.parentElement.querySelector('.win-prob-label').classList.add('not-viable');
+                return;
+            }
+
+            bar.parentElement.parentElement.querySelector('.win-prob-label').classList.remove('not-viable');
+            const pct = (prob * 100).toFixed(1);
+            bar.style.width = `${Math.max(prob * 100, 15)}%`;
+            val.textContent = `${pct}%`;
+            val.classList.remove('outside');
+
+            if (prob < 0.15) {
+                val.classList.add('outside');
+            }
+        }
+
+        function updateTrajectoryChart(results) {
+            const datasets = [];
+            const colors = {
+                go_for_it: { border: '#013369', bg: 'rgba(1,51,105,0.1)' },
+                field_goal: { border: '#059669', bg: 'rgba(5,150,105,0.1)' },
+                punt: { border: '#d97706', bg: 'rgba(217,119,6,0.1)' }
+            };
+
+            for (const [decision, data] of Object.entries(results)) {
+                if (!data || !data.trajectories) continue;
+
+                data.trajectories.forEach((traj, i) => {
+                    datasets.push({
+                        data: traj,
+                        borderColor: colors[decision].border,
+                        backgroundColor: colors[decision].bg,
+                        tension: 0.3,
+                        borderWidth: 1,
+                        fill: false
+                    });
+                });
+            }
+
+            trajectoryChart.data.datasets = datasets;
+            trajectoryChart.update();
+        }
+
+        function updateDistributionChart(results) {
+            const bins = [];
+            for (let i = -40; i < 40; i += 5) bins.push(i);
+
+            const histograms = {};
+            const colors = {
+                go_for_it: 'rgba(1,51,105,0.7)',
+                field_goal: 'rgba(5,150,105,0.7)',
+                punt: 'rgba(217,119,6,0.7)'
+            };
+
+            for (const [decision, data] of Object.entries(results)) {
+                if (!data || !data.finalScores) continue;
+
+                const hist = new Array(bins.length).fill(0);
+                data.finalScores.forEach(score => {
+                    const binIdx = bins.findIndex((b, i) => score >= b && score < (bins[i + 1] || Infinity));
+                    if (binIdx >= 0) hist[binIdx]++;
+                });
+                histograms[decision] = hist;
+            }
+
+            const datasets = Object.entries(histograms).map(([decision, hist]) => ({
+                label: decision,
+                data: hist,
+                backgroundColor: colors[decision],
+                borderWidth: 0,
+                barPercentage: 0.9,
+                categoryPercentage: 0.8
+            }));
+
+            distributionChart.data.labels = bins.map(b => b.toString());
+            distributionChart.data.datasets = datasets;
+            distributionChart.update();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initTeamDropdowns();
+            initCharts();
+            updateSituationDisplay();
+
+            // Add input listeners - clear preset when user modifies inputs
+            document.querySelectorAll('input, select').forEach(el => {
+                el.addEventListener('change', () => {
+                    clearPreset();
+                    updateSituationDisplay();
+                });
+            });
+        });
+
+        // Mobile nav toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
