@@ -257,6 +257,10 @@
         .tier-3 .tier-badge { background: linear-gradient(135deg, #d97706, #b45309); }
         .tier-4 .tier-badge { background: var(--navy); }
         .tier-5 .tier-badge { background: var(--gray-500); }
+        .tier-6 .tier-badge { background: #7c3aed; }
+        .tier-7 .tier-badge { background: #0891b2; }
+        .tier-8 .tier-badge { background: #be185d; }
+        .tier-9 .tier-badge { background: #4d7c0f; }
 
         .tier-name {
             font-weight: 600;
@@ -691,7 +695,7 @@
                     <h4>Cumulative Cut Imbalance</h4>
                     <p>
                         For a partition into K tiers, the <em>cumulative cut imbalance</em> sums the imbalances across
-                        all pairs of tiers. This serves as our objective as we seek the partition that
+                        all pairs of tiers. This serves as our objective function&mdash;we seek the partition that
                         maximizes cumulative cut imbalance.
                     </p>
                     <div class="formula-box">
@@ -813,7 +817,7 @@ subject to:
                         assignments using simulated annealing:
                     </p>
                     <ol>
-                        <li>Solve the LP relaxation, providing an initial probability distribution over every tier for each team</li>
+                        <li>Initialize uniform probability distributions over tiers for each team</li>
                         <li>Compute contribution scores based on expected cut imbalance gains</li>
                         <li>Update probabilities via softmax with temperature annealing</li>
                         <li>Apply momentum to smooth updates and avoid oscillation</li>
@@ -874,11 +878,11 @@ subject to:
                         The resulting tiers should be interpreted as follows:
                     </p>
                     <ul>
-                        <li><strong>Teams in the same tier</strong> are statistically similar pairwise comparisons
+                        <li><strong>Teams in the same tier</strong> are statistically similar&mdash;pairwise comparisons
                         between them are relatively balanced</li>
-                        <li><strong>Teams in different tiers</strong> show clear separation higher tier teams
-                        consistently outperform lower-tier teams across the stat comparisons</li>
-                        <li><strong>Tier ordering</strong> is determined by dominance meaning Tier 1 teams dominate
+                        <li><strong>Teams in different tiers</strong> show clear separation&mdash;higher tier teams
+                        consistently outperform lower tier teams across the stat comparisons</li>
+                        <li><strong>Tier ordering</strong> is determined by dominance&mdash;Tier 1 teams dominate
                         all other tiers, Tier 2 teams dominate Tiers 3+, etc.</li>
                     </ul>
                     <div class="highlight-box">
@@ -935,6 +939,58 @@ subject to:
                     </div>
                     <div class="chart-canvas-wrapper">
                         <canvas id="tierChart" width="1100" height="420"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Optimal Tier Discovery Section -->
+        <section class="section section-alt" id="optimal-k">
+            <div class="container">
+                <h2 class="section-title">Optimal Tier Discovery</h2>
+                <p class="section-subtitle">
+                    Rather than fixing K=5, this formulation sets K to an upper bound and lets the optimizer discover
+                    the natural number of tiers. Empty tiers are removed after solving.
+                </p>
+
+                <div class="highlight-box">
+                    <p><strong>How it works:</strong> By setting K to an upper bound (10), the MILP
+                    is free to leave tiers empty. The solver maximizes cumulative cut imbalance, and the number
+                    of non-empty tiers in the solution is the optimal K. This avoids the need for a grid search
+                    over K values.</p>
+                </div>
+
+                <!-- Summary Table -->
+                <div class="table-container" style="margin-top: 32px;">
+                    <div class="table-header">
+                        <div>
+                            <h4>Optimal K by Season</h4>
+                            <p>Number of tiers discovered by the optimizer for each season</p>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table id="optimal-k-summary-table">
+                            <thead></thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Year selector for optimal tiers -->
+                <div class="year-selector-container" style="margin-top: 40px;">
+                    <span class="year-selector-label">Season:</span>
+                    <div class="year-selector" id="optimal-year-selector"></div>
+                </div>
+
+                <div class="tiers-container">
+                    <div class="tier-section-card">
+                        <h3>Optimal Offensive Tiers</h3>
+                        <div id="optimal-offense-tiers"></div>
+                    </div>
+
+                    <div class="tier-section-card">
+                        <h3>Optimal Defensive Tiers</h3>
+                        <div id="optimal-defense-tiers"></div>
                     </div>
                 </div>
             </div>
@@ -1006,7 +1062,9 @@ subject to:
         // --- Data (loaded from JSON files) ---
         let allTiers = {};
         let allMatrices = {};
+        let optimalTiers = {};
         let currentYear = 2024;
+        let optimalYear = 2024;
         let chartSide = 'offense';
 
         const teamLogoMap = {
@@ -1344,6 +1402,92 @@ subject to:
             }
         }
 
+        // --- Optimal Tier Discovery ---
+        function buildOptimalKSummaryTable() {
+            const table = document.getElementById('optimal-k-summary-table');
+            const years = Object.keys(optimalTiers).map(Number).sort();
+            if (years.length === 0) return;
+
+            const thead = table.querySelector('thead');
+            thead.innerHTML = `<tr><th>Season</th><th>Offense K</th><th>Defense K</th><th>Offense CI</th><th>Defense CI</th></tr>`;
+
+            const tbody = table.querySelector('tbody');
+            tbody.innerHTML = years.map(yr => {
+                const d = optimalTiers[yr];
+                return `<tr>
+                    <td style="font-weight:600; text-align:left;">${yr}</td>
+                    <td>${d.offense_K}</td>
+                    <td>${d.defense_K}</td>
+                    <td>${d.offense_CI.toFixed(4)}</td>
+                    <td>${d.defense_CI.toFixed(4)}</td>
+                </tr>`;
+            }).join('');
+        }
+
+        function buildOptimalYearSelector() {
+            const container = document.getElementById('optimal-year-selector');
+            const years = Object.keys(optimalTiers).map(Number).sort();
+            if (years.length === 0) return;
+
+            container.innerHTML = years.map(y =>
+                `<button class="year-btn${y === optimalYear ? ' active' : ''}" data-year="${y}">${y}</button>`
+            ).join('');
+
+            container.addEventListener('click', (e) => {
+                const btn = e.target.closest('.year-btn');
+                if (!btn) return;
+                optimalYear = parseInt(btn.dataset.year);
+                container.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderOptimalTierCards();
+            });
+        }
+
+        function renderOptimalTierCards() {
+            const offContainer = document.getElementById('optimal-offense-tiers');
+            const defContainer = document.getElementById('optimal-defense-tiers');
+            const yearData = optimalTiers[optimalYear];
+            if (!yearData || !yearData.teams) return;
+
+            const offenseTiers = {};
+            const defenseTiers = {};
+            Object.entries(yearData.teams).forEach(([team, data]) => {
+                const ot = data.offense_tier;
+                const dt = data.defense_tier;
+                if (!offenseTiers[ot]) offenseTiers[ot] = [];
+                if (!defenseTiers[dt]) defenseTiers[dt] = [];
+                offenseTiers[ot].push(team);
+                defenseTiers[dt].push(team);
+            });
+
+            function renderTiers(container, tiersData, totalK) {
+                container.innerHTML = '';
+                Object.keys(tiersData).sort((a, b) => a - b).forEach(tierNum => {
+                    const teams = tiersData[tierNum];
+                    const tierDiv = document.createElement('div');
+                    tierDiv.className = `tier-group tier-${Math.min(tierNum, 9)}`;
+                    tierDiv.innerHTML = `
+                        <div class="tier-label">
+                            <span class="tier-badge">${tierNum}</span>
+                            <span class="tier-name">Tier ${tierNum} of ${totalK} (${teams.length} teams)</span>
+                        </div>
+                        <div class="teams-row">
+                            ${teams.map(team => `
+                                <div class="team-chip">
+                                    <img src="${getLogoUrl(team)}" alt="${team}" onerror="this.style.display='none'">
+                                    <span>${team}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    container.appendChild(tierDiv);
+                });
+            }
+
+            renderTiers(offContainer, offenseTiers, yearData.offense_K);
+            renderTiers(defContainer, defenseTiers, yearData.defense_K);
+        }
+
         // --- Tab switching ---
         document.querySelectorAll('.tab-btn').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -1379,12 +1523,14 @@ subject to:
         // --- Initialize ---
         document.addEventListener('DOMContentLoaded', async () => {
             try {
-                const [tiersRes, matricesRes] = await Promise.all([
+                const [tiersRes, matricesRes, optimalRes] = await Promise.all([
                     fetch('team_tiers_all.json'),
-                    fetch('preference_matrices_all.json')
+                    fetch('preference_matrices_all.json'),
+                    fetch('team_tiers_optimal.json')
                 ]);
                 allTiers = await tiersRes.json();
                 allMatrices = await matricesRes.json();
+                optimalTiers = await optimalRes.json();
             } catch (e) {
                 console.error('Failed to load data files:', e);
                 return;
@@ -1394,6 +1540,9 @@ subject to:
             buildDivisionSelect();
             renderTierCards();
             renderMatrices();
+            buildOptimalKSummaryTable();
+            buildOptimalYearSelector();
+            renderOptimalTierCards();
             preloadLogos(() => drawTierChart(true));
         });
     </script>
