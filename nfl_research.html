@@ -813,7 +813,7 @@ subject to:
                         assignments using simulated annealing:
                     </p>
                     <ol>
-                        <li>Initialize uniform probability distributions over tiers for each team</li>
+                        <li>Solve the LP relaxation, providing an initial probability distribution over every tier for each team</li>
                         <li>Compute contribution scores based on expected cut imbalance gains</li>
                         <li>Update probabilities via softmax with temperature annealing</li>
                         <li>Apply momentum to smooth updates and avoid oscillation</li>
