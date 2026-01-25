@@ -709,7 +709,7 @@
     <script>
         let playerData = {};
         let currentPosition = 'QB';
-        let currentYear = 2024;
+        let currentYear = 2025;
 
         const tierNames = {
             1: 'Elite', 2: 'Great', 3: 'Above Average',
@@ -752,9 +752,6 @@
             const container = document.getElementById('year-selector');
             const years = Object.keys(playerData).map(Number).sort();
             if (years.length === 0) return;
-
-            // Set currentYear to most recent
-            currentYear = years[years.length - 1];
 
             container.innerHTML = years.map(y =>
                 `<button class="year-btn${y === currentYear ? ' active' : ''}" data-year="${y}">${y}</button>`
