@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFL Player Tiering | Jabari Myles</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .research-hero {
+            padding: 100px 0 60px;
+            background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .research-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .research-hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+        }
+
+        .research-hero .meta {
+            font-size: 0.95rem;
+            color: var(--red);
+            font-weight: 500;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--navy);
+        }
+
+        /* Position selector */
+        .position-selector {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .position-btn {
+            padding: 12px 28px;
+            border: 2px solid var(--gray-200);
+            background: var(--white);
+            color: var(--gray-600);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .position-btn:hover {
+            background: var(--gray-50);
+            border-color: var(--navy);
+            color: var(--navy);
+        }
+
+        .position-btn.active {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: var(--white);
+        }
+
+        /* Year selector */
+        .year-selector-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .year-selector-label {
+            font-weight: 600;
+            color: var(--gray-700);
+            font-size: 1rem;
+        }
+
+        .year-selector {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .year-btn {
+            padding: 8px 16px;
+            border: 1px solid var(--gray-200);
+            background: var(--white);
+            color: var(--gray-600);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .year-btn:hover {
+            background: var(--gray-50);
+            color: var(--navy);
+            border-color: var(--navy);
+        }
+
+        .year-btn.active {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: var(--white);
+        }
+
+        /* Stats summary */
+        .stats-summary {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 16px 24px;
+            text-align: center;
+        }
+
+        .stat-box .label {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-bottom: 4px;
+        }
+
+        .stat-box .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        /* Tier cards */
+        .tier-container {
+            margin-top: 32px;
+        }
+
+        .tier-group {
+            margin-bottom: 28px;
+        }
+
+        .tier-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .tier-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--white);
+        }
+
+        .tier-1 .tier-badge { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+        .tier-2 .tier-badge { background: linear-gradient(135deg, #9ca3af, #6b7280); }
+        .tier-3 .tier-badge { background: linear-gradient(135deg, #d97706, #b45309); }
+        .tier-4 .tier-badge { background: var(--navy); }
+        .tier-5 .tier-badge { background: var(--gray-500); }
+        .tier-6 .tier-badge { background: #7c3aed; }
+        .tier-7 .tier-badge { background: #0891b2; }
+        .tier-8 .tier-badge { background: #be185d; }
+
+        .tier-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--gray-700);
+        }
+
+        .tier-count {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin-left: auto;
+        }
+
+        /* Player cards */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 16px;
+        }
+
+        .player-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .player-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .player-headshot {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--gray-100);
+            margin-bottom: 12px;
+        }
+
+        .player-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--gray-800);
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        .player-team {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        /* Hover tooltip */
+        .player-tooltip {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--navy);
+            color: var(--white);
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            margin-bottom: 8px;
+        }
+
+        .player-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--navy);
+        }
+
+        .player-card:hover .player-tooltip {
+            display: block;
+        }
+
+        .tooltip-stat {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 4px;
+        }
+
+        .tooltip-stat:last-child {
+            margin-bottom: 0;
+        }
+
+        .tooltip-stat-name {
+            color: var(--gray-300);
+        }
+
+        .tooltip-stat-value {
+            font-weight: 600;
+        }
+
+        .tooltip-rank {
+            color: #fbbf24;
+            font-size: 0.75rem;
+        }
+
+        /* Tabs for sections */
+        .section-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--gray-200);
+            padding-bottom: 8px;
+        }
+
+        .section-tab {
+            padding: 10px 20px;
+            border: 1px solid var(--gray-200);
+            background: var(--white);
+            color: var(--gray-600);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .section-tab:hover {
+            background: var(--gray-50);
+            color: var(--navy);
+        }
+
+        .section-tab.active {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: var(--white);
+        }
+
+        .section-content {
+            display: none;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        /* Preference matrix table */
+        .table-container {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 24px;
+        }
+
+        .table-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .table-header h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        .table-header p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin: 0;
+        }
+
+        .table-filter {
+            padding: 8px 14px;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            background: var(--white);
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+
+        th, td {
+            padding: 8px 10px;
+            text-align: center;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        th {
+            background: var(--gray-50);
+            font-weight: 600;
+            color: var(--gray-700);
+            position: sticky;
+            top: 0;
+            white-space: nowrap;
+        }
+
+        td:first-child, th:first-child {
+            position: sticky;
+            left: 0;
+            background: var(--white);
+            font-weight: 600;
+            z-index: 1;
+            text-align: left;
+            min-width: 120px;
+        }
+
+        th:first-child {
+            background: var(--gray-50);
+            z-index: 2;
+        }
+
+        tr:hover td {
+            background: var(--gray-50);
+        }
+
+        tr:hover td:first-child {
+            background: var(--gray-50);
+        }
+
+        .cell-high { background: rgba(34, 197, 94, 0.15); }
+        .cell-mid { background: rgba(234, 179, 8, 0.15); }
+        .cell-low { background: rgba(239, 68, 68, 0.1); }
+
+        /* Stats used section */
+        .methodology-section {
+            margin-bottom: 48px;
+        }
+
+        .methodology-section h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .methodology-section p {
+            color: var(--gray-600);
+            font-size: 1rem;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 20px 0;
+        }
+
+        .stat-category {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .stat-category h5 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .stat-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .stat-item {
+            background: var(--gray-100);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--gray-700);
+        }
+
+        .stat-item.negative {
+            background: #fef2f2;
+            color: #991b1b;
+        }
+
+        .highlight-box {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-left: 4px solid var(--navy);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        .research-footer {
+            margin-top: 60px;
+            padding: 32px 0;
+            background: var(--gray-50);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .research-footer p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .research-footer a {
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .research-hero h1 { font-size: 1.75rem; }
+            .stat-grid { grid-template-columns: 1fr; }
+            .players-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Jabari Myles</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">About</a></li>
+                <li><a href="index.html#papers" class="nav-link">Research</a></li>
+                <li><a href="index.html#projects" class="nav-link active">Projects</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="research-hero">
+        <div class="container">
+            <a href="nfl_research.html" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                Back to Team Tiering
+            </a>
+            <h1>NFL Player Tiering</h1>
+            <p class="subtitle">Cut Imbalance Clustering Applied to Individual Players</p>
+            <p class="meta">QBs | WRs | CBs | 2020-2025 Season Data</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Player Tiers Section -->
+        <section class="section" id="tiers">
+            <div class="container">
+                <h2 class="section-title">Player Tier Results</h2>
+
+                <div class="position-selector">
+                    <button class="position-btn active" data-position="QB">Quarterbacks</button>
+                    <button class="position-btn" data-position="WR">Wide Receivers</button>
+                    <button class="position-btn" data-position="CB">Cornerbacks</button>
+                </div>
+
+                <div class="year-selector-container">
+                    <span class="year-selector-label">Season:</span>
+                    <div class="year-selector" id="year-selector"></div>
+                </div>
+
+                <div class="stats-summary" id="stats-summary">
+                    <div class="stat-box">
+                        <div class="label">Players</div>
+                        <div class="value" id="stat-players">-</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="label">Optimal Tiers</div>
+                        <div class="value" id="stat-tiers">-</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="label">Cut Imbalance</div>
+                        <div class="value" id="stat-ci">-</div>
+                    </div>
+                </div>
+
+                <div class="section-tabs">
+                    <button class="section-tab active" data-section="tier-view">Tier Cards</button>
+                    <button class="section-tab" data-section="matrix-view">Preference Matrix</button>
+                </div>
+
+                <div id="tier-view" class="section-content active">
+                    <p style="font-size: 0.9rem; color: var(--gray-500); margin-bottom: 16px;">
+                        <em>Hover over a player to see their stats and rank.</em>
+                    </p>
+                    <div class="tier-container" id="tier-container"></div>
+                </div>
+
+                <div id="matrix-view" class="section-content">
+                    <div class="table-container">
+                        <div class="table-header">
+                            <div>
+                                <h4>Preference Matrix</h4>
+                                <p>Entry (i, j) = number of stats where row player i outperforms column player j</p>
+                            </div>
+                            <input type="text" class="table-filter" id="matrix-filter" placeholder="Filter players...">
+                        </div>
+                        <div class="table-wrapper">
+                            <table id="pref-matrix-table">
+                                <thead></thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Methodology Section -->
+        <section class="section section-alt" id="methodology">
+            <div class="container">
+                <h2 class="section-title">Stats Used for Comparison</h2>
+
+                <div class="methodology-section">
+                    <p>
+                        Each position uses different statistics that capture performance relevant to that role.
+                        Players are compared pairwise across these stats to build a preference matrix,
+                        then clustered into tiers using cut imbalance optimization.
+                    </p>
+
+                    <div class="stat-grid">
+                        <div class="stat-category">
+                            <h5>Quarterbacks (10 stats)</h5>
+                            <div class="stat-list">
+                                <span class="stat-item">Passing Yards</span>
+                                <span class="stat-item">Passing TDs</span>
+                                <span class="stat-item">Completion %</span>
+                                <span class="stat-item">Yards/Attempt</span>
+                                <span class="stat-item">TD %</span>
+                                <span class="stat-item negative">INT %</span>
+                                <span class="stat-item negative">Interceptions</span>
+                                <span class="stat-item">Passer Rating</span>
+                                <span class="stat-item negative">Sack Rate</span>
+                                <span class="stat-item">20+ Yd Pass Rate</span>
+                            </div>
+                        </div>
+                        <div class="stat-category">
+                            <h5>Wide Receivers (10 stats)</h5>
+                            <div class="stat-list">
+                                <span class="stat-item">Receptions</span>
+                                <span class="stat-item">Receiving Yards</span>
+                                <span class="stat-item">Receiving TDs</span>
+                                <span class="stat-item">Targets</span>
+                                <span class="stat-item">Catch Rate</span>
+                                <span class="stat-item">Yards/Reception</span>
+                                <span class="stat-item">Yards After Catch</span>
+                                <span class="stat-item">First Downs</span>
+                                <span class="stat-item">20+ Yd Receptions</span>
+                                <span class="stat-item">Yards/Target</span>
+                            </div>
+                        </div>
+                        <div class="stat-category">
+                            <h5>Cornerbacks (5 stats)</h5>
+                            <div class="stat-list">
+                                <span class="stat-item">Pass Defenses</span>
+                                <span class="stat-item">Interceptions</span>
+                                <span class="stat-item">Solo Tackles</span>
+                                <span class="stat-item">Tackles for Loss</span>
+                                <span class="stat-item">Forced Fumbles</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--gray-500);">
+                        <em>Red items indicate "lower is better" statistics.</em>
+                    </p>
+
+                    <div class="highlight-box">
+                        <p><strong>Qualification thresholds:</strong> QBs need 200+ pass attempts, WRs need 50+ targets,
+                        and CBs need 20+ solo tackles to be included in the analysis. This ensures we're comparing
+                        players with meaningful sample sizes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="research-footer">
+        <div class="container">
+            <p>Data Source: <a href="https://github.com/nflverse" target="_blank">nflverse</a> Play-by-Play Data</p>
+            <p>Methodology: "From Rankings to Tiers: Cut Imbalance Clustering" (Myles et al.)</p>
+        </div>
+    </footer>
+
+    <script>
+        let playerData = {};
+        let currentPosition = 'QB';
+        let currentYear = 2024;
+
+        const tierNames = {
+            1: 'Elite', 2: 'Great', 3: 'Above Average',
+            4: 'Average', 5: 'Below Average', 6: 'Poor',
+            7: 'Tier 7', 8: 'Tier 8'
+        };
+
+        const statLabels = {
+            // QB stats
+            passing_yards: 'Pass Yds',
+            passing_tds: 'Pass TDs',
+            completion_pct: 'Comp %',
+            yards_per_attempt: 'Y/A',
+            td_pct: 'TD %',
+            int_pct: 'INT %',
+            interceptions: 'INTs',
+            passer_rating: 'Rating',
+            sack_rate: 'Sack %',
+            explosive_rate: '20+ %',
+            // WR stats
+            receptions: 'Rec',
+            receiving_yards: 'Rec Yds',
+            receiving_tds: 'Rec TDs',
+            targets: 'Targets',
+            catch_rate: 'Catch %',
+            yards_per_rec: 'Y/Rec',
+            yac: 'YAC',
+            first_downs: '1st Downs',
+            explosive_receptions: '20+ Rec',
+            yards_per_target: 'Y/Tgt',
+            // CB stats
+            pass_defenses: 'PDs',
+            solo_tackles: 'Tackles',
+            tackles_for_loss: 'TFLs',
+            forced_fumbles: 'FF'
+        };
+
+        // Build year selector
+        function buildYearSelector() {
+            const container = document.getElementById('year-selector');
+            const years = Object.keys(playerData).map(Number).sort();
+            if (years.length === 0) return;
+
+            // Set currentYear to most recent
+            currentYear = years[years.length - 1];
+
+            container.innerHTML = years.map(y =>
+                `<button class="year-btn${y === currentYear ? ' active' : ''}" data-year="${y}">${y}</button>`
+            ).join('');
+
+            container.addEventListener('click', (e) => {
+                const btn = e.target.closest('.year-btn');
+                if (!btn) return;
+                currentYear = parseInt(btn.dataset.year);
+                container.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderTiers();
+            });
+        }
+
+        // Position selector
+        document.querySelectorAll('.position-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.position-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentPosition = btn.dataset.position;
+                renderTiers();
+            });
+        });
+
+        // Build tooltip HTML for a player's stats
+        function buildTooltip(stats) {
+            if (!stats) return '';
+            const entries = Object.entries(stats);
+            if (entries.length === 0) return '';
+
+            const statsHtml = entries.map(([key, data]) => {
+                const label = statLabels[key] || key;
+                return `<div class="tooltip-stat">
+                    <span class="tooltip-stat-name">${label}</span>
+                    <span class="tooltip-stat-value">${data.value} <span class="tooltip-rank">#${data.rank}</span></span>
+                </div>`;
+            }).join('');
+
+            return `<div class="player-tooltip">${statsHtml}</div>`;
+        }
+
+        // Render tiers
+        function renderTiers() {
+            const container = document.getElementById('tier-container');
+            const yearData = playerData[currentYear];
+
+            if (!yearData || !yearData[currentPosition]) {
+                container.innerHTML = '<p style="color: var(--gray-500);">No data available for this position/year combination.</p>';
+                document.getElementById('stat-players').textContent = '-';
+                document.getElementById('stat-tiers').textContent = '-';
+                document.getElementById('stat-ci').textContent = '-';
+                return;
+            }
+
+            const posData = yearData[currentPosition];
+
+            // Update stats summary
+            document.getElementById('stat-players').textContent = posData.n_players;
+            document.getElementById('stat-tiers').textContent = posData.optimal_K;
+            document.getElementById('stat-ci').textContent = posData.cut_imbalance.toFixed(2);
+
+            // Group players by tier
+            const tiers = {};
+            for (const [playerId, info] of Object.entries(posData.players)) {
+                const t = info.tier;
+                if (!tiers[t]) tiers[t] = [];
+                tiers[t].push({...info, playerId});
+            }
+
+            // Render tier groups
+            container.innerHTML = Object.keys(tiers).sort((a, b) => a - b).map(tierNum => {
+                const players = tiers[tierNum];
+                return `
+                    <div class="tier-group tier-${tierNum}">
+                        <div class="tier-header">
+                            <span class="tier-badge">${tierNum}</span>
+                            <span class="tier-name">${tierNames[tierNum] || 'Tier ' + tierNum}</span>
+                            <span class="tier-count">${players.length} player${players.length > 1 ? 's' : ''}</span>
+                        </div>
+                        <div class="players-grid">
+                            ${players.map(p => `
+                                <div class="player-card">
+                                    ${buildTooltip(p.stats)}
+                                    <img class="player-headshot"
+                                         src="${p.headshot || ''}"
+                                         alt="${p.name}"
+                                         onerror="this.src='https://static.www.nfl.com/image/private/f_auto/league/nvkb6s6oxqpdxyi7yqti'">
+                                    <div class="player-name">${p.name}</div>
+                                    <div class="player-team">${p.team || ''}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Also render matrix
+            renderMatrix();
+        }
+
+        // Render preference matrix
+        function renderMatrix() {
+            const table = document.getElementById('pref-matrix-table');
+            const yearData = playerData[currentYear];
+
+            if (!yearData || !yearData[currentPosition] || !yearData[currentPosition].preference_matrix) {
+                table.querySelector('thead').innerHTML = '';
+                table.querySelector('tbody').innerHTML = '<tr><td>No matrix data available</td></tr>';
+                return;
+            }
+
+            const posData = yearData[currentPosition];
+            const matrix = posData.preference_matrix;
+            const players = posData.players;
+
+            // Get player IDs sorted by tier then name
+            const playerIds = Object.keys(matrix).sort((a, b) => {
+                const tierA = players[a]?.tier || 99;
+                const tierB = players[b]?.tier || 99;
+                if (tierA !== tierB) return tierA - tierB;
+                return (players[a]?.name || '').localeCompare(players[b]?.name || '');
+            });
+
+            // Get max stat count for cell coloring
+            const statCount = currentPosition === 'QB' ? 10 : (currentPosition === 'WR' ? 8 : 5);
+
+            const thead = table.querySelector('thead');
+            thead.innerHTML = `<tr><th>Player</th>${playerIds.map(id =>
+                `<th title="${players[id]?.name || id}">${(players[id]?.name || id).split(' ').pop()}</th>`
+            ).join('')}</tr>`;
+
+            const tbody = table.querySelector('tbody');
+
+            function renderRows(filterText = '') {
+                const filtered = filterText
+                    ? playerIds.filter(id => (players[id]?.name || '').toLowerCase().includes(filterText.toLowerCase()))
+                    : playerIds;
+
+                tbody.innerHTML = filtered.map(rowId => {
+                    const rowPlayer = players[rowId];
+                    return `<tr>
+                        <td title="${rowPlayer?.name || rowId}">${rowPlayer?.name || rowId}</td>
+                        ${playerIds.map(colId => {
+                            const val = matrix[rowId]?.[colId] ?? '-';
+                            let cellClass = '';
+                            if (rowId !== colId && typeof val === 'number') {
+                                const pct = val / statCount;
+                                if (pct >= 0.7) cellClass = 'cell-high';
+                                else if (pct >= 0.4) cellClass = 'cell-mid';
+                                else cellClass = 'cell-low';
+                            }
+                            return `<td class="${cellClass}">${val}</td>`;
+                        }).join('')}
+                    </tr>`;
+                }).join('');
+            }
+
+            renderRows();
+
+            // Setup filter
+            const filterEl = document.getElementById('matrix-filter');
+            const newFilter = filterEl.cloneNode(true);
+            filterEl.parentNode.replaceChild(newFilter, filterEl);
+            newFilter.value = '';
+            newFilter.addEventListener('input', (e) => renderRows(e.target.value));
+        }
+
+        // Section tabs (Tier Cards / Preference Matrix)
+        document.querySelectorAll('.section-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.section-content').forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.section).classList.add('active');
+            });
+        });
+
+        // Mobile nav toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const res = await fetch('player_tiers.json');
+                playerData = await res.json();
+            } catch (e) {
+                console.error('Failed to load player data:', e);
+                document.getElementById('tier-container').innerHTML =
+                    '<p style="color: var(--red);">Failed to load player data. Run player_stats.py first.</p>';
+                return;
+            }
+
+            buildYearSelector();
+            renderTiers();
+        });
+    </script>
+</body>
+</html>
