@@ -1,0 +1,6026 @@
+{
+  "state": {
+    "possession": "KC",
+    "defensive_team": "BUF",
+    "yardline_100": 35,
+    "down": 4,
+    "ydstogo": 2,
+    "quarter": 4,
+    "seconds_remaining": 300,
+    "home_team": "KC",
+    "away_team": "BUF",
+    "home_score": 14,
+    "away_score": 17
+  },
+  "win_probabilities": {
+    "go_for_it": 0.396,
+    "punt": 0.238,
+    "field_goal": 0.296
+  },
+  "best_decision": "go_for_it",
+  "trajectories": {
+    "go_for_it": [
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "KC",
+            "yardline_100": 31,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "KC",
+            "yardline_100": 31,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 46,
+            "total_seconds_remaining": 46,
+            "possession": "BUF",
+            "yardline_100": 82,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 69,
+            "down": 2,
+            "ydstogo": 10,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 17
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 296,
+            "total_seconds_remaining": 296,
+            "possession": "BUF",
+            "yardline_100": 60,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 296,
+            "total_seconds_remaining": 296,
+            "possession": "BUF",
+            "yardline_100": 60,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 179,
+            "total_seconds_remaining": 179,
+            "possession": "KC",
+            "yardline_100": 64,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 67,
+            "total_seconds_remaining": 67,
+            "possession": "BUF",
+            "yardline_100": 76,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 74,
+            "down": 2,
+            "ydstogo": 3,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 74,
+            "down": 2,
+            "ydstogo": 3,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 24
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 289,
+            "total_seconds_remaining": 289,
+            "possession": "KC",
+            "yardline_100": 21,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 289,
+            "total_seconds_remaining": 289,
+            "possession": "KC",
+            "yardline_100": 21,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 134,
+            "total_seconds_remaining": 134,
+            "possession": "BUF",
+            "yardline_100": 81,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 28,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 74,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 1
+          }
+        ],
+        "won": true,
+        "final_home_score": 28,
+        "final_away_score": 27
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "KC",
+            "yardline_100": 33,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "KC",
+            "yardline_100": 33,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 137,
+            "total_seconds_remaining": 137,
+            "possession": "BUF",
+            "yardline_100": 90,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          },
+          {
+            "home_score": 14,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 27,
+            "total_seconds_remaining": 27,
+            "possession": "KC",
+            "yardline_100": 67,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          },
+          {
+            "home_score": 14,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 95,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 20
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 291,
+            "total_seconds_remaining": 291,
+            "possession": "KC",
+            "yardline_100": 32,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 291,
+            "total_seconds_remaining": 291,
+            "possession": "KC",
+            "yardline_100": 32,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 129,
+            "total_seconds_remaining": 129,
+            "possession": "BUF",
+            "yardline_100": 21,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 20,
+            "total_seconds_remaining": 20,
+            "possession": "KC",
+            "yardline_100": 63,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 60,
+            "down": 4,
+            "ydstogo": 7,
+            "score_diff": -10
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 24
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 66,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 66,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 64,
+            "total_seconds_remaining": 64,
+            "possession": "KC",
+            "yardline_100": 93,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 15,
+            "down": 4,
+            "ydstogo": 9,
+            "score_diff": 4
+          }
+        ],
+        "won": true,
+        "final_home_score": 21,
+        "final_away_score": 17
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "KC",
+            "yardline_100": 31,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "KC",
+            "yardline_100": 31,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 159,
+            "total_seconds_remaining": 159,
+            "possession": "BUF",
+            "yardline_100": 88,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 4,
+            "down": 1,
+            "ydstogo": 4,
+            "score_diff": -17
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 31
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "KC",
+            "yardline_100": 32,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "KC",
+            "yardline_100": 32,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 133,
+            "total_seconds_remaining": 133,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 28,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 19,
+            "total_seconds_remaining": 19,
+            "possession": "KC",
+            "yardline_100": 76,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 11
+          },
+          {
+            "home_score": 28,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 63,
+            "down": 2,
+            "ydstogo": 10,
+            "score_diff": 11
+          }
+        ],
+        "won": true,
+        "final_home_score": 28,
+        "final_away_score": 17
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "KC",
+            "yardline_100": 23,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "KC",
+            "yardline_100": 23,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 185,
+            "total_seconds_remaining": 185,
+            "possession": "BUF",
+            "yardline_100": 57,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 41,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 41,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          }
+        ],
+        "won": true,
+        "final_home_score": 21,
+        "final_away_score": 17
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "KC",
+            "yardline_100": 23,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "KC",
+            "yardline_100": 23,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 24,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 130,
+            "total_seconds_remaining": 130,
+            "possession": "BUF",
+            "yardline_100": 71,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 7
+          },
+          {
+            "home_score": 24,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 53,
+            "total_seconds_remaining": 53,
+            "possession": "KC",
+            "yardline_100": 92,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 7
+          },
+          {
+            "home_score": 24,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 45,
+            "down": 3,
+            "ydstogo": 6,
+            "score_diff": 7
+          }
+        ],
+        "won": true,
+        "final_home_score": 24,
+        "final_away_score": 17
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 296,
+            "total_seconds_remaining": 296,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 296,
+            "total_seconds_remaining": 296,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 135,
+            "total_seconds_remaining": 135,
+            "possession": "KC",
+            "yardline_100": 75,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          },
+          {
+            "home_score": 14,
+            "away_score": 23,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 68,
+            "down": 2,
+            "ydstogo": 3,
+            "score_diff": -9
+          },
+          {
+            "home_score": 14,
+            "away_score": 23,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 68,
+            "down": 2,
+            "ydstogo": 3,
+            "score_diff": -9
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 23
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 296,
+            "total_seconds_remaining": 296,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 296,
+            "total_seconds_remaining": 296,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 194,
+            "total_seconds_remaining": 194,
+            "possession": "KC",
+            "yardline_100": 82,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 89,
+            "total_seconds_remaining": 89,
+            "possession": "BUF",
+            "yardline_100": 64,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 14,
+            "down": 3,
+            "ydstogo": 4,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 14,
+            "down": 3,
+            "ydstogo": 4,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 17
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 77,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 77,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 21,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 89,
+            "total_seconds_remaining": 89,
+            "possession": "KC",
+            "yardline_100": 75,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 28,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 57,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 28,
+        "final_away_score": 31
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 175,
+            "total_seconds_remaining": 175,
+            "possession": "KC",
+            "yardline_100": 73,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 63,
+            "down": 3,
+            "ydstogo": 5,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 63,
+            "down": 3,
+            "ydstogo": 5,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 24
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 289,
+            "total_seconds_remaining": 289,
+            "possession": "KC",
+            "yardline_100": 30,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 289,
+            "total_seconds_remaining": 289,
+            "possession": "KC",
+            "yardline_100": 30,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 179,
+            "total_seconds_remaining": 179,
+            "possession": "BUF",
+            "yardline_100": 77,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 35,
+            "total_seconds_remaining": 35,
+            "possession": "KC",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 56,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          }
+        ],
+        "won": true,
+        "final_home_score": 21,
+        "final_away_score": 17
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 100,
+            "total_seconds_remaining": 100,
+            "possession": "KC",
+            "yardline_100": 73,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 67,
+            "down": 2,
+            "ydstogo": 5,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 24
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "KC",
+            "yardline_100": 30,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "KC",
+            "yardline_100": 30,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 192,
+            "total_seconds_remaining": 192,
+            "possession": "BUF",
+            "yardline_100": 81,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 109,
+            "total_seconds_remaining": 109,
+            "possession": "KC",
+            "yardline_100": 71,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 95,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 24
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 64,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 64,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 117,
+            "total_seconds_remaining": 117,
+            "possession": "KC",
+            "yardline_100": 57,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 24,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 70,
+            "down": 3,
+            "ydstogo": 4,
+            "score_diff": 7
+          },
+          {
+            "home_score": 24,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 70,
+            "down": 3,
+            "ydstogo": 4,
+            "score_diff": 7
+          }
+        ],
+        "won": true,
+        "final_home_score": 24,
+        "final_away_score": 17
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 286,
+            "total_seconds_remaining": 286,
+            "possession": "BUF",
+            "yardline_100": 50,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 286,
+            "total_seconds_remaining": 286,
+            "possession": "BUF",
+            "yardline_100": 50,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 187,
+            "total_seconds_remaining": 187,
+            "possession": "KC",
+            "yardline_100": 86,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 21,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 17
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 66,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 66,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 173,
+            "total_seconds_remaining": 173,
+            "possession": "KC",
+            "yardline_100": 77,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -13
+          },
+          {
+            "home_score": 14,
+            "away_score": 34,
+            "quarter": 4,
+            "seconds_remaining": 25,
+            "total_seconds_remaining": 25,
+            "possession": "BUF",
+            "yardline_100": 79,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -20
+          },
+          {
+            "home_score": 14,
+            "away_score": 34,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 45,
+            "down": 4,
+            "ydstogo": 2,
+            "score_diff": -20
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 34
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 291,
+            "total_seconds_remaining": 291,
+            "possession": "KC",
+            "yardline_100": 33,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 291,
+            "total_seconds_remaining": 291,
+            "possession": "KC",
+            "yardline_100": 33,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 146,
+            "total_seconds_remaining": 146,
+            "possession": "BUF",
+            "yardline_100": 79,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 70,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 70,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 24
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "KC",
+            "yardline_100": 26,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "KC",
+            "yardline_100": 26,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 28,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 152,
+            "total_seconds_remaining": 152,
+            "possession": "BUF",
+            "yardline_100": 77,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 11
+          },
+          {
+            "home_score": 35,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 22,
+            "total_seconds_remaining": 22,
+            "possession": "KC",
+            "yardline_100": 84,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 18
+          },
+          {
+            "home_score": 35,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 55,
+            "down": 2,
+            "ydstogo": 2,
+            "score_diff": 18
+          }
+        ],
+        "won": true,
+        "final_home_score": 35,
+        "final_away_score": 17
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "KC",
+            "yardline_100": 32,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "KC",
+            "yardline_100": 32,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 130,
+            "total_seconds_remaining": 130,
+            "possession": "BUF",
+            "yardline_100": 57,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 30,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 73,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -9
+          },
+          {
+            "home_score": 21,
+            "away_score": 30,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 73,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -9
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 30
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 64,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 64,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 185,
+            "total_seconds_remaining": 185,
+            "possession": "KC",
+            "yardline_100": 53,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 58,
+            "total_seconds_remaining": 58,
+            "possession": "BUF",
+            "yardline_100": 78,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 4,
+            "down": 1,
+            "ydstogo": 4,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 24
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 189,
+            "total_seconds_remaining": 189,
+            "possession": "KC",
+            "yardline_100": 75,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 19,
+            "down": 3,
+            "ydstogo": 2,
+            "score_diff": -17
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 19,
+            "down": 3,
+            "ydstogo": 2,
+            "score_diff": -17
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 31
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 286,
+            "total_seconds_remaining": 286,
+            "possession": "BUF",
+            "yardline_100": 66,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 286,
+            "total_seconds_remaining": 286,
+            "possession": "BUF",
+            "yardline_100": 66,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 161,
+            "total_seconds_remaining": 161,
+            "possession": "KC",
+            "yardline_100": 79,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 52,
+            "total_seconds_remaining": 52,
+            "possession": "BUF",
+            "yardline_100": 83,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -13
+          },
+          {
+            "home_score": 14,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 49,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -13
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 27
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "KC",
+            "yardline_100": 32,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "KC",
+            "yardline_100": 32,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 162,
+            "total_seconds_remaining": 162,
+            "possession": "BUF",
+            "yardline_100": 53,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 28,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 39,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 11
+          },
+          {
+            "home_score": 28,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 39,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 11
+          }
+        ],
+        "won": true,
+        "final_home_score": 28,
+        "final_away_score": 17
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "KC",
+            "yardline_100": 25,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "KC",
+            "yardline_100": 25,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 135,
+            "total_seconds_remaining": 135,
+            "possession": "BUF",
+            "yardline_100": 77,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 14,
+            "total_seconds_remaining": 14,
+            "possession": "KC",
+            "yardline_100": 72,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 69,
+            "down": 3,
+            "ydstogo": 7,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 24
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 290,
+            "total_seconds_remaining": 290,
+            "possession": "KC",
+            "yardline_100": 14,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 290,
+            "total_seconds_remaining": 290,
+            "possession": "KC",
+            "yardline_100": 14,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 210,
+            "total_seconds_remaining": 210,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 24,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 147,
+            "total_seconds_remaining": 147,
+            "possession": "KC",
+            "yardline_100": 72,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 27,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 9,
+            "total_seconds_remaining": 9,
+            "possession": "BUF",
+            "yardline_100": 74,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 3
+          },
+          {
+            "home_score": 27,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 67,
+            "down": 3,
+            "ydstogo": 3,
+            "score_diff": 3
+          }
+        ],
+        "won": true,
+        "final_home_score": 27,
+        "final_away_score": 24
+      },
+      {
+        "decision": "go_for_it",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "KC",
+            "yardline_100": 29,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "KC",
+            "yardline_100": 29,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 216,
+            "total_seconds_remaining": 216,
+            "possession": "BUF",
+            "yardline_100": 70,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 10,
+            "total_seconds_remaining": 10,
+            "possession": "KC",
+            "yardline_100": 94,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 84,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 24
+      }
+    ],
+    "punt": [
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 74,
+            "total_seconds_remaining": 74,
+            "possession": "KC",
+            "yardline_100": 78,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 21,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 42,
+            "down": 2,
+            "ydstogo": 12,
+            "score_diff": -10
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 31
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 133,
+            "total_seconds_remaining": 133,
+            "possession": "KC",
+            "yardline_100": 57,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 39,
+            "down": 2,
+            "ydstogo": 8,
+            "score_diff": -17
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 39,
+            "down": 2,
+            "ydstogo": 8,
+            "score_diff": -17
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 31
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 152,
+            "total_seconds_remaining": 152,
+            "possession": "KC",
+            "yardline_100": 72,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 58,
+            "total_seconds_remaining": 58,
+            "possession": "BUF",
+            "yardline_100": 86,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 6,
+            "down": 2,
+            "ydstogo": 1,
+            "score_diff": 4
+          }
+        ],
+        "won": true,
+        "final_home_score": 21,
+        "final_away_score": 17
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 158,
+            "total_seconds_remaining": 158,
+            "possession": "KC",
+            "yardline_100": 72,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          },
+          {
+            "home_score": 21,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 34,
+            "total_seconds_remaining": 34,
+            "possession": "BUF",
+            "yardline_100": 76,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 1
+          },
+          {
+            "home_score": 21,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 43,
+            "down": 4,
+            "ydstogo": 3,
+            "score_diff": 1
+          }
+        ],
+        "won": true,
+        "final_home_score": 21,
+        "final_away_score": 20
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 289,
+            "total_seconds_remaining": 289,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 289,
+            "total_seconds_remaining": 289,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 111,
+            "total_seconds_remaining": 111,
+            "possession": "KC",
+            "yardline_100": 84,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 24,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 17,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 7
+          },
+          {
+            "home_score": 24,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 17,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 7
+          }
+        ],
+        "won": true,
+        "final_home_score": 24,
+        "final_away_score": 17
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 99,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 99,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 48,
+            "total_seconds_remaining": 48,
+            "possession": "KC",
+            "yardline_100": 78,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 13,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 24
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 289,
+            "total_seconds_remaining": 289,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 289,
+            "total_seconds_remaining": 289,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 163,
+            "total_seconds_remaining": 163,
+            "possession": "KC",
+            "yardline_100": 70,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          },
+          {
+            "home_score": 14,
+            "away_score": 22,
+            "quarter": 4,
+            "seconds_remaining": 71,
+            "total_seconds_remaining": 71,
+            "possession": "BUF",
+            "yardline_100": 66,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -8
+          },
+          {
+            "home_score": 14,
+            "away_score": 22,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 44,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -8
+          },
+          {
+            "home_score": 14,
+            "away_score": 22,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 44,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -8
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 22
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 109,
+            "total_seconds_remaining": 109,
+            "possession": "KC",
+            "yardline_100": 79,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 92,
+            "down": 3,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 92,
+            "down": 3,
+            "ydstogo": 10,
+            "score_diff": -10
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 24
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 171,
+            "total_seconds_remaining": 171,
+            "possession": "KC",
+            "yardline_100": 72,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 111,
+            "total_seconds_remaining": 111,
+            "possession": "BUF",
+            "yardline_100": 87,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -17
+          },
+          {
+            "home_score": 14,
+            "away_score": 38,
+            "quarter": 4,
+            "seconds_remaining": 16,
+            "total_seconds_remaining": 16,
+            "possession": "KC",
+            "yardline_100": 76,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -24
+          },
+          {
+            "home_score": 14,
+            "away_score": 38,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 75,
+            "down": 4,
+            "ydstogo": 9,
+            "score_diff": -24
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 38
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 68,
+            "total_seconds_remaining": 68,
+            "possession": "KC",
+            "yardline_100": 76,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 62,
+            "down": 2,
+            "ydstogo": 10,
+            "score_diff": -10
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 24
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 175,
+            "total_seconds_remaining": 175,
+            "possession": "KC",
+            "yardline_100": 71,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 2,
+            "total_seconds_remaining": 2,
+            "possession": "BUF",
+            "yardline_100": 72,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 54,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 17
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 289,
+            "total_seconds_remaining": 289,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 289,
+            "total_seconds_remaining": 289,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 159,
+            "total_seconds_remaining": 159,
+            "possession": "KC",
+            "yardline_100": 69,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 21,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 60,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          },
+          {
+            "home_score": 21,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 60,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 27
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 103,
+            "total_seconds_remaining": 103,
+            "possession": "KC",
+            "yardline_100": 54,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 27,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -17
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 27,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -17
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 31
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 189,
+            "total_seconds_remaining": 189,
+            "possession": "KC",
+            "yardline_100": 82,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 53,
+            "down": 2,
+            "ydstogo": 4,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 53,
+            "down": 2,
+            "ydstogo": 4,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 24
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 119,
+            "total_seconds_remaining": 119,
+            "possession": "KC",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 53,
+            "down": 3,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 53,
+            "down": 3,
+            "ydstogo": 10,
+            "score_diff": -10
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 24
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 289,
+            "total_seconds_remaining": 289,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 289,
+            "total_seconds_remaining": 289,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 204,
+            "total_seconds_remaining": 204,
+            "possession": "KC",
+            "yardline_100": 62,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 123,
+            "total_seconds_remaining": 123,
+            "possession": "BUF",
+            "yardline_100": 10,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 75,
+            "down": 2,
+            "ydstogo": 3,
+            "score_diff": -6
+          },
+          {
+            "home_score": 14,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 75,
+            "down": 2,
+            "ydstogo": 3,
+            "score_diff": -6
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 20
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 290,
+            "total_seconds_remaining": 290,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 290,
+            "total_seconds_remaining": 290,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 67,
+            "total_seconds_remaining": 67,
+            "possession": "KC",
+            "yardline_100": 79,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 37,
+            "down": 4,
+            "ydstogo": 9,
+            "score_diff": 4
+          }
+        ],
+        "won": true,
+        "final_home_score": 21,
+        "final_away_score": 17
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 290,
+            "total_seconds_remaining": 290,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 290,
+            "total_seconds_remaining": 290,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 23,
+            "quarter": 4,
+            "seconds_remaining": 95,
+            "total_seconds_remaining": 95,
+            "possession": "KC",
+            "yardline_100": 76,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -9
+          },
+          {
+            "home_score": 14,
+            "away_score": 23,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 37,
+            "down": 2,
+            "ydstogo": 2,
+            "score_diff": -9
+          },
+          {
+            "home_score": 14,
+            "away_score": 23,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 37,
+            "down": 2,
+            "ydstogo": 2,
+            "score_diff": -9
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 23
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 290,
+            "total_seconds_remaining": 290,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 290,
+            "total_seconds_remaining": 290,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 141,
+            "total_seconds_remaining": 141,
+            "possession": "KC",
+            "yardline_100": 76,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          },
+          {
+            "home_score": 21,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 28,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 1
+          }
+        ],
+        "won": true,
+        "final_home_score": 21,
+        "final_away_score": 20
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 79,
+            "total_seconds_remaining": 79,
+            "possession": "KC",
+            "yardline_100": 74,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 74,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -17
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 31
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 63,
+            "total_seconds_remaining": 63,
+            "possession": "KC",
+            "yardline_100": 72,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          },
+          {
+            "home_score": 28,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 78,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 1
+          }
+        ],
+        "won": true,
+        "final_home_score": 28,
+        "final_away_score": 27
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 289,
+            "total_seconds_remaining": 289,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 289,
+            "total_seconds_remaining": 289,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 11,
+            "total_seconds_remaining": 11,
+            "possession": "KC",
+            "yardline_100": 79,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 71,
+            "down": 3,
+            "ydstogo": 2,
+            "score_diff": -10
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 24
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 135,
+            "total_seconds_remaining": 135,
+            "possession": "KC",
+            "yardline_100": 89,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          },
+          {
+            "home_score": 14,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 14,
+            "total_seconds_remaining": 14,
+            "possession": "BUF",
+            "yardline_100": 77,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          },
+          {
+            "home_score": 14,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 63,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 20
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 289,
+            "total_seconds_remaining": 289,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 289,
+            "total_seconds_remaining": 289,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 139,
+            "total_seconds_remaining": 139,
+            "possession": "KC",
+            "yardline_100": 97,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          },
+          {
+            "home_score": 21,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 56,
+            "down": 2,
+            "ydstogo": 1,
+            "score_diff": 1
+          }
+        ],
+        "won": true,
+        "final_home_score": 21,
+        "final_away_score": 20
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 146,
+            "total_seconds_remaining": 146,
+            "possession": "KC",
+            "yardline_100": 88,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 48,
+            "total_seconds_remaining": 48,
+            "possession": "BUF",
+            "yardline_100": 50,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 9,
+            "down": 2,
+            "ydstogo": 9,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 17
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 128,
+            "total_seconds_remaining": 128,
+            "possession": "KC",
+            "yardline_100": 70,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 14,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 14,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 17
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 290,
+            "total_seconds_remaining": 290,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 290,
+            "total_seconds_remaining": 290,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 142,
+            "total_seconds_remaining": 142,
+            "possession": "KC",
+            "yardline_100": 74,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 1
+          },
+          {
+            "home_score": 21,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 34,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          },
+          {
+            "home_score": 21,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 34,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 27
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 290,
+            "total_seconds_remaining": 290,
+            "possession": "BUF",
+            "yardline_100": 85,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 290,
+            "total_seconds_remaining": 290,
+            "possession": "BUF",
+            "yardline_100": 85,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 144,
+            "total_seconds_remaining": 144,
+            "possession": "KC",
+            "yardline_100": 18,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 24,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 33,
+            "total_seconds_remaining": 33,
+            "possession": "BUF",
+            "yardline_100": 70,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 7
+          },
+          {
+            "home_score": 24,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 31,
+            "down": 2,
+            "ydstogo": 4,
+            "score_diff": 7
+          }
+        ],
+        "won": true,
+        "final_home_score": 24,
+        "final_away_score": 17
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 27,
+            "total_seconds_remaining": 27,
+            "possession": "KC",
+            "yardline_100": 79,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          },
+          {
+            "home_score": 21,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 39,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 27
+      },
+      {
+        "decision": "punt",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 291,
+            "total_seconds_remaining": 291,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 291,
+            "total_seconds_remaining": 291,
+            "possession": "BUF",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 49,
+            "total_seconds_remaining": 49,
+            "possession": "KC",
+            "yardline_100": 77,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 32,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 24
+      }
+    ],
+    "field_goal": [
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 173,
+            "total_seconds_remaining": 173,
+            "possession": "KC",
+            "yardline_100": 72,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 34,
+            "total_seconds_remaining": 34,
+            "possession": "BUF",
+            "yardline_100": 88,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -17
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 52,
+            "down": 2,
+            "ydstogo": 6,
+            "score_diff": -17
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 31
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 160,
+            "total_seconds_remaining": 160,
+            "possession": "KC",
+            "yardline_100": 88,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 83,
+            "total_seconds_remaining": 83,
+            "possession": "BUF",
+            "yardline_100": 79,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 21,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 17,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 31
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 79,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 79,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 156,
+            "total_seconds_remaining": 156,
+            "possession": "KC",
+            "yardline_100": 72,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -7
+          },
+          {
+            "home_score": 17,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -7
+          }
+        ],
+        "won": false,
+        "final_home_score": 17,
+        "final_away_score": 24
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 71,
+            "total_seconds_remaining": 71,
+            "possession": "KC",
+            "yardline_100": 76,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          },
+          {
+            "home_score": 14,
+            "away_score": 20,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 14,
+            "down": 2,
+            "ydstogo": 3,
+            "score_diff": -6
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 20
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 72,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 72,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 83,
+            "total_seconds_remaining": 83,
+            "possession": "KC",
+            "yardline_100": 99,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -7
+          },
+          {
+            "home_score": 17,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 39,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -7
+          }
+        ],
+        "won": false,
+        "final_home_score": 17,
+        "final_away_score": 24
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 83,
+            "total_seconds_remaining": 83,
+            "possession": "KC",
+            "yardline_100": 79,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 28,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 35,
+            "down": 2,
+            "ydstogo": 8,
+            "score_diff": 4
+          }
+        ],
+        "won": true,
+        "final_home_score": 28,
+        "final_away_score": 24
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 71,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 71,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 119,
+            "total_seconds_remaining": 119,
+            "possession": "KC",
+            "yardline_100": 72,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -14
+          },
+          {
+            "home_score": 24,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 43,
+            "down": 4,
+            "ydstogo": 2,
+            "score_diff": -7
+          }
+        ],
+        "won": false,
+        "final_home_score": 24,
+        "final_away_score": 31
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 120,
+            "total_seconds_remaining": 120,
+            "possession": "KC",
+            "yardline_100": 62,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 26,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 60,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -12
+          },
+          {
+            "home_score": 14,
+            "away_score": 26,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 60,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -12
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 26
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 102,
+            "total_seconds_remaining": 102,
+            "possession": "KC",
+            "yardline_100": 74,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -17
+          },
+          {
+            "home_score": 21,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 62,
+            "down": 2,
+            "ydstogo": 2,
+            "score_diff": -10
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 31
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 143,
+            "total_seconds_remaining": 143,
+            "possession": "KC",
+            "yardline_100": 80,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 72,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 72,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 24
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 132,
+            "total_seconds_remaining": 132,
+            "possession": "KC",
+            "yardline_100": 73,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -13
+          },
+          {
+            "home_score": 21,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 38,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -6
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 27
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 171,
+            "total_seconds_remaining": 171,
+            "possession": "KC",
+            "yardline_100": 73,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -17
+          },
+          {
+            "home_score": 21,
+            "away_score": 38,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 41,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -17
+          },
+          {
+            "home_score": 21,
+            "away_score": 38,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 41,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -17
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 38
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 77,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 77,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 198,
+            "total_seconds_remaining": 198,
+            "possession": "KC",
+            "yardline_100": 87,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 24,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 57,
+            "total_seconds_remaining": 57,
+            "possession": "BUF",
+            "yardline_100": 74,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 7
+          },
+          {
+            "home_score": 24,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 34,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 7
+          }
+        ],
+        "won": true,
+        "final_home_score": 24,
+        "final_away_score": 17
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 212,
+            "total_seconds_remaining": 212,
+            "possession": "KC",
+            "yardline_100": 1,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 128,
+            "total_seconds_remaining": 128,
+            "possession": "BUF",
+            "yardline_100": 87,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 13,
+            "down": 2,
+            "ydstogo": 2,
+            "score_diff": 4
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 13,
+            "down": 2,
+            "ydstogo": 2,
+            "score_diff": 4
+          }
+        ],
+        "won": true,
+        "final_home_score": 21,
+        "final_away_score": 17
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 78,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 78,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 24,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 207,
+            "total_seconds_remaining": 207,
+            "possession": "KC",
+            "yardline_100": 66,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 7
+          },
+          {
+            "home_score": 27,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 12,
+            "total_seconds_remaining": 12,
+            "possession": "BUF",
+            "yardline_100": 90,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 3
+          },
+          {
+            "home_score": 27,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 81,
+            "down": 3,
+            "ydstogo": 1,
+            "score_diff": 3
+          }
+        ],
+        "won": true,
+        "final_home_score": 27,
+        "final_away_score": 24
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 85,
+            "total_seconds_remaining": 85,
+            "possession": "KC",
+            "yardline_100": 79,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 21,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 24,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 21,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 24,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 31
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 77,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 77,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 20,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 128,
+            "total_seconds_remaining": 128,
+            "possession": "KC",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 3
+          },
+          {
+            "home_score": 27,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 61,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 10
+          }
+        ],
+        "won": true,
+        "final_home_score": 27,
+        "final_away_score": 17
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 291,
+            "total_seconds_remaining": 291,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 291,
+            "total_seconds_remaining": 291,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 108,
+            "total_seconds_remaining": 108,
+            "possession": "KC",
+            "yardline_100": 73,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 76,
+            "down": 4,
+            "ydstogo": 9,
+            "score_diff": -17
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 76,
+            "down": 4,
+            "ydstogo": 9,
+            "score_diff": -17
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 31
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 135,
+            "total_seconds_remaining": 135,
+            "possession": "KC",
+            "yardline_100": 83,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 33,
+            "quarter": 4,
+            "seconds_remaining": 60,
+            "total_seconds_remaining": 60,
+            "possession": "BUF",
+            "yardline_100": 76,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -19
+          },
+          {
+            "home_score": 14,
+            "away_score": 33,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 76,
+            "down": 4,
+            "ydstogo": 6,
+            "score_diff": -19
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 33
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 233,
+            "total_seconds_remaining": 233,
+            "possession": "KC",
+            "yardline_100": 68,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 21,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 95,
+            "total_seconds_remaining": 95,
+            "possession": "BUF",
+            "yardline_100": 57,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 4
+          },
+          {
+            "home_score": 21,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 22,
+            "down": 3,
+            "ydstogo": 5,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 21,
+        "final_away_score": 24
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 88,
+            "total_seconds_remaining": 88,
+            "possession": "KC",
+            "yardline_100": 71,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -13
+          },
+          {
+            "home_score": 14,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 61,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -13
+          },
+          {
+            "home_score": 14,
+            "away_score": 27,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 61,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -13
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 27
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 291,
+            "total_seconds_remaining": 291,
+            "possession": "BUF",
+            "yardline_100": 74,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 291,
+            "total_seconds_remaining": 291,
+            "possession": "BUF",
+            "yardline_100": 74,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 20,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 173,
+            "total_seconds_remaining": 173,
+            "possession": "KC",
+            "yardline_100": 72,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -4
+          },
+          {
+            "home_score": 27,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 16,
+            "down": 2,
+            "ydstogo": 9,
+            "score_diff": 3
+          },
+          {
+            "home_score": 27,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 16,
+            "down": 2,
+            "ydstogo": 9,
+            "score_diff": 3
+          }
+        ],
+        "won": true,
+        "final_home_score": 27,
+        "final_away_score": 24
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 291,
+            "total_seconds_remaining": 291,
+            "possession": "BUF",
+            "yardline_100": 78,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 291,
+            "total_seconds_remaining": 291,
+            "possession": "BUF",
+            "yardline_100": 78,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 24,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 189,
+            "total_seconds_remaining": 189,
+            "possession": "KC",
+            "yardline_100": 81,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 7
+          },
+          {
+            "home_score": 24,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 33,
+            "total_seconds_remaining": 33,
+            "possession": "BUF",
+            "yardline_100": 83,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 7
+          },
+          {
+            "home_score": 24,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 67,
+            "down": 2,
+            "ydstogo": 8,
+            "score_diff": 7
+          }
+        ],
+        "won": true,
+        "final_home_score": 24,
+        "final_away_score": 17
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 292,
+            "total_seconds_remaining": 292,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 165,
+            "total_seconds_remaining": 165,
+            "possession": "KC",
+            "yardline_100": 74,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 30,
+            "total_seconds_remaining": 30,
+            "possession": "BUF",
+            "yardline_100": 87,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 60,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 24
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 291,
+            "total_seconds_remaining": 291,
+            "possession": "BUF",
+            "yardline_100": 76,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 291,
+            "total_seconds_remaining": 291,
+            "possession": "BUF",
+            "yardline_100": 76,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 100,
+            "total_seconds_remaining": 100,
+            "possession": "KC",
+            "yardline_100": 39,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -7
+          },
+          {
+            "home_score": 17,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 52,
+            "down": 4,
+            "ydstogo": 11,
+            "score_diff": -7
+          },
+          {
+            "home_score": 17,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 52,
+            "down": 4,
+            "ydstogo": 11,
+            "score_diff": -7
+          }
+        ],
+        "won": false,
+        "final_home_score": 17,
+        "final_away_score": 24
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 103,
+            "total_seconds_remaining": 103,
+            "possession": "KC",
+            "yardline_100": 57,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 24,
+            "down": 3,
+            "ydstogo": 5,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 17
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 291,
+            "total_seconds_remaining": 291,
+            "possession": "BUF",
+            "yardline_100": 78,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 291,
+            "total_seconds_remaining": 291,
+            "possession": "BUF",
+            "yardline_100": 78,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 162,
+            "total_seconds_remaining": 162,
+            "possession": "KC",
+            "yardline_100": 75,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 52,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -7
+          },
+          {
+            "home_score": 17,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 52,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -7
+          }
+        ],
+        "won": false,
+        "final_home_score": 17,
+        "final_away_score": 24
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 295,
+            "total_seconds_remaining": 295,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 173,
+            "total_seconds_remaining": 173,
+            "possession": "KC",
+            "yardline_100": 90,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 16,
+            "total_seconds_remaining": 16,
+            "possession": "BUF",
+            "yardline_100": 73,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "BUF",
+            "yardline_100": 37,
+            "down": 3,
+            "ydstogo": 1,
+            "score_diff": -3
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 17
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 75,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 294,
+            "total_seconds_remaining": 294,
+            "possession": "BUF",
+            "yardline_100": 75,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": 0
+          },
+          {
+            "home_score": 17,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 133,
+            "total_seconds_remaining": 133,
+            "possession": "KC",
+            "yardline_100": 84,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -7
+          },
+          {
+            "home_score": 17,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 43,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -14
+          },
+          {
+            "home_score": 17,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 43,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -14
+          }
+        ],
+        "won": false,
+        "final_home_score": 17,
+        "final_away_score": 31
+      },
+      {
+        "decision": "field_goal",
+        "snapshots": [
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 17,
+            "quarter": 4,
+            "seconds_remaining": 293,
+            "total_seconds_remaining": 293,
+            "possession": "BUF",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -3
+          },
+          {
+            "home_score": 14,
+            "away_score": 24,
+            "quarter": 4,
+            "seconds_remaining": 150,
+            "total_seconds_remaining": 150,
+            "possession": "KC",
+            "yardline_100": 65,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -10
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 32,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -17
+          },
+          {
+            "home_score": 14,
+            "away_score": 31,
+            "quarter": 4,
+            "seconds_remaining": 0,
+            "total_seconds_remaining": 0,
+            "possession": "KC",
+            "yardline_100": 32,
+            "down": 1,
+            "ydstogo": 10,
+            "score_diff": -17
+          }
+        ],
+        "won": false,
+        "final_home_score": 14,
+        "final_away_score": 31
+      }
+    ]
+  },
+  "score_histograms": {
+    "go_for_it": {
+      "bins": [
+        -40,
+        -35,
+        -30,
+        -25,
+        -20,
+        -15,
+        -10,
+        -5,
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35
+      ],
+      "counts": [
+        0,
+        0,
+        1,
+        3,
+        47,
+        60,
+        227,
+        266,
+        253,
+        69,
+        69,
+        3,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    "punt": {
+      "bins": [
+        -40,
+        -35,
+        -30,
+        -25,
+        -20,
+        -15,
+        -10,
+        -5,
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35
+      ],
+      "counts": [
+        0,
+        0,
+        0,
+        3,
+        78,
+        87,
+        330,
+        264,
+        187,
+        30,
+        20,
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "field_goal": {
+      "bins": [
+        -40,
+        -35,
+        -30,
+        -25,
+        -20,
+        -15,
+        -10,
+        -5,
+        0,
+        5,
+        10,
+        15,
+        20,
+        25,
+        30,
+        35
+      ],
+      "counts": [
+        0,
+        0,
+        1,
+        6,
+        55,
+        79,
+        341,
+        222,
+        171,
+        99,
+        25,
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "n_simulations": 1000
+}
