@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFL Ticket Pricing Analysis | Jabari Myles</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Page-specific styles for ticket pricing analysis */
+        .research-hero {
+            padding: 100px 0 60px;
+            background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .research-hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .research-hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+        }
+
+        .research-hero .meta {
+            font-size: 0.95rem;
+            color: var(--red);
+            font-weight: 500;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray-600);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            color: var(--navy);
+        }
+
+        /* Summary cards */
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .summary-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .summary-card:hover {
+            border-color: var(--navy);
+            box-shadow: var(--shadow-md);
+        }
+
+        .summary-card .label {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .summary-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .summary-card .value.red { color: var(--red); }
+        .summary-card .value.green { color: #22c55e; }
+
+        .summary-card .detail {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-top: 8px;
+        }
+
+        /* Methodology sections */
+        .methodology-section {
+            margin-bottom: 48px;
+        }
+
+        .methodology-section h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .methodology-section p {
+            color: var(--gray-600);
+            font-size: 1rem;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .methodology-section ul, .methodology-section ol {
+            color: var(--gray-600);
+            margin-bottom: 16px;
+            padding-left: 24px;
+        }
+
+        .methodology-section li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-left: 4px solid var(--navy);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 24px 0;
+        }
+
+        .highlight-box.key-insight {
+            border-left-color: var(--red);
+        }
+
+        .highlight-box h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .highlight-box.key-insight h4 {
+            color: var(--red);
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        /* Chart containers */
+        .chart-section {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .chart-section h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 20px;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 400px;
+        }
+
+        .chart-wrapper.tall {
+            height: 500px;
+        }
+
+        /* Two column layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin: 24px 0;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            border-bottom: 1px solid var(--gray-200);
+            padding-bottom: 8px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border: 1px solid var(--gray-200);
+            background: var(--white);
+            color: var(--gray-600);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .tab-btn:hover {
+            background: var(--gray-50);
+            color: var(--navy);
+        }
+
+        .tab-btn.active {
+            background: var(--navy);
+            border-color: var(--navy);
+            color: var(--white);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Data tables */
+        .table-container {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .table-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .table-header h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin: 0;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        th {
+            background: var(--gray-50);
+            font-weight: 600;
+            color: var(--gray-700);
+            position: sticky;
+            top: 0;
+            white-space: nowrap;
+        }
+
+        td.team-name {
+            font-weight: 600;
+            color: var(--gray-800);
+        }
+
+        td.money {
+            font-family: 'Monaco', 'Consolas', monospace;
+            color: #22c55e;
+        }
+
+        td.pct {
+            color: var(--red);
+            font-weight: 500;
+        }
+
+        tr:hover td {
+            background: var(--gray-50);
+        }
+
+        /* Game type table */
+        .game-type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .game-type-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .game-type-card:hover {
+            border-color: var(--navy);
+        }
+
+        .game-type-card .type-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 8px;
+        }
+
+        .game-type-card .multiplier {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .game-type-card .gap {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+
+        /* Sensitivity table */
+        .sensitivity-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .sensitivity-item {
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .sensitivity-item .pct {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-bottom: 4px;
+        }
+
+        .sensitivity-item .value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        /* Footer */
+        .research-footer {
+            margin-top: 60px;
+            padding: 32px 0;
+            background: var(--gray-50);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .research-footer p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .research-footer a {
+            color: var(--navy);
+            text-decoration: none;
+        }
+
+        .research-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .research-hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .sensitivity-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .chart-wrapper {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Jabari Myles</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">About</a></li>
+                <li><a href="index.html#papers" class="nav-link">Research</a></li>
+                <li><a href="index.html#projects" class="nav-link active">Projects</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="research-hero">
+        <div class="container">
+            <a href="index.html#projects" class="back-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                Back to Projects
+            </a>
+            <h1>NFL Ticket Pricing Analysis</h1>
+            <p class="subtitle">Primary vs Secondary Market: Quantifying the Revenue Gap</p>
+            <p class="meta">Sports Economics Research | 2024 Season Data</p>
+        </div>
+    </header>
+
+    <!-- Summary Cards -->
+    <section class="section">
+        <div class="container">
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="label">Total Revenue Gap</div>
+                    <div class="value">$1.26B</div>
+                    <div class="detail">Annual money "left on the table"</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Average Markup</div>
+                    <div class="value red">127%</div>
+                    <div class="detail">Secondary market premium</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Highest Gap Team</div>
+                    <div class="value">$106M</div>
+                    <div class="detail">Las Vegas Raiders (339% markup)</div>
+                </div>
+                <div class="summary-card">
+                    <div class="label">Premium Game Uplift</div>
+                    <div class="value green">+45%</div>
+                    <div class="detail">Thanksgiving vs regular games</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="methodology-section">
+                <h3>Research Question</h3>
+                <p>
+                    How much revenue is the NFL leaving on the table by selling tickets at face value,
+                    while secondary market platforms capture significant price premiums? This analysis
+                    quantifies the gap between primary market (face value) and secondary market (resale)
+                    pricing across all 32 NFL teams.
+                </p>
+
+                <div class="highlight-box key-insight">
+                    <h4>Key Finding</h4>
+                    <p>
+                        The NFL and its teams are leaving an estimated <strong>$1.26 billion annually</strong>
+                        to secondary market resellers. This represents consumer surplus that could potentially
+                        be captured through dynamic pricing strategies, similar to those used by airlines and hotels.
+                    </p>
+                </div>
+            </div>
+
+            <div class="methodology-section">
+                <h3>Methodology</h3>
+                <p>The revenue gap is calculated using the formula:</p>
+
+                <div class="highlight-box">
+                    <p style="font-family: Georgia, serif; text-align: center; font-size: 1.1rem;">
+                        <strong>Revenue Gap</strong> = (Resale Price - Face Value) × Estimated Resold Tickets
+                    </p>
+                </div>
+
+                <p>
+                    For each of the 32 NFL teams, this formula is applied to their 8 home games per season,
+                    with adjustments for game type (primetime, rivalry, etc.) and temporal pricing dynamics.
+                </p>
+            </div>
+
+            <div class="methodology-section">
+                <h3>Face Value Price Estimation</h3>
+                <p>
+                    Face value prices represent what teams charge directly for tickets through official channels
+                    (team box offices, Ticketmaster as the primary seller). These prices are notoriously difficult
+                    to obtain comprehensively as teams do not publish complete price sheets publicly.
+                </p>
+
+                <h4 style="font-size: 1.1rem; font-weight: 600; color: var(--gray-800); margin: 24px 0 12px;">Data Collection Approach</h4>
+                <p>Face values were estimated through a multi-source triangulation:</p>
+                <ol>
+                    <li><strong>TicketIQ Face Value Tracker:</strong> TicketIQ publishes annual reports identifying
+                    which games have face value tickets available and at what price points. Their 2024 NFL report
+                    provided baseline ranges for each team.</li>
+                    <li><strong>Team Website Sampling:</strong> Where available, prices were cross-referenced with
+                    team-published season ticket packages and single-game prices during initial on-sale windows.</li>
+                    <li><strong>Industry Reports:</strong> Sportico's NFL ticket revenue analysis provided team-level
+                    gate receipt data, which was used to back-calculate implied average ticket prices.</li>
+                </ol>
+
+                <h4 style="font-size: 1.1rem; font-weight: 600; color: var(--gray-800); margin: 24px 0 12px;">Price Tiers</h4>
+                <p>For each team, three price points were estimated:</p>
+                <ul>
+                    <li><strong>Low:</strong> Upper deck, end zone seating (typically 300-level)</li>
+                    <li><strong>Average:</strong> Weighted average across all sections based on seat distribution</li>
+                    <li><strong>High:</strong> Lower bowl, club level, and premium seating</li>
+                </ul>
+                <p>
+                    The analysis uses the <strong>average</strong> price point as the baseline, which ranges from
+                    $105 (Jacksonville Jaguars) to $260 (San Francisco 49ers) across the league.
+                </p>
+
+                <div class="highlight-box">
+                    <h4>Example Calculation: Dallas Cowboys</h4>
+                    <p>
+                        AT&T Stadium capacity: 80,000 | Face value range: $125 (upper) to $750 (club) |
+                        Weighted average: $250 based on approximately 60% upper/mid tier, 30% lower bowl,
+                        10% premium seating distribution.
+                    </p>
+                </div>
+            </div>
+
+            <div class="methodology-section">
+                <h3>Secondary Market Markup Estimation</h3>
+                <p>
+                    Secondary market markups represent the percentage premium that resale tickets command over
+                    face value. This data comes primarily from <strong>Bookies.com's 2024 NFL Resale Price Analysis</strong>,
+                    which tracked average resale prices across StubHub, SeatGeek, Vivid Seats, and other platforms
+                    throughout the 2024 season.
+                </p>
+
+                <h4 style="font-size: 1.1rem; font-weight: 600; color: var(--gray-800); margin: 24px 0 12px;">Markup Calculation Method</h4>
+                <p>The markup percentage is calculated as:</p>
+                <div class="highlight-box">
+                    <p style="font-family: Georgia, serif; text-align: center; font-size: 1.1rem;">
+                        <strong>Markup %</strong> = ((Average Resale Price - Face Value) / Face Value) × 100
+                    </p>
+                </div>
+
+                <h4 style="font-size: 1.1rem; font-weight: 600; color: var(--gray-800); margin: 24px 0 12px;">Key Findings from Source Data</h4>
+                <ul>
+                    <li><strong>League Average:</strong> 131% markup (resale tickets cost 2.31x face value)</li>
+                    <li><strong>Highest Markup:</strong> Las Vegas Raiders at 339% (driven by tourism and limited local fanbase)</li>
+                    <li><strong>Lowest Markup:</strong> Houston Texans at 20% (large stadium, lower demand)</li>
+                    <li><strong>Variance:</strong> Markups range from 20% to 339%, a 17x difference across teams</li>
+                </ul>
+
+                <h4 style="font-size: 1.1rem; font-weight: 600; color: var(--gray-800); margin: 24px 0 12px;">Factors Driving Markup Variation</h4>
+                <div class="two-column">
+                    <div class="highlight-box" style="margin: 0;">
+                        <h4>High Markup Factors</h4>
+                        <ul style="margin-top: 12px; padding-left: 20px;">
+                            <li>Limited stadium capacity (Raiders: 65,000)</li>
+                            <li>Tourism destination (Las Vegas, Tampa)</li>
+                            <li>Historic/passionate fanbase (Steelers, Packers)</li>
+                            <li>Recent championship success (Chiefs, Eagles)</li>
+                            <li>Large national following (Cowboys, 49ers)</li>
+                        </ul>
+                    </div>
+                    <div class="highlight-box" style="margin: 0;">
+                        <h4>Low Markup Factors</h4>
+                        <ul style="margin-top: 12px; padding-left: 20px;">
+                            <li>Large stadium capacity (Texans: 72,000)</li>
+                            <li>Recent poor performance (Jaguars, Cardinals)</li>
+                            <li>Smaller regional fanbase</li>
+                            <li>Less attractive travel destination</li>
+                            <li>Competition from other local teams</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="methodology-section">
+                <h3>Resale Volume Estimation</h3>
+                <p>
+                    The percentage of tickets that end up on the secondary market is the most uncertain variable
+                    in this analysis. Unlike price data, resale volume is not publicly reported by platforms.
+                </p>
+
+                <h4 style="font-size: 1.1rem; font-weight: 600; color: var(--gray-800); margin: 24px 0 12px;">Evidence-Based Estimation</h4>
+                <ul>
+                    <li><strong>Super Bowl Data:</strong> Industry reports suggest 60-70% of Super Bowl tickets
+                    historically reached the secondary market, though this has declined to ~20% as the NFL's
+                    On Location Experiences captures more inventory.</li>
+                    <li><strong>Season Ticket Resale:</strong> Estimates suggest 40-60% of season ticket holders
+                    resell at least some games, particularly less attractive matchups.</li>
+                    <li><strong>FinanceBuzz Analysis:</strong> Analyzed 900,000+ NFL resale transactions in a single
+                    season, implying significant secondary market volume.</li>
+                    <li><strong>Academic Research:</strong> Studies on variable pricing adoption suggest substantial
+                    consumer surplus was historically captured by secondary markets before dynamic pricing.</li>
+                </ul>
+
+                <p>
+                    Based on this evidence, we use <strong>30% as the baseline estimate</strong>, representing
+                    approximately 5.4 million tickets annually across the league. Sensitivity analysis explores
+                    the range from 15% (conservative) to 40% (aggressive).
+                </p>
+            </div>
+
+            <div class="methodology-section">
+                <h3>Limitations & Shortcomings</h3>
+                <p>
+                    This analysis provides a useful estimate of the revenue gap, but several limitations should
+                    be considered when interpreting the results:
+                </p>
+
+                <div class="highlight-box key-insight">
+                    <h4>Critical Limitations</h4>
+                    <ul style="margin-top: 12px; padding-left: 20px;">
+                        <li><strong>Face Value Opacity:</strong> Teams do not publish comprehensive price sheets.
+                        Our estimates rely on third-party sources and may not reflect actual weighted averages.</li>
+                        <li><strong>Resale Volume Uncertainty:</strong> No public data exists on what percentage
+                        of tickets are actually resold. Our 30% estimate could be significantly off.</li>
+                        <li><strong>Markup Timing:</strong> Bookies.com data represents season averages, but markups
+                        vary significantly by game and timing. High-demand games skew the average upward.</li>
+                        <li><strong>Below Face Value Sales:</strong> Industry data shows 55-62% of resale transactions
+                        occur <em>below</em> face value. Our analysis focuses on the net premium, but this
+                        obscures the bidirectional nature of the secondary market.</li>
+                    </ul>
+                </div>
+
+                <h4 style="font-size: 1.1rem; font-weight: 600; color: var(--gray-800); margin: 24px 0 12px;">Methodological Caveats</h4>
+                <ul>
+                    <li><strong>No Section-Level Matching:</strong> We compare average face values to average resale
+                    prices, but premium seats may be overrepresented in resale data.</li>
+                    <li><strong>Fees Not Included:</strong> Secondary market fees (10-25% for buyers, 10-15% for sellers)
+                    reduce the actual "gap" captured by resellers.</li>
+                    <li><strong>Dynamic Pricing Adoption:</strong> Some teams have already adopted variable pricing,
+                    which partially closes the gap. This analysis does not account for team-specific pricing strategies.</li>
+                    <li><strong>Temporal Variation:</strong> Prices fluctuate throughout the season based on team
+                    performance, playoff implications, and weather. Season averages smooth over this variation.</li>
+                    <li><strong>No Playoff Games:</strong> This analysis focuses on regular season games only.
+                    Playoff games have dramatically higher markups but lower volume.</li>
+                </ul>
+
+                <h4 style="font-size: 1.1rem; font-weight: 600; color: var(--gray-800); margin: 24px 0 12px;">What This Analysis Does NOT Claim</h4>
+                <ul>
+                    <li>That the NFL <em>should</em> capture this surplus (there are fan experience and equity considerations)</li>
+                    <li>That all resale transactions represent "lost" revenue (many are fan-to-fan at or below face value)</li>
+                    <li>That dynamic pricing would capture the full estimated gap (demand curves are complex)</li>
+                    <li>That the specific dollar figures are precise (they are order-of-magnitude estimates)</li>
+                </ul>
+            </div>
+
+            <div class="methodology-section">
+                <h3>Data Sources</h3>
+                <div class="table-container">
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Data Element</th>
+                                    <th>Primary Source</th>
+                                    <th>Secondary Source</th>
+                                    <th>Notes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="team-name">Face Value Prices</td>
+                                    <td>TicketIQ Research</td>
+                                    <td>Team websites, Sportico</td>
+                                    <td>Estimated averages by team</td>
+                                </tr>
+                                <tr>
+                                    <td class="team-name">Resale Markups</td>
+                                    <td>Bookies.com (2024)</td>
+                                    <td>SeatGeek API</td>
+                                    <td>Season average by team</td>
+                                </tr>
+                                <tr>
+                                    <td class="team-name">Stadium Capacity</td>
+                                    <td>ESPN</td>
+                                    <td>Team websites</td>
+                                    <td>General seating capacity</td>
+                                </tr>
+                                <tr>
+                                    <td class="team-name">Attendance Data</td>
+                                    <td>Statista</td>
+                                    <td>ESPN attendance reports</td>
+                                    <td>~18M annual regular season</td>
+                                </tr>
+                                <tr>
+                                    <td class="team-name">Resale Volume %</td>
+                                    <td>Industry estimates</td>
+                                    <td>Academic research</td>
+                                    <td>30% baseline (15-40% range)</td>
+                                </tr>
+                                <tr>
+                                    <td class="team-name">Game Type Multipliers</td>
+                                    <td>FinanceBuzz research</td>
+                                    <td>Industry reports</td>
+                                    <td>Primetime and playoff premiums</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Analysis -->
+    <section class="section">
+        <div class="container">
+            <div class="methodology-section">
+                <h3>Revenue Gap by Team</h3>
+                <p>
+                    The Las Vegas Raiders lead all teams with a 339% average markup, driven by limited
+                    stadium capacity, tourism demand, and a passionate fanbase. Traditional powerhouses
+                    like Dallas and Pittsburgh also rank highly due to their large stadiums and national followings.
+                </p>
+
+                <div class="chart-section">
+                    <h4>Top 15 Teams by Annual Revenue Gap</h4>
+                    <div class="chart-wrapper tall">
+                        <canvas id="teamGapChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="all-teams">All Teams</button>
+                    <button class="tab-btn" data-tab="by-division">By Conference</button>
+                </div>
+
+                <div class="tab-content active" id="all-teams">
+                    <div class="table-container">
+                        <div class="table-header">
+                            <h4>Complete Team Breakdown</h4>
+                        </div>
+                        <div class="table-wrapper">
+                            <table id="teamTable">
+                                <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>Face Value</th>
+                                        <th>Markup %</th>
+                                        <th>Resale Price</th>
+                                        <th>Gap/Ticket</th>
+                                        <th>Annual Gap</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content" id="by-division">
+                    <div class="two-column">
+                        <div class="chart-section">
+                            <h4>AFC Teams</h4>
+                            <div class="chart-wrapper">
+                                <canvas id="afcChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="chart-section">
+                            <h4>NFC Teams</h4>
+                            <div class="chart-wrapper">
+                                <canvas id="nfcChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Type Analysis -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="methodology-section">
+                <h3>Price Premium by Game Type</h3>
+                <p>
+                    Not all games are priced equally on the secondary market. Primetime games, holiday
+                    matchups, and playoff games command significant premiums over regular Sunday afternoon games.
+                </p>
+
+                <div class="game-type-grid">
+                    <div class="game-type-card">
+                        <div class="type-name">Super Bowl</div>
+                        <div class="multiplier">8.0x</div>
+                        <div class="gap">$4,500+ gap</div>
+                    </div>
+                    <div class="game-type-card">
+                        <div class="type-name">Conference Championship</div>
+                        <div class="multiplier">3.5x</div>
+                        <div class="gap">$1,200+ gap</div>
+                    </div>
+                    <div class="game-type-card">
+                        <div class="type-name">Divisional Round</div>
+                        <div class="multiplier">2.5x</div>
+                        <div class="gap">$800+ gap</div>
+                    </div>
+                    <div class="game-type-card">
+                        <div class="type-name">Thanksgiving</div>
+                        <div class="multiplier">1.45x</div>
+                        <div class="gap">$450+ gap</div>
+                    </div>
+                    <div class="game-type-card">
+                        <div class="type-name">Monday Night</div>
+                        <div class="multiplier">1.30x</div>
+                        <div class="gap">$380+ gap</div>
+                    </div>
+                    <div class="game-type-card">
+                        <div class="type-name">Sunday Night</div>
+                        <div class="multiplier">1.25x</div>
+                        <div class="gap">$350+ gap</div>
+                    </div>
+                </div>
+
+                <div class="two-column">
+                    <div class="chart-section">
+                        <h4>Game Type Distribution</h4>
+                        <div class="chart-wrapper">
+                            <canvas id="gameTypeChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-section">
+                        <h4>Rivalry Game Premiums</h4>
+                        <div class="chart-wrapper">
+                            <canvas id="rivalryChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Rivalry Effect</h4>
+                    <p>
+                        Historic rivalries command significant price premiums. The Packers-Bears rivalry,
+                        the oldest in the NFL, sees tickets priced 40% higher than comparable regular matchups.
+                        Cowboys-Eagles games in Dallas average 35% above baseline due to intense NFC East competition.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Time Series -->
+    <section class="section">
+        <div class="container">
+            <div class="methodology-section">
+                <h3>Price Trajectory: Days Before Game</h3>
+                <p>
+                    Secondary market prices follow predictable patterns as game day approaches. Understanding
+                    these patterns reveals optimal buying windows and the premium placed on last-minute purchases.
+                </p>
+
+                <div class="chart-section">
+                    <h4>Average Resale Price by Days Before Game</h4>
+                    <div class="chart-wrapper">
+                        <canvas id="trajectoryChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="highlight-box key-insight">
+                    <h4>Optimal Buy Window</h4>
+                    <p>
+                        Analysis shows the best time to purchase resale tickets is typically <strong>10-14 days
+                        before the game</strong>, when prices dip 10-15% below the eventual game-day price.
+                        Prices spike sharply in the final 3 days as last-minute buyers enter the market.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sensitivity Analysis -->
+    <section class="section section-alt">
+        <div class="container">
+            <div class="methodology-section">
+                <h3>Sensitivity Analysis</h3>
+                <p>
+                    The key uncertain variable in this analysis is the percentage of tickets that end up on
+                    the secondary market. We present estimates across a range of assumptions:
+                </p>
+
+                <div class="sensitivity-grid">
+                    <div class="sensitivity-item">
+                        <div class="pct">15% Resale</div>
+                        <div class="value">$632M</div>
+                    </div>
+                    <div class="sensitivity-item">
+                        <div class="pct">20% Resale</div>
+                        <div class="value">$843M</div>
+                    </div>
+                    <div class="sensitivity-item">
+                        <div class="pct">25% Resale</div>
+                        <div class="value">$1.05B</div>
+                    </div>
+                    <div class="sensitivity-item" style="background: var(--navy); border-color: var(--navy);">
+                        <div class="pct" style="color: rgba(255,255,255,0.7);">30% Resale (Base)</div>
+                        <div class="value" style="color: white;">$1.26B</div>
+                    </div>
+                    <div class="sensitivity-item">
+                        <div class="pct">35% Resale</div>
+                        <div class="value">$1.48B</div>
+                    </div>
+                    <div class="sensitivity-item">
+                        <div class="pct">40% Resale</div>
+                        <div class="value">$1.69B</div>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>Conservative Estimate</h4>
+                    <p>
+                        Even at the most conservative assumption of 15% resale volume, the NFL is still
+                        leaving over <strong>$600 million annually</strong> on the table. Industry estimates
+                        suggest 30-40% of NFL tickets are ultimately resold, putting the true figure closer
+                        to $1.3-1.7 billion.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Implications -->
+    <section class="section">
+        <div class="container">
+            <div class="methodology-section">
+                <h3>Strategic Implications</h3>
+
+                <div class="two-column">
+                    <div class="highlight-box" style="margin: 0;">
+                        <h4>For Teams</h4>
+                        <ul style="margin-top: 12px; padding-left: 20px;">
+                            <li>Implement dynamic pricing similar to airlines</li>
+                            <li>Price premium games (rivalry, primetime) higher at face value</li>
+                            <li>Consider auction-based ticket sales for high-demand games</li>
+                            <li>Partner with or acquire secondary market platforms</li>
+                        </ul>
+                    </div>
+                    <div class="highlight-box" style="margin: 0;">
+                        <h4>For Fans</h4>
+                        <ul style="margin-top: 12px; padding-left: 20px;">
+                            <li>Buy resale tickets 10-14 days before game day</li>
+                            <li>Avoid last-minute purchases when possible</li>
+                            <li>Consider less popular opponents for better value</li>
+                            <li>Target early-season games before playoff implications emerge</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="research-footer">
+        <div class="container">
+            <p>Data sources: SeatGeek API, TicketIQ, Bookies.com, ESPN, Statista</p>
+            <p><a href="index.html">Jabari Myles</a> | NC State University</p>
+        </div>
+    </footer>
+
+    <script>
+        // Team data
+        const teamData = [
+            { team: "Las Vegas Raiders", faceValue: 200, markup: 339, resale: 878, gap: 678, annualGap: 105.8, division: "AFC" },
+            { team: "Dallas Cowboys", faceValue: 250, markup: 179, resale: 698, gap: 448, annualGap: 85.9, division: "NFC" },
+            { team: "Pittsburgh Steelers", faceValue: 205, markup: 252, resale: 722, gap: 517, annualGap: 84.8, division: "AFC" },
+            { team: "Los Angeles Rams", faceValue: 185, markup: 211, resale: 575, gap: 390, annualGap: 65.8, division: "NFC" },
+            { team: "Seattle Seahawks", faceValue: 185, markup: 211, resale: 575, gap: 390, annualGap: 64.4, division: "NFC" },
+            { team: "Tampa Bay Buccaneers", faceValue: 165, markup: 224, resale: 535, gap: 370, annualGap: 61.4, division: "NFC" },
+            { team: "Denver Broncos", faceValue: 170, markup: 186, resale: 486, gap: 316, annualGap: 57.8, division: "AFC" },
+            { team: "Green Bay Packers", faceValue: 215, markup: 135, resale: 505, gap: 290, annualGap: 56.7, division: "NFC" },
+            { team: "San Francisco 49ers", faceValue: 260, markup: 130, resale: 598, gap: 338, annualGap: 55.6, division: "NFC" },
+            { team: "Kansas City Chiefs", faceValue: 235, markup: 125, resale: 529, gap: 294, annualGap: 53.9, division: "AFC" },
+            { team: "New England Patriots", faceValue: 195, markup: 159, resale: 505, gap: 310, annualGap: 49.0, division: "AFC" },
+            { team: "Los Angeles Chargers", faceValue: 175, markup: 163, resale: 460, gap: 285, annualGap: 48.1, division: "AFC" },
+            { team: "Philadelphia Eagles", faceValue: 220, markup: 120, resale: 484, gap: 264, annualGap: 44.2, division: "NFC" },
+            { team: "Minnesota Vikings", faceValue: 175, markup: 141, resale: 422, gap: 247, annualGap: 39.6, division: "NFC" },
+            { team: "Chicago Bears", faceValue: 185, markup: 115, resale: 398, gap: 213, annualGap: 31.4, division: "NFC" },
+            { team: "Detroit Lions", faceValue: 190, markup: 118, resale: 414, gap: 224, annualGap: 34.9, division: "NFC" },
+            { team: "Buffalo Bills", faceValue: 175, markup: 112, resale: 371, gap: 196, annualGap: 33.6, division: "AFC" },
+            { team: "New York Giants", faceValue: 185, markup: 108, resale: 385, gap: 200, annualGap: 39.6, division: "NFC" },
+            { team: "Miami Dolphins", faceValue: 165, markup: 105, resale: 338, gap: 173, annualGap: 27.1, division: "AFC" },
+            { team: "Baltimore Ravens", faceValue: 165, markup: 102, resale: 333, gap: 168, annualGap: 28.6, division: "AFC" },
+            { team: "New York Jets", faceValue: 175, markup: 98, resale: 347, gap: 172, annualGap: 34.0, division: "AFC" },
+            { team: "Cincinnati Bengals", faceValue: 155, markup: 95, resale: 302, gap: 147, annualGap: 23.1, division: "AFC" },
+            { team: "New Orleans Saints", faceValue: 155, markup: 90, resale: 295, gap: 140, annualGap: 24.5, division: "NFC" },
+            { team: "Cleveland Browns", faceValue: 145, markup: 85, resale: 268, gap: 123, annualGap: 19.9, division: "AFC" },
+            { team: "Atlanta Falcons", faceValue: 140, markup: 80, resale: 252, gap: 112, annualGap: 19.1, division: "NFC" },
+            { team: "Washington Commanders", faceValue: 145, markup: 75, resale: 254, gap: 109, annualGap: 17.6, division: "NFC" },
+            { team: "Carolina Panthers", faceValue: 115, markup: 70, resale: 196, gap: 81, annualGap: 14.6, division: "NFC" },
+            { team: "Indianapolis Colts", faceValue: 125, markup: 65, resale: 206, gap: 81, annualGap: 13.1, division: "AFC" },
+            { team: "Tennessee Titans", faceValue: 115, markup: 55, resale: 178, gap: 63, annualGap: 10.5, division: "AFC" },
+            { team: "Jacksonville Jaguars", faceValue: 105, markup: 45, resale: 152, gap: 47, annualGap: 7.7, division: "AFC" },
+            { team: "Arizona Cardinals", faceValue: 125, markup: 40, resale: 175, gap: 50, annualGap: 7.6, division: "NFC" },
+            { team: "Houston Texans", faceValue: 135, markup: 20, resale: 162, gap: 27, annualGap: 4.7, division: "AFC" }
+        ];
+
+        // Rivalry data
+        const rivalryData = [
+            { matchup: "Packers vs Bears", gap: 485, mult: 1.40 },
+            { matchup: "Cowboys vs Eagles", gap: 465, mult: 1.35 },
+            { matchup: "Steelers vs Ravens", gap: 445, mult: 1.35 },
+            { matchup: "Chiefs vs Raiders", gap: 420, mult: 1.30 },
+            { matchup: "49ers vs Seahawks", gap: 395, mult: 1.30 },
+            { matchup: "Cowboys vs Giants", gap: 380, mult: 1.25 },
+            { matchup: "Patriots vs Jets", gap: 365, mult: 1.25 },
+            { matchup: "49ers vs Rams", gap: 350, mult: 1.25 }
+        ];
+
+        // Colors
+        const navy = '#013369';
+        const red = '#D50A0A';
+        const gray = '#6b7280';
+
+        // Team Gap Chart
+        new Chart(document.getElementById('teamGapChart'), {
+            type: 'bar',
+            data: {
+                labels: teamData.slice(0, 15).map(d => d.team),
+                datasets: [{
+                    label: 'Revenue Gap ($M)',
+                    data: teamData.slice(0, 15).map(d => d.annualGap),
+                    backgroundColor: teamData.slice(0, 15).map((d, i) => {
+                        const opacity = 1 - (i * 0.04);
+                        return `rgba(1, 51, 105, ${opacity})`;
+                    }),
+                    borderColor: navy,
+                    borderWidth: 1,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => `$${ctx.raw}M annual gap (${teamData[ctx.dataIndex].markup}% markup)`
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: '#e5e7eb' },
+                        ticks: {
+                            color: gray,
+                            callback: v => '$' + v + 'M'
+                        }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: { color: '#374151', font: { size: 11 } }
+                    }
+                }
+            }
+        });
+
+        // Populate team table
+        const tableBody = document.querySelector('#teamTable tbody');
+        teamData.forEach(team => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td class="team-name">${team.team}</td>
+                <td class="money">$${team.faceValue}</td>
+                <td class="pct">${team.markup}%</td>
+                <td class="money">$${team.resale}</td>
+                <td class="money">$${team.gap}</td>
+                <td class="money">$${team.annualGap}M</td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        // AFC Chart
+        const afcTeams = teamData.filter(t => t.division === 'AFC').slice(0, 8);
+        new Chart(document.getElementById('afcChart'), {
+            type: 'bar',
+            data: {
+                labels: afcTeams.map(d => d.team.replace(/^(Las Vegas|Los Angeles|New England|Kansas City|New York|San Francisco) /, '')),
+                datasets: [{
+                    label: 'Revenue Gap ($M)',
+                    data: afcTeams.map(d => d.annualGap),
+                    backgroundColor: navy,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { ticks: { callback: v => '$' + v + 'M' } }
+                }
+            }
+        });
+
+        // NFC Chart
+        const nfcTeams = teamData.filter(t => t.division === 'NFC').slice(0, 8);
+        new Chart(document.getElementById('nfcChart'), {
+            type: 'bar',
+            data: {
+                labels: nfcTeams.map(d => d.team.replace(/^(Los Angeles|Green Bay|San Francisco|Tampa Bay|New Orleans) /, '')),
+                datasets: [{
+                    label: 'Revenue Gap ($M)',
+                    data: nfcTeams.map(d => d.annualGap),
+                    backgroundColor: red,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { ticks: { callback: v => '$' + v + 'M' } }
+                }
+            }
+        });
+
+        // Game Type Chart
+        const gameTypes = [
+            { type: 'Regular', gap: 280, count: 167 },
+            { type: 'Thursday Night', gap: 320, count: 19 },
+            { type: 'Sunday Night', gap: 350, count: 19 },
+            { type: 'Monday Night', gap: 380, count: 19 },
+            { type: 'Season Opener', gap: 400, count: 32 }
+        ];
+        new Chart(document.getElementById('gameTypeChart'), {
+            type: 'doughnut',
+            data: {
+                labels: gameTypes.map(g => g.type),
+                datasets: [{
+                    data: gameTypes.map(g => g.count),
+                    backgroundColor: [navy, '#1a4d8f', '#3b82f6', red, '#22c55e'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { color: gray, padding: 12 }
+                    }
+                }
+            }
+        });
+
+        // Rivalry Chart
+        new Chart(document.getElementById('rivalryChart'), {
+            type: 'bar',
+            data: {
+                labels: rivalryData.map(r => r.matchup),
+                datasets: [{
+                    label: 'Price Gap ($)',
+                    data: rivalryData.map(r => r.gap),
+                    backgroundColor: red,
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { ticks: { maxRotation: 45 } },
+                    y: { ticks: { callback: v => '$' + v } }
+                }
+            }
+        });
+
+        // Price Trajectory Chart
+        const days = Array.from({length: 60}, (_, i) => 60 - i);
+        const regularPrices = days.map(d => {
+            if (d > 45) return 280 * 0.78;
+            if (d > 30) return 280 * (0.80 + (45-d)/45 * 0.10);
+            if (d > 14) return 280 * 0.88;
+            if (d > 7) return 280 * (0.90 + (14-d)/14 * 0.08);
+            if (d > 3) return 280 * (1.0 + (7-d)/7 * 0.12);
+            return 280 * 1.08;
+        });
+        const primePrices = days.map(d => {
+            if (d > 45) return 380 * 0.75;
+            if (d > 30) return 380 * (0.78 + (45-d)/45 * 0.12);
+            if (d > 14) return 380 * 0.90;
+            if (d > 7) return 380 * (0.92 + (14-d)/14 * 0.10);
+            if (d > 3) return 380 * (1.02 + (7-d)/7 * 0.15);
+            return 380 * 1.15;
+        });
+
+        new Chart(document.getElementById('trajectoryChart'), {
+            type: 'line',
+            data: {
+                labels: days,
+                datasets: [{
+                    label: 'Regular Game',
+                    data: regularPrices,
+                    borderColor: navy,
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    pointRadius: 0
+                }, {
+                    label: 'Primetime Game',
+                    data: primePrices,
+                    borderColor: red,
+                    backgroundColor: 'transparent',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    pointRadius: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: gray, padding: 20 }
+                    }
+                },
+                scales: {
+                    x: {
+                        reverse: true,
+                        title: { display: true, text: 'Days Before Game', color: gray },
+                        ticks: { color: gray }
+                    },
+                    y: {
+                        title: { display: true, text: 'Average Resale Price ($)', color: gray },
+                        ticks: { color: gray, callback: v => '$' + v }
+                    }
+                }
+            }
+        });
+
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Mobile nav toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

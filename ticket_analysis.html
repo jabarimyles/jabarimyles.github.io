@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFL Ticket Pricing Analysis | Blitz and Bounds</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a1a2e 50%, #16213e 100%);
+            color: #e8e8e8;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(180deg, rgba(0,100,200,0.15) 0%, transparent 100%);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00d4ff, #7c3aed, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        .brand {
+            font-size: 0.9rem;
+            color: #64748b;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: linear-gradient(145deg, rgba(30,41,59,0.8), rgba(15,23,42,0.9));
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0,100,255,0.2);
+        }
+
+        .card-label {
+            font-size: 0.85rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .card-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #00d4ff;
+        }
+
+        .card-value.green { color: #22c55e; }
+        .card-value.purple { color: #a855f7; }
+        .card-value.orange { color: #f97316; }
+        .card-value.pink { color: #ec4899; }
+
+        .card-detail {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-top: 8px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0,212,255,0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: linear-gradient(180deg, #00d4ff, #7c3aed);
+            border-radius: 2px;
+        }
+
+        .chart-container {
+            background: rgba(15,23,42,0.6);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 30px;
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 400px;
+        }
+
+        .chart-wrapper.tall {
+            height: 500px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 24px;
+        }
+
+        .insight-box {
+            background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(236,72,153,0.1));
+            border-left: 4px solid #7c3aed;
+            border-radius: 0 12px 12px 0;
+            padding: 20px 24px;
+            margin: 20px 0;
+        }
+
+        .insight-box h4 {
+            color: #a855f7;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .insight-box p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        th {
+            text-align: left;
+            padding: 14px 16px;
+            background: rgba(0,212,255,0.1);
+            color: #00d4ff;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.8rem;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        tr:hover td {
+            background: rgba(255,255,255,0.03);
+        }
+
+        .team-name {
+            font-weight: 500;
+            color: #f1f5f9;
+        }
+
+        .money {
+            font-family: 'Monaco', 'Consolas', monospace;
+            color: #22c55e;
+        }
+
+        .money.negative {
+            color: #ef4444;
+        }
+
+        .pct {
+            color: #f97316;
+            font-weight: 500;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 60px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .chart-wrapper { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand">Blitz and Bounds</div>
+        <h1>NFL Ticket Pricing Analysis</h1>
+        <p class="subtitle">Primary vs Secondary Market: Quantifying the Revenue Gap</p>
+    </header>
+
+    <div class="container">
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+            <div class="card">
+                <div class="card-label">Total Revenue Gap (League-Wide)</div>
+                <div class="card-value">$1.26B</div>
+                <div class="card-detail">Annual money "left on the table" at 30% resale rate</div>
+            </div>
+            <div class="card">
+                <div class="card-label">Average Markup</div>
+                <div class="card-value purple">127%</div>
+                <div class="card-detail">Secondary market premium over face value</div>
+            </div>
+            <div class="card">
+                <div class="card-label">Highest Gap Team</div>
+                <div class="card-value orange">$105.8M</div>
+                <div class="card-detail">Las Vegas Raiders (339% markup)</div>
+            </div>
+            <div class="card">
+                <div class="card-label">Premium Game Uplift</div>
+                <div class="card-value pink">+45%</div>
+                <div class="card-detail">Thanksgiving games vs regular season average</div>
+            </div>
+        </div>
+
+        <!-- Team Analysis -->
+        <section class="section">
+            <h2 class="section-title">Revenue Gap by Team</h2>
+
+            <div class="chart-container">
+                <div class="chart-wrapper tall">
+                    <canvas id="teamGapChart"></canvas>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h4>Key Insight</h4>
+                <p>The Las Vegas Raiders lead all teams with a 339% average markup on the secondary market,
+                translating to over $105M in potential revenue captured by resellers. This is driven by
+                limited stadium capacity, tourism demand, and a passionate fanbase willing to pay premium prices.</p>
+            </div>
+        </section>
+
+        <!-- Game Type Analysis -->
+        <section class="section">
+            <h2 class="section-title">Price Premium by Game Type</h2>
+
+            <div class="grid-2">
+                <div class="chart-container">
+                    <div class="chart-wrapper">
+                        <canvas id="gameTypeChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <h3 style="color: #94a3b8; font-size: 1rem; margin-bottom: 16px;">Game Type Multipliers</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Game Type</th>
+                                <th>Multiplier</th>
+                                <th>Avg Gap</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Super Bowl</td><td class="pct">8.0x</td><td class="money">$4,500+</td></tr>
+                            <tr><td>Conference Championship</td><td class="pct">3.5x</td><td class="money">$1,200+</td></tr>
+                            <tr><td>Divisional Round</td><td class="pct">2.5x</td><td class="money">$800+</td></tr>
+                            <tr><td>Thanksgiving</td><td class="pct">1.45x</td><td class="money">$450+</td></tr>
+                            <tr><td>Monday Night</td><td class="pct">1.30x</td><td class="money">$380+</td></tr>
+                            <tr><td>Sunday Night</td><td class="pct">1.25x</td><td class="money">$350+</td></tr>
+                            <tr><td>Season Opener</td><td class="pct">1.35x</td><td class="money">$400+</td></tr>
+                            <tr><td>Regular Sunday</td><td class="pct">1.0x</td><td class="money">$280</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rivalry Analysis -->
+        <section class="section">
+            <h2 class="section-title">Rivalry Game Premiums</h2>
+
+            <div class="chart-container">
+                <div class="chart-wrapper">
+                    <canvas id="rivalryChart"></canvas>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h4>Rivalry Effect</h4>
+                <p>Historic rivalries command significant price premiums. The Packers-Bears rivalry,
+                the oldest in the NFL, sees tickets priced 40% higher than comparable regular matchups.
+                Cowboys-Eagles games in Dallas average 35% above baseline due to the intense NFC East competition.</p>
+            </div>
+        </section>
+
+        <!-- Time Series -->
+        <section class="section">
+            <h2 class="section-title">Price Trajectory: Days Before Game</h2>
+
+            <div class="chart-container">
+                <div class="chart-wrapper">
+                    <canvas id="trajectoryChart"></canvas>
+                </div>
+                <div class="legend">
+                    <div class="legend-item"><span class="legend-color" style="background: #00d4ff;"></span> Regular Game</div>
+                    <div class="legend-item"><span class="legend-color" style="background: #a855f7;"></span> Sunday Night</div>
+                    <div class="legend-item"><span class="legend-color" style="background: #f97316;"></span> Monday Night</div>
+                    <div class="legend-item"><span class="legend-color" style="background: #22c55e;"></span> Thanksgiving</div>
+                </div>
+            </div>
+
+            <div class="insight-box">
+                <h4>Optimal Buy Window</h4>
+                <p>Analysis shows the best time to purchase resale tickets is typically 10-14 days before
+                the game, when prices dip 10-15% below the eventual game-day price. Prices spike sharply
+                in the final 3 days as last-minute buyers enter the market.</p>
+            </div>
+        </section>
+
+        <!-- Full Team Table -->
+        <section class="section">
+            <h2 class="section-title">Complete Team Breakdown</h2>
+
+            <div class="chart-container" style="overflow-x: auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Face Value</th>
+                            <th>Markup %</th>
+                            <th>Resale Price</th>
+                            <th>Gap/Ticket</th>
+                            <th>Annual Gap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="team-name">Las Vegas Raiders</td>
+                            <td class="money">$200</td>
+                            <td class="pct">339%</td>
+                            <td class="money">$878</td>
+                            <td class="money">$678</td>
+                            <td class="money">$105.8M</td>
+                        </tr><tr>
+                            <td class="team-name">Dallas Cowboys</td>
+                            <td class="money">$250</td>
+                            <td class="pct">179%</td>
+                            <td class="money">$698</td>
+                            <td class="money">$448</td>
+                            <td class="money">$85.9M</td>
+                        </tr><tr>
+                            <td class="team-name">Pittsburgh Steelers</td>
+                            <td class="money">$205</td>
+                            <td class="pct">252%</td>
+                            <td class="money">$722</td>
+                            <td class="money">$517</td>
+                            <td class="money">$84.8M</td>
+                        </tr><tr>
+                            <td class="team-name">Los Angeles Rams</td>
+                            <td class="money">$185</td>
+                            <td class="pct">211%</td>
+                            <td class="money">$575</td>
+                            <td class="money">$390</td>
+                            <td class="money">$65.8M</td>
+                        </tr><tr>
+                            <td class="team-name">Seattle Seahawks</td>
+                            <td class="money">$185</td>
+                            <td class="pct">211%</td>
+                            <td class="money">$575</td>
+                            <td class="money">$390</td>
+                            <td class="money">$64.4M</td>
+                        </tr><tr>
+                            <td class="team-name">Tampa Bay Buccaneers</td>
+                            <td class="money">$165</td>
+                            <td class="pct">224%</td>
+                            <td class="money">$535</td>
+                            <td class="money">$370</td>
+                            <td class="money">$61.4M</td>
+                        </tr><tr>
+                            <td class="team-name">Denver Broncos</td>
+                            <td class="money">$170</td>
+                            <td class="pct">186%</td>
+                            <td class="money">$486</td>
+                            <td class="money">$316</td>
+                            <td class="money">$57.8M</td>
+                        </tr><tr>
+                            <td class="team-name">Green Bay Packers</td>
+                            <td class="money">$215</td>
+                            <td class="pct">135%</td>
+                            <td class="money">$505</td>
+                            <td class="money">$290</td>
+                            <td class="money">$56.7M</td>
+                        </tr><tr>
+                            <td class="team-name">San Francisco 49ers</td>
+                            <td class="money">$260</td>
+                            <td class="pct">130%</td>
+                            <td class="money">$598</td>
+                            <td class="money">$338</td>
+                            <td class="money">$55.6M</td>
+                        </tr><tr>
+                            <td class="team-name">Kansas City Chiefs</td>
+                            <td class="money">$235</td>
+                            <td class="pct">125%</td>
+                            <td class="money">$529</td>
+                            <td class="money">$294</td>
+                            <td class="money">$53.9M</td>
+                        </tr><tr>
+                            <td class="team-name">New England Patriots</td>
+                            <td class="money">$195</td>
+                            <td class="pct">159%</td>
+                            <td class="money">$505</td>
+                            <td class="money">$310</td>
+                            <td class="money">$49.0M</td>
+                        </tr><tr>
+                            <td class="team-name">Los Angeles Chargers</td>
+                            <td class="money">$175</td>
+                            <td class="pct">163%</td>
+                            <td class="money">$460</td>
+                            <td class="money">$285</td>
+                            <td class="money">$48.1M</td>
+                        </tr><tr>
+                            <td class="team-name">Philadelphia Eagles</td>
+                            <td class="money">$220</td>
+                            <td class="pct">120%</td>
+                            <td class="money">$484</td>
+                            <td class="money">$264</td>
+                            <td class="money">$44.2M</td>
+                        </tr><tr>
+                            <td class="team-name">Minnesota Vikings</td>
+                            <td class="money">$175</td>
+                            <td class="pct">141%</td>
+                            <td class="money">$422</td>
+                            <td class="money">$247</td>
+                            <td class="money">$39.6M</td>
+                        </tr><tr>
+                            <td class="team-name">New York Giants</td>
+                            <td class="money">$185</td>
+                            <td class="pct">108%</td>
+                            <td class="money">$385</td>
+                            <td class="money">$200</td>
+                            <td class="money">$39.6M</td>
+                        </tr><tr>
+                            <td class="team-name">Detroit Lions</td>
+                            <td class="money">$190</td>
+                            <td class="pct">118%</td>
+                            <td class="money">$414</td>
+                            <td class="money">$224</td>
+                            <td class="money">$35.0M</td>
+                        </tr><tr>
+                            <td class="team-name">New York Jets</td>
+                            <td class="money">$175</td>
+                            <td class="pct">98%</td>
+                            <td class="money">$346</td>
+                            <td class="money">$172</td>
+                            <td class="money">$34.0M</td>
+                        </tr><tr>
+                            <td class="team-name">Buffalo Bills</td>
+                            <td class="money">$175</td>
+                            <td class="pct">112%</td>
+                            <td class="money">$371</td>
+                            <td class="money">$196</td>
+                            <td class="money">$33.7M</td>
+                        </tr><tr>
+                            <td class="team-name">Chicago Bears</td>
+                            <td class="money">$185</td>
+                            <td class="pct">115%</td>
+                            <td class="money">$398</td>
+                            <td class="money">$213</td>
+                            <td class="money">$31.4M</td>
+                        </tr><tr>
+                            <td class="team-name">Baltimore Ravens</td>
+                            <td class="money">$165</td>
+                            <td class="pct">102%</td>
+                            <td class="money">$333</td>
+                            <td class="money">$168</td>
+                            <td class="money">$28.7M</td>
+                        </tr><tr>
+                            <td class="team-name">Miami Dolphins</td>
+                            <td class="money">$165</td>
+                            <td class="pct">105%</td>
+                            <td class="money">$338</td>
+                            <td class="money">$173</td>
+                            <td class="money">$27.2M</td>
+                        </tr><tr>
+                            <td class="team-name">New Orleans Saints</td>
+                            <td class="money">$155</td>
+                            <td class="pct">90%</td>
+                            <td class="money">$294</td>
+                            <td class="money">$140</td>
+                            <td class="money">$24.5M</td>
+                        </tr><tr>
+                            <td class="team-name">Cincinnati Bengals</td>
+                            <td class="money">$155</td>
+                            <td class="pct">95%</td>
+                            <td class="money">$302</td>
+                            <td class="money">$147</td>
+                            <td class="money">$23.2M</td>
+                        </tr><tr>
+                            <td class="team-name">Cleveland Browns</td>
+                            <td class="money">$145</td>
+                            <td class="pct">85%</td>
+                            <td class="money">$268</td>
+                            <td class="money">$123</td>
+                            <td class="money">$19.9M</td>
+                        </tr><tr>
+                            <td class="team-name">Atlanta Falcons</td>
+                            <td class="money">$140</td>
+                            <td class="pct">80%</td>
+                            <td class="money">$252</td>
+                            <td class="money">$112</td>
+                            <td class="money">$19.1M</td>
+                        </tr><tr>
+                            <td class="team-name">Washington Commanders</td>
+                            <td class="money">$145</td>
+                            <td class="pct">75%</td>
+                            <td class="money">$254</td>
+                            <td class="money">$109</td>
+                            <td class="money">$17.6M</td>
+                        </tr><tr>
+                            <td class="team-name">Carolina Panthers</td>
+                            <td class="money">$115</td>
+                            <td class="pct">70%</td>
+                            <td class="money">$196</td>
+                            <td class="money">$80</td>
+                            <td class="money">$14.6M</td>
+                        </tr><tr>
+                            <td class="team-name">Indianapolis Colts</td>
+                            <td class="money">$125</td>
+                            <td class="pct">65%</td>
+                            <td class="money">$206</td>
+                            <td class="money">$81</td>
+                            <td class="money">$13.1M</td>
+                        </tr><tr>
+                            <td class="team-name">Tennessee Titans</td>
+                            <td class="money">$115</td>
+                            <td class="pct">55%</td>
+                            <td class="money">$178</td>
+                            <td class="money">$63</td>
+                            <td class="money">$10.5M</td>
+                        </tr><tr>
+                            <td class="team-name">Jacksonville Jaguars</td>
+                            <td class="money">$105</td>
+                            <td class="pct">45%</td>
+                            <td class="money">$152</td>
+                            <td class="money">$47</td>
+                            <td class="money">$7.7M</td>
+                        </tr><tr>
+                            <td class="team-name">Arizona Cardinals</td>
+                            <td class="money">$125</td>
+                            <td class="pct">40%</td>
+                            <td class="money">$175</td>
+                            <td class="money">$50</td>
+                            <td class="money">$7.6M</td>
+                        </tr><tr>
+                            <td class="team-name">Houston Texans</td>
+                            <td class="money">$135</td>
+                            <td class="pct">20%</td>
+                            <td class="money">$162</td>
+                            <td class="money">$27</td>
+                            <td class="money">$4.7M</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Methodology -->
+        <section class="section">
+            <h2 class="section-title">Methodology & Data Sources</h2>
+            <div class="chart-container">
+                <p style="color: #94a3b8; margin-bottom: 16px;">
+                    This analysis combines multiple data sources to estimate the revenue gap between
+                    primary (face value) and secondary (resale) ticket markets:
+                </p>
+                <ul style="color: #cbd5e1; margin-left: 20px; line-height: 2;">
+                    <li><strong>Face Values:</strong> Compiled from team websites and TicketIQ research</li>
+                    <li><strong>Resale Markups:</strong> Bookies.com analysis of secondary market pricing</li>
+                    <li><strong>Attendance Data:</strong> ESPN and Statista (~18M annual attendance)</li>
+                    <li><strong>Resale Volume:</strong> Estimated at 30% of tickets (sensitivity: 15-40%)</li>
+                    <li><strong>Game Type Premiums:</strong> Industry research on primetime and playoff pricing</li>
+                    <li><strong>Price Trajectories:</strong> Modeled from FinanceBuzz and SeatGeek research</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>NFL Ticket Pricing Analysis | <a href="#">Blitz and Bounds</a></p>
+        <p style="margin-top: 8px;">Data sources: SeatGeek, TicketIQ, Bookies.com, ESPN, Statista</p>
+    </footer>
+
+    <script>
+        // Color palette
+        const colors = {
+            cyan: '#00d4ff',
+            purple: '#a855f7',
+            pink: '#ec4899',
+            orange: '#f97316',
+            green: '#22c55e',
+            blue: '#3b82f6',
+            slate: '#64748b'
+        };
+
+        // Team Gap Chart
+        const teamData = [{"team": "Las Vegas Raiders", "team_slug": "las-vegas-raiders", "abbr": "LV", "division": "AFC West", "stadium_capacity": 65000, "face_value_avg": 200, "markup_pct": 339, "avg_resale_price": 878.0, "gap_per_ticket": 678.0, "home_games": 8, "total_tickets": 520000, "resold_tickets_est": 156000, "revenue_gap": 105768000.0}, {"team": "Dallas Cowboys", "team_slug": "dallas-cowboys", "abbr": "DAL", "division": "NFC East", "stadium_capacity": 80000, "face_value_avg": 250, "markup_pct": 179, "avg_resale_price": 697.5, "gap_per_ticket": 447.5, "home_games": 8, "total_tickets": 640000, "resold_tickets_est": 192000, "revenue_gap": 85920000.0}, {"team": "Pittsburgh Steelers", "team_slug": "pittsburgh-steelers", "abbr": "PIT", "division": "AFC North", "stadium_capacity": 68400, "face_value_avg": 205, "markup_pct": 252, "avg_resale_price": 721.6, "gap_per_ticket": 516.6, "home_games": 8, "total_tickets": 547200, "resold_tickets_est": 164160, "revenue_gap": 84805056.0}, {"team": "Los Angeles Rams", "team_slug": "los-angeles-rams", "abbr": "LAR", "division": "NFC West", "stadium_capacity": 70240, "face_value_avg": 185, "markup_pct": 211, "avg_resale_price": 575.35, "gap_per_ticket": 390.35, "home_games": 8, "total_tickets": 561920, "resold_tickets_est": 168576, "revenue_gap": 65803641.6}, {"team": "Seattle Seahawks", "team_slug": "seattle-seahawks", "abbr": "SEA", "division": "NFC West", "stadium_capacity": 68740, "face_value_avg": 185, "markup_pct": 211, "avg_resale_price": 575.35, "gap_per_ticket": 390.35, "home_games": 8, "total_tickets": 549920, "resold_tickets_est": 164976, "revenue_gap": 64398381.6}, {"team": "Tampa Bay Buccaneers", "team_slug": "tampa-bay-buccaneers", "abbr": "TB", "division": "NFC South", "stadium_capacity": 69218, "face_value_avg": 165, "markup_pct": 224, "avg_resale_price": 534.6, "gap_per_ticket": 369.6, "home_games": 8, "total_tickets": 553744, "resold_tickets_est": 166123, "revenue_gap": 61399060.8}, {"team": "Denver Broncos", "team_slug": "denver-broncos", "abbr": "DEN", "division": "AFC West", "stadium_capacity": 76125, "face_value_avg": 170, "markup_pct": 186, "avg_resale_price": 486.2, "gap_per_ticket": 316.2, "home_games": 8, "total_tickets": 609000, "resold_tickets_est": 182700, "revenue_gap": 57769740.0}, {"team": "Green Bay Packers", "team_slug": "green-bay-packers", "abbr": "GB", "division": "NFC North", "stadium_capacity": 81441, "face_value_avg": 215, "markup_pct": 135, "avg_resale_price": 505.25, "gap_per_ticket": 290.25, "home_games": 8, "total_tickets": 651528, "resold_tickets_est": 195458, "revenue_gap": 56731684.5}, {"team": "San Francisco 49ers", "team_slug": "san-francisco-49ers", "abbr": "SF", "division": "NFC West", "stadium_capacity": 68500, "face_value_avg": 260, "markup_pct": 130, "avg_resale_price": 598.0, "gap_per_ticket": 338.0, "home_games": 8, "total_tickets": 548000, "resold_tickets_est": 164400, "revenue_gap": 55567200.0}, {"team": "Kansas City Chiefs", "team_slug": "kansas-city-chiefs", "abbr": "KC", "division": "AFC West", "stadium_capacity": 76416, "face_value_avg": 235, "markup_pct": 125, "avg_resale_price": 528.75, "gap_per_ticket": 293.75, "home_games": 8, "total_tickets": 611328, "resold_tickets_est": 183398, "revenue_gap": 53873162.5}, {"team": "New England Patriots", "team_slug": "new-england-patriots", "abbr": "NE", "division": "AFC East", "stadium_capacity": 65878, "face_value_avg": 195, "markup_pct": 159, "avg_resale_price": 505.05, "gap_per_ticket": 310.05, "home_games": 8, "total_tickets": 527024, "resold_tickets_est": 158107, "revenue_gap": 49021075.35}, {"team": "Los Angeles Chargers", "team_slug": "los-angeles-chargers", "abbr": "LAC", "division": "AFC West", "stadium_capacity": 70240, "face_value_avg": 175, "markup_pct": 163, "avg_resale_price": 460.25, "gap_per_ticket": 285.25, "home_games": 8, "total_tickets": 561920, "resold_tickets_est": 168576, "revenue_gap": 48086304.0}, {"team": "Philadelphia Eagles", "team_slug": "philadelphia-eagles", "abbr": "PHI", "division": "NFC East", "stadium_capacity": 69796, "face_value_avg": 220, "markup_pct": 120, "avg_resale_price": 484.0, "gap_per_ticket": 264.0, "home_games": 8, "total_tickets": 558368, "resold_tickets_est": 167510, "revenue_gap": 44222640.0}, {"team": "Minnesota Vikings", "team_slug": "minnesota-vikings", "abbr": "MIN", "division": "NFC North", "stadium_capacity": 66860, "face_value_avg": 175, "markup_pct": 141, "avg_resale_price": 421.75, "gap_per_ticket": 246.75, "home_games": 8, "total_tickets": 534880, "resold_tickets_est": 160464, "revenue_gap": 39594492.0}, {"team": "New York Giants", "team_slug": "new-york-giants", "abbr": "NYG", "division": "NFC East", "stadium_capacity": 82500, "face_value_avg": 185, "markup_pct": 108, "avg_resale_price": 384.8, "gap_per_ticket": 199.8, "home_games": 8, "total_tickets": 660000, "resold_tickets_est": 198000, "revenue_gap": 39560400.0}];
+        new Chart(document.getElementById('teamGapChart'), {
+            type: 'bar',
+            data: {
+                labels: teamData.map(d => d.team.replace(' ', '\n')),
+                datasets: [{
+                    label: 'Revenue Gap ($M)',
+                    data: teamData.map(d => (d.revenue_gap / 1e6).toFixed(1)),
+                    backgroundColor: teamData.map((d, i) => {
+                        const gradient = i / teamData.length;
+                        return `rgba(${0 + gradient * 124}, ${212 - gradient * 154}, ${255 - gradient * 56}, 0.8)`;
+                    }),
+                    borderColor: teamData.map((d, i) => {
+                        const gradient = i / teamData.length;
+                        return `rgba(${0 + gradient * 124}, ${212 - gradient * 154}, ${255 - gradient * 56}, 1)`;
+                    }),
+                    borderWidth: 2,
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => `$$${ctx.raw}M annual gap (${teamData[ctx.dataIndex].markup_pct}% markup)`
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { color: '#94a3b8', callback: v => '$' + v + 'M' }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: { color: '#e2e8f0', font: { size: 11 } }
+                    }
+                }
+            }
+        });
+
+        // Game Type Chart
+        const gameTypeData = [{"game_type": "sunday_night", "game_count": 19, "avg_face_value": 193.1578947368421, "avg_resale_price": 645.0873684210526, "avg_price_gap": 451.9294736842105, "total_capacity": 1364406, "total_gap_potential": 184984585.64147368}, {"game_type": "season_opener", "game_count": 32, "avg_face_value": 172.96875, "avg_resale_price": 612.0253125, "avg_price_gap": 439.0565625, "total_capacity": 2256167, "total_gap_potential": 297175478.2337812}, {"game_type": "monday_night", "game_count": 19, "avg_face_value": 166.57894736842104, "avg_resale_price": 518.7984210526316, "avg_price_gap": 352.2194736842105, "total_capacity": 1340913, "total_gap_potential": 141688701.33489472}, {"game_type": "thursday_night", "game_count": 19, "avg_face_value": 167.6315789473684, "avg_resale_price": 424.24052631578945, "avg_price_gap": 256.608947368421, "total_capacity": 1335740, "total_gap_potential": 102828850.6073684}, {"game_type": "regular", "game_count": 167, "avg_face_value": 172.00598802395209, "avg_resale_price": 420.6222754491018, "avg_price_gap": 248.6162874251497, "total_capacity": 11752110, "total_gap_potential": 876529787.2835928}];
+        new Chart(document.getElementById('gameTypeChart'), {
+            type: 'doughnut',
+            data: {
+                labels: gameTypeData.map(d => d.game_type.replace('_', ' ').toUpperCase()),
+                datasets: [{
+                    data: gameTypeData.map(d => d.avg_price_gap.toFixed(0)),
+                    backgroundColor: [
+                        colors.cyan, colors.purple, colors.pink,
+                        colors.orange, colors.green, colors.blue
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: { color: '#94a3b8', padding: 15 }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: ctx => `Avg gap: $${ctx.raw}`
+                        }
+                    }
+                }
+            }
+        });
+
+        // Rivalry Chart
+        const rivalryData = [{"home_team_name": "Las Vegas Raiders", "away_team_name": "Denver Broncos", "game_count": 1, "avg_face_value": 200.0, "avg_resale_price": 1481.63, "avg_price_gap": 1281.63, "rivalry_mult": 1.25, "matchup": "Las Vegas Raiders vs Denver Broncos"}, {"home_team_name": "Pittsburgh Steelers", "away_team_name": "Baltimore Ravens", "game_count": 1, "avg_face_value": 205.0, "avg_resale_price": 1315.12, "avg_price_gap": 1110.12, "rivalry_mult": 1.35, "matchup": "Pittsburgh Steelers vs Baltimore Ravens"}, {"home_team_name": "Las Vegas Raiders", "away_team_name": "Kansas City Chiefs", "game_count": 1, "avg_face_value": 200.0, "avg_resale_price": 1141.4, "avg_price_gap": 941.4, "rivalry_mult": 1.3, "matchup": "Las Vegas Raiders vs Kansas City Chiefs"}, {"home_team_name": "Dallas Cowboys", "away_team_name": "New York Giants", "game_count": 1, "avg_face_value": 250.0, "avg_resale_price": 1177.03, "avg_price_gap": 927.03, "rivalry_mult": 1.25, "matchup": "Dallas Cowboys vs New York Giants"}, {"home_team_name": "Dallas Cowboys", "away_team_name": "Philadelphia Eagles", "game_count": 1, "avg_face_value": 250.0, "avg_resale_price": 1177.03, "avg_price_gap": 927.03, "rivalry_mult": 1.35, "matchup": "Dallas Cowboys vs Philadelphia Eagles"}, {"home_team_name": "Pittsburgh Steelers", "away_team_name": "Cleveland Browns", "game_count": 1, "avg_face_value": 205.0, "avg_resale_price": 1127.5, "avg_price_gap": 922.5, "rivalry_mult": 1.25, "matchup": "Pittsburgh Steelers vs Cleveland Browns"}, {"home_team_name": "Las Vegas Raiders", "away_team_name": "Los Angeles Chargers", "game_count": 1, "avg_face_value": 200.0, "avg_resale_price": 1097.5, "avg_price_gap": 897.5, "rivalry_mult": 1.25, "matchup": "Las Vegas Raiders vs Los Angeles Chargers"}, {"home_team_name": "Seattle Seahawks", "away_team_name": "San Francisco 49ers", "game_count": 1, "avg_face_value": 185.0, "avg_resale_price": 972.34, "avg_price_gap": 787.34, "rivalry_mult": 1.3, "matchup": "Seattle Seahawks vs San Francisco 49ers"}, {"home_team_name": "Green Bay Packers", "away_team_name": "Chicago Bears", "game_count": 1, "avg_face_value": 215.0, "avg_resale_price": 954.92, "avg_price_gap": 739.92, "rivalry_mult": 1.4, "matchup": "Green Bay Packers vs Chicago Bears"}, {"home_team_name": "Philadelphia Eagles", "away_team_name": "Dallas Cowboys", "game_count": 1, "avg_face_value": 220.0, "avg_resale_price": 882.09, "avg_price_gap": 662.09, "rivalry_mult": 1.35, "matchup": "Philadelphia Eagles vs Dallas Cowboys"}];
+        new Chart(document.getElementById('rivalryChart'), {
+            type: 'bar',
+            data: {
+                labels: rivalryData.slice(0, 8).map(d => d.matchup.length > 35 ? d.matchup.substring(0, 32) + '...' : d.matchup),
+                datasets: [{
+                    label: 'Price Gap ($)',
+                    data: rivalryData.slice(0, 8).map(d => d.avg_price_gap.toFixed(0)),
+                    backgroundColor: 'rgba(168, 85, 247, 0.7)',
+                    borderColor: colors.purple,
+                    borderWidth: 2,
+                    borderRadius: 6
+                }, {
+                    label: 'Rivalry Multiplier',
+                    data: rivalryData.slice(0, 8).map(d => (d.rivalry_mult * 100).toFixed(0)),
+                    backgroundColor: 'rgba(236, 72, 153, 0.7)',
+                    borderColor: colors.pink,
+                    borderWidth: 2,
+                    borderRadius: 6,
+                    hidden: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: { color: '#94a3b8' }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#94a3b8', maxRotation: 45 }
+                    },
+                    y: {
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { color: '#94a3b8', callback: v => '$' + v }
+                    }
+                }
+            }
+        });
+
+        // Trajectory Chart
+        const trajectories = {"regular": {"days": [60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1], "prices": [133.46, 128.93, 135.45, 142.66, 129.4, 129.8, 144.31, 138.4, 129.19, 137.46, 130.05, 130.43, 136.34, 119.99, 121.86, 131.3, 128.2, 138.93, 129.83, 126.31, 149.1, 136.35, 139.04, 127.84, 135.09, 140.59, 131.18, 143.46, 136.27, 139.08, 131.85, 155.7, 137.57, 127.42, 145.7, 125.83, 139.73, 118.65, 124.79, 139.61, 144.88, 139.37, 136.58, 134.77, 123.33, 130.7, 142.22, 155.18, 150.79, 135.56, 152.95, 148.59, 147.48, 165.57, 171.48, 174.37, 167.52, 174.59, 182.06, 189.58], "matchup": "Buffalo Bills @ Houston Texans"}, "sunday_night": {"days": [60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1], "prices": [415.53, 394.05, 423.42, 456.0, 394.34, 395.59, 461.74, 433.93, 390.89, 428.36, 393.59, 394.75, 421.33, 345.42, 353.41, 396.27, 381.38, 430.13, 387.62, 370.81, 475.08, 415.77, 427.51, 375.34, 408.1, 432.8, 388.87, 444.76, 411.05, 423.36, 395.69, 505.5, 422.01, 375.28, 459.42, 367.98, 431.96, 334.92, 363.18, 431.42, 455.66, 430.28, 417.44, 409.14, 356.45, 390.4, 430.98, 488.86, 466.87, 395.01, 473.28, 451.44, 444.55, 513.61, 535.52, 543.5, 506.62, 530.31, 564.7, 599.29], "matchup": "Buffalo Bills @ Chicago Bears"}, "monday_night": {"days": [60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1], "prices": [403.09, 382.24, 410.74, 442.35, 382.53, 383.74, 447.91, 420.93, 379.18, 415.53, 381.81, 382.93, 408.71, 335.07, 342.82, 384.4, 369.96, 417.25, 376.01, 359.71, 460.85, 403.32, 414.71, 364.1, 395.87, 419.84, 377.22, 431.44, 398.74, 410.68, 383.84, 490.36, 409.37, 364.04, 445.66, 356.96, 419.02, 324.89, 352.3, 418.5, 442.01, 417.39, 404.94, 396.88, 345.78, 378.71, 418.07, 474.22, 452.89, 383.18, 459.1, 437.92, 431.23, 498.23, 519.49, 527.22, 491.45, 514.42, 547.78, 581.34], "matchup": "Atlanta Falcons @ Buffalo Bills"}, "season_opener": {"days": [60, 59, 58, 57, 56, 55, 54, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34, 33, 32, 31, 30, 29, 28, 27, 26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1], "prices": [182.78, 173.33, 186.25, 200.58, 173.46, 174.01, 203.11, 190.87, 171.94, 188.42, 173.13, 173.64, 185.33, 151.94, 155.45, 174.31, 167.76, 189.2, 170.5, 163.11, 208.97, 182.89, 188.05, 165.1, 179.51, 190.38, 171.05, 195.64, 180.81, 186.22, 174.05, 222.35, 185.63, 165.08, 202.09, 161.87, 190.01, 147.32, 159.75, 189.77, 200.43, 189.27, 183.62, 179.97, 156.79, 171.73, 189.58, 215.04, 205.37, 173.75, 208.18, 198.58, 195.54, 225.92, 235.56, 239.07, 222.85, 233.27, 248.39, 263.61], "matchup": "Indianapolis Colts @ Houston Texans"}};
+        const trajectoryDatasets = [];
+        const colorMap = {
+            'regular': colors.cyan,
+            'sunday_night': colors.purple,
+            'monday_night': colors.orange,
+            'thanksgiving': colors.green,
+            'season_opener': colors.pink
+        };
+
+        for (const [gameType, data] of Object.entries(trajectories)) {
+            trajectoryDatasets.push({
+                label: gameType.replace('_', ' ').toUpperCase() + ': ' + data.matchup,
+                data: data.days.map((d, i) => ({ x: d, y: data.prices[i] })),
+                borderColor: colorMap[gameType] || colors.slate,
+                backgroundColor: 'transparent',
+                borderWidth: 2,
+                tension: 0.3,
+                pointRadius: 0,
+                pointHoverRadius: 4
+            });
+        }
+
+        new Chart(document.getElementById('trajectoryChart'), {
+            type: 'line',
+            data: { datasets: trajectoryDatasets },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: '#94a3b8', boxWidth: 12, padding: 20 }
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'linear',
+                        reverse: true,
+                        title: {
+                            display: true,
+                            text: 'Days Before Game',
+                            color: '#94a3b8'
+                        },
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Average Resale Price ($)',
+                            color: '#94a3b8'
+                        },
+                        grid: { color: 'rgba(255,255,255,0.05)' },
+                        ticks: { color: '#94a3b8', callback: v => '$' + v }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
