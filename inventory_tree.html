@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Theory Family Tree | Jabari Myles</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Hero */
+        .tree-hero { padding: 100px 0 32px; background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%); }
+        .tree-hero h1 { font-size: 2.5rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+        .tree-hero .subtitle { font-size: 1.05rem; color: var(--gray-600); max-width: 760px; margin-bottom: 16px; line-height: 1.6; }
+        .tree-hero .stats { display: flex; gap: 32px; flex-wrap: wrap; margin-top: 16px; }
+        .tree-hero .stat { text-align: center; }
+        .tree-hero .stat-num { font-size: 1.8rem; font-weight: 700; color: var(--navy); }
+        .tree-hero .stat-label { font-size: 0.8rem; color: var(--gray-500); }
+
+        /* Controls */
+        .controls { padding: 14px 0; position: sticky; top: 64px; background: var(--white); z-index: 50; border-bottom: 1px solid var(--gray-200); }
+        .controls-inner { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+        .search-box { flex: 1; min-width: 200px; padding: 9px 14px; border: 1px solid var(--gray-300); border-radius: 8px; font-size: 0.9rem; outline: none; }
+        .search-box:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(1,51,105,0.1); }
+        .view-toggle { display: flex; border: 1px solid var(--gray-300); border-radius: 6px; overflow: hidden; }
+        .view-toggle button { padding: 7px 14px; font-size: 0.8rem; font-weight: 500; border: none; background: var(--white); cursor: pointer; color: var(--gray-700); transition: var(--transition); }
+        .view-toggle button.active { background: var(--navy); color: var(--white); }
+        .view-toggle button:hover:not(.active) { background: var(--gray-100); }
+        .result-count { font-size: 0.82rem; color: var(--gray-500); white-space: nowrap; }
+
+        /* Legend */
+        .legend { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+        .legend-item { display: flex; align-items: center; gap: 5px; font-size: 0.75rem; color: var(--gray-600); cursor: pointer; padding: 3px 8px; border-radius: 10px; transition: var(--transition); border: 1px solid transparent; }
+        .legend-item:hover { background: var(--gray-100); }
+        .legend-item.inactive { opacity: 0.3; }
+        .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+        /* Metro map container */
+        .metro-section { padding: 10px 0 40px; overflow: hidden; }
+        #metro-container { width: 100%; overflow-x: auto; position: relative; cursor: grab; }
+        #metro-container:active { cursor: grabbing; }
+        #metro-container svg { display: block; }
+        .metro-help { font-size: 0.78rem; color: var(--gray-400); margin-bottom: 8px; }
+
+        /* SVG styling */
+        .metro-line { fill: none; stroke-width: 3; stroke-linecap: round; opacity: 0.7; }
+        .metro-node { cursor: pointer; transition: r 0.15s ease; }
+        .metro-node:hover { filter: brightness(1.1); }
+        .metro-label { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; pointer-events: none; fill: #374151; }
+        .cross-link { fill: none; stroke-dasharray: 4,3; stroke-width: 1; opacity: 0.25; }
+        .decade-line { stroke: var(--gray-200); stroke-width: 1; }
+        .decade-text { fill: var(--gray-400); font-size: 12px; font-family: -apple-system, sans-serif; }
+        .line-label { font-size: 11px; font-weight: 600; font-family: -apple-system, sans-serif; }
+
+        /* Tooltip */
+        .metro-tooltip { position: fixed; padding: 14px 18px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 10px; box-shadow: var(--shadow-lg); pointer-events: none; opacity: 0; transition: opacity 0.15s; max-width: 380px; z-index: 200; }
+        .metro-tooltip.visible { opacity: 1; }
+        .metro-tooltip h4 { font-size: 0.92rem; font-weight: 600; color: var(--navy); margin-bottom: 3px; line-height: 1.3; }
+        .metro-tooltip .tt-authors { font-size: 0.8rem; color: var(--gray-500); }
+        .metro-tooltip .tt-venue { font-size: 0.78rem; color: var(--red); font-weight: 500; margin-bottom: 6px; }
+        .metro-tooltip .tt-desc { font-size: 0.82rem; color: var(--gray-600); line-height: 1.45; }
+        .metro-tooltip .tt-cite { font-size: 0.75rem; color: var(--gray-400); margin-top: 6px; }
+        .metro-tooltip .tt-line-badge { display: inline-block; padding: 1px 8px; border-radius: 8px; font-size: 0.7rem; font-weight: 600; color: white; margin-bottom: 6px; }
+
+        /* Highlight pulse for dm2024 */
+        @keyframes pulse { 0%,100% { filter: drop-shadow(0 0 3px rgba(213,10,10,0.4)); } 50% { filter: drop-shadow(0 0 8px rgba(213,10,10,0.8)); } }
+        .node-highlight { animation: pulse 2s ease-in-out infinite; }
+
+        /* List view */
+        .list-section { padding: 20px 0 60px; display: none; }
+        .list-section.active { display: block; }
+        .metro-section.hidden { display: none; }
+        .list-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 10px; }
+        .l-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 8px; padding: 12px 16px; transition: var(--transition); cursor: pointer; }
+        .l-card:hover { border-color: var(--navy); box-shadow: var(--shadow-md); }
+        .l-card.hl { border-left: 3px solid #D50A0A; }
+        .l-card .lc-year { font-size: 0.75rem; color: var(--gray-400); font-weight: 600; }
+        .l-card .lc-title { font-size: 0.88rem; font-weight: 600; color: var(--gray-900); margin: 2px 0; }
+        .l-card .lc-auth { font-size: 0.78rem; color: var(--gray-500); }
+        .l-card .lc-venue { font-size: 0.75rem; color: var(--navy); font-weight: 500; }
+        .l-card .lc-meta { display: flex; gap: 8px; align-items: center; margin-top: 5px; flex-wrap: wrap; }
+        .l-card .lc-badge { display: inline-block; padding: 1px 7px; border-radius: 8px; font-size: 0.68rem; font-weight: 600; color: white; }
+        .l-card .lc-cite { font-size: 0.72rem; color: var(--gray-400); }
+        .l-card .lc-desc { font-size: 0.8rem; color: var(--gray-600); margin-top: 6px; line-height: 1.45; display: none; }
+        .l-card.expanded .lc-desc { display: block; }
+
+        /* Find & Add Panel */
+        .finder-btn { padding: 7px 14px; font-size: 0.8rem; font-weight: 600; border: 2px solid var(--red); border-radius: 6px; background: var(--white); color: var(--red); cursor: pointer; transition: var(--transition); }
+        .finder-btn:hover { background: var(--red); color: var(--white); }
+        .finder-panel { display: none; position: fixed; top: 0; right: 0; width: 460px; max-width: 100vw; height: 100vh; background: var(--white); box-shadow: -4px 0 20px rgba(0,0,0,0.15); z-index: 999; flex-direction: column; }
+        .finder-panel.open { display: flex; }
+        .finder-header { padding: 16px 20px; border-bottom: 1px solid var(--gray-200); display: flex; align-items: center; justify-content: space-between; }
+        .finder-header h3 { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin: 0; }
+        .finder-close { background: none; border: none; font-size: 1.8rem; color: var(--gray-500); cursor: pointer; padding: 6px 10px; border-radius: 6px; line-height: 1; }
+        .finder-close:hover { color: var(--white); background: var(--red); }
+        .finder-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); z-index: 998; }
+        .finder-overlay.open { display: block; }
+        .finder-search { display: flex; gap: 8px; padding: 14px 20px; border-bottom: 1px solid var(--gray-100); }
+        .finder-input { flex: 1; padding: 9px 12px; border: 1px solid var(--gray-300); border-radius: 6px; font-size: 0.9rem; outline: none; }
+        .finder-input:focus { border-color: var(--navy); }
+        .finder-go { padding: 9px 16px; background: var(--navy); color: white; border: none; border-radius: 6px; font-weight: 600; font-size: 0.85rem; cursor: pointer; }
+        .finder-go:hover { background: var(--navy-dark); }
+        .finder-results { flex: 1; overflow-y: auto; padding: 10px 20px; }
+        .finder-status { font-size: 0.82rem; color: var(--gray-500); padding: 8px 0; }
+        .finder-card { border: 1px solid var(--gray-200); border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; transition: var(--transition); }
+        .finder-card:hover { border-color: var(--navy); }
+        .finder-card.already-added { border-color: var(--green, #2e7d32); background: #f0fdf4; }
+        .fc-title { font-size: 0.88rem; font-weight: 600; color: var(--gray-900); margin-bottom: 3px; line-height: 1.3; }
+        .fc-authors { font-size: 0.78rem; color: var(--gray-500); }
+        .fc-venue { font-size: 0.75rem; color: var(--navy); font-weight: 500; }
+        .fc-meta { display: flex; gap: 8px; align-items: center; margin-top: 5px; flex-wrap: wrap; }
+        .fc-cite { font-size: 0.72rem; color: var(--gray-400); }
+        .fc-abstract { font-size: 0.78rem; color: var(--gray-600); margin-top: 6px; line-height: 1.4; }
+        .fc-actions { display: flex; gap: 6px; margin-top: 8px; }
+        .fc-add { padding: 5px 12px; font-size: 0.75rem; font-weight: 600; border: 1px solid var(--navy); border-radius: 5px; background: var(--white); color: var(--navy); cursor: pointer; transition: var(--transition); }
+        .fc-add:hover { background: var(--navy); color: var(--white); }
+        .fc-add.added { background: #2e7d32; color: white; border-color: #2e7d32; pointer-events: none; }
+        .fc-line-select { padding: 4px 8px; font-size: 0.72rem; border: 1px solid var(--gray-300); border-radius: 4px; }
+        .finder-added-count { padding: 10px 20px; border-top: 1px solid var(--gray-200); font-size: 0.82rem; color: var(--gray-600); display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .finder-export { padding: 6px 14px; font-size: 0.78rem; font-weight: 600; border: 1px solid var(--navy); border-radius: 5px; background: var(--navy); color: white; cursor: pointer; }
+
+        /* Auto-search mode */
+        .finder-tabs { display: flex; border-bottom: 1px solid var(--gray-200); }
+        .finder-tab { flex: 1; padding: 10px; text-align: center; font-size: 0.82rem; font-weight: 600; cursor: pointer; border: none; background: none; color: var(--gray-500); transition: var(--transition); }
+        .finder-tab.active { color: var(--navy); border-bottom: 2px solid var(--navy); }
+        .finder-tab:hover:not(.active) { color: var(--gray-700); background: var(--gray-50); }
+        .auto-panel { display: none; flex-direction: column; flex: 1; overflow: hidden; }
+        .auto-panel.active { display: flex; }
+        .manual-panel { display: none; flex-direction: column; flex: 1; overflow: hidden; }
+        .manual-panel.active { display: flex; }
+        .auto-controls { padding: 14px 20px; border-bottom: 1px solid var(--gray-100); }
+        .auto-controls p { font-size: 0.82rem; color: var(--gray-600); margin-bottom: 10px; line-height: 1.5; }
+        .auto-controls .auto-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .auto-controls select { padding: 7px 10px; font-size: 0.82rem; border: 1px solid var(--gray-300); border-radius: 5px; }
+        .auto-controls label { font-size: 0.8rem; color: var(--gray-600); }
+        .auto-controls input[type=number] { width: 70px; padding: 7px 8px; font-size: 0.82rem; border: 1px solid var(--gray-300); border-radius: 5px; }
+        .journal-filter { margin-top: 10px; }
+        .journal-filter summary { font-size: 0.82rem; font-weight: 600; color: var(--navy); cursor: pointer; padding: 4px 0; }
+        .journal-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; max-height: 300px; overflow-y: auto; padding: 4px 0; }
+        .journal-chip { padding: 3px 9px; font-size: 0.7rem; border-radius: 10px; border: 1px solid var(--gray-300); background: var(--white); color: var(--gray-700); cursor: pointer; transition: var(--transition); user-select: none; }
+        .journal-chip.active { background: var(--navy); color: white; border-color: var(--navy); }
+        .journal-chip:hover { border-color: var(--navy); }
+        .journal-toggle-all { font-size: 0.72rem; color: var(--navy); cursor: pointer; border: none; background: none; font-weight: 600; padding: 2px 0; text-decoration: underline; }
+        .auto-start { padding: 8px 20px; font-size: 0.85rem; font-weight: 600; border: none; border-radius: 6px; background: var(--red); color: white; cursor: pointer; transition: var(--transition); }
+        .auto-start:hover { background: var(--red-dark); }
+        .auto-start:disabled { background: var(--gray-300); cursor: not-allowed; }
+        .auto-stop { padding: 8px 20px; font-size: 0.85rem; font-weight: 600; border: 2px solid var(--red); border-radius: 6px; background: white; color: var(--red); cursor: pointer; display: none; }
+        .auto-progress { padding: 10px 20px; border-bottom: 1px solid var(--gray-100); display: none; }
+        .auto-progress .prog-bar { height: 6px; background: var(--gray-200); border-radius: 3px; overflow: hidden; margin-bottom: 6px; }
+        .auto-progress .prog-fill { height: 100%; background: var(--navy); border-radius: 3px; transition: width 0.3s; }
+        .auto-progress .prog-text { font-size: 0.78rem; color: var(--gray-500); }
+        .auto-results { flex: 1; overflow-y: auto; padding: 10px 20px; }
+        .auto-batch-header { font-size: 0.82rem; font-weight: 600; color: var(--navy); padding: 10px 0 6px; border-bottom: 1px solid var(--gray-100); margin-bottom: 6px; }
+        .auto-add-all { padding: 5px 12px; font-size: 0.72rem; font-weight: 600; border: 1px solid var(--navy); border-radius: 5px; background: var(--navy); color: white; cursor: pointer; margin-left: 8px; }
+        .auto-add-all:hover { background: var(--navy-dark); }
+
+        @media (max-width: 768px) {
+            .tree-hero h1 { font-size: 1.75rem; }
+            .list-grid { grid-template-columns: 1fr; }
+            .finder-panel { width: 100vw; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Jabari Myles</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">About</a></li>
+                <li><a href="index.html#papers" class="nav-link">Research</a></li>
+                <li><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <header class="tree-hero">
+        <div class="container">
+            <h1>Inventory Theory: A Family Tree</h1>
+            <p class="subtitle">
+                An interactive metro map tracing the intellectual lineage of inventory management &mdash;
+                from Harris's 1913 EOQ model through Clark &amp; Scarf's multi-echelon breakthrough,
+                the bullwhip effect, and today's approximation algorithms and machine learning methods.
+            </p>
+            <p class="subtitle">
+                Inventory theory is one of the oldest and richest branches of operations research,
+                spanning over a century of work across hundreds of journals and thousands of researchers.
+                This map cannot capture every important contribution &mdash; the field is simply too vast.
+                Many excellent papers, influential textbooks, and pioneering researchers are inevitably
+                missing from what you see here. This is a living project: we will continue expanding
+                the tree over time, and you can help by using the <strong>+ Find Papers</strong> tool
+                to search for and add papers directly.
+            </p>
+            <p class="subtitle" style="margin-top: 12px;">
+                <strong>How to use this tool:</strong>
+                The visualization organizes papers into 10 colored research &ldquo;metro lines&rdquo; flowing
+                left to right through time. Each circle is a paper &mdash; larger circles have more citations.
+                <strong>Hover</strong> any paper to see its details.
+                <strong>Click</strong> a paper to highlight its citation ancestry and descendants.
+                Dashed lines between metro lines show real cross-stream citations (sourced from OpenAlex).
+                Use the <strong>legend</strong> to toggle research lines on and off,
+                the <strong>search bar</strong> to find specific papers,
+                and <strong>List view</strong> for a sortable catalog.
+                The <strong>+ Find Papers</strong> panel lets you search the OpenAlex academic database
+                and add missing papers to the map in real time, either one at a time or
+                in bulk using Auto-Discover.
+            </p>
+            <div class="stats">
+                <div class="stat"><div class="stat-num" id="total-count">0</div><div class="stat-label">Papers</div></div>
+                <div class="stat"><div class="stat-num">10</div><div class="stat-label">Research Lines</div></div>
+                <div class="stat"><div class="stat-num">1913 &ndash; 2024</div><div class="stat-label">Span</div></div>
+            </div>
+        </div>
+    </header>
+
+    <div class="controls">
+        <div class="container">
+            <div class="controls-inner">
+                <input type="text" class="search-box" id="search" placeholder="Search by title, author, keyword...">
+                <div class="view-toggle">
+                    <button id="btn-map" class="active">Map</button>
+                    <button id="btn-list">List</button>
+                </div>
+                <span class="result-count" id="result-count"></span>
+                <button class="finder-btn" id="open-finder">+ Find Papers</button>
+            </div>
+            <div class="legend" id="legend"></div>
+        </div>
+    </div>
+
+    <section class="metro-section" id="metro-section">
+        <div class="container">
+            <p class="metro-help">Scroll horizontally to explore the timeline. Hover papers for details. Click to highlight lineage.</p>
+            <div id="metro-container"></div>
+        </div>
+    </section>
+
+    <section class="list-section" id="list-section">
+        <div class="container">
+            <div class="list-grid" id="list-container"></div>
+        </div>
+    </section>
+
+    <div class="metro-tooltip" id="tooltip"></div>
+
+    <div class="finder-overlay" id="finder-overlay"></div>
+    <!-- Find & Add Paper Panel -->
+    <div class="finder-panel" id="finder-panel">
+        <div class="finder-header">
+            <h3>Find &amp; Add Papers</h3>
+            <button class="finder-close" id="finder-close">&times;</button>
+        </div>
+        <div class="finder-tabs">
+            <button class="finder-tab active" data-tab="manual">Manual Search</button>
+            <button class="finder-tab" data-tab="auto">Auto-Discover</button>
+        </div>
+
+        <!-- Manual search tab -->
+        <div class="manual-panel active" id="manual-panel">
+            <div class="finder-search">
+                <input type="text" class="finder-input" id="finder-input" placeholder="Search by title, author, or keyword...">
+                <button class="finder-go" id="finder-go">Search</button>
+            </div>
+            <div class="finder-results" id="finder-results">
+                <div class="finder-status">Search OpenAlex for papers to add. Try author names, paper titles, or topics.</div>
+            </div>
+        </div>
+
+        <!-- Auto-discover tab -->
+        <div class="auto-panel" id="auto-panel">
+            <div class="auto-controls">
+                <p>Automatically search across dozens of inventory research topics and find papers missing from your map.</p>
+                <div class="auto-row">
+                    <label>Min citations:</label>
+                    <input type="number" id="auto-min-cites" value="50" min="0" step="50">
+                    <label>Auto-add above:</label>
+                    <input type="number" id="auto-add-threshold" value="50" min="0" step="50">
+                    <label>Default line:</label>
+                    <select id="auto-default-line"></select>
+                </div>
+                <details class="journal-filter">
+                    <summary>Journal Filter (click to configure)</summary>
+                    <button class="journal-toggle-all" id="journal-select-all">Select all</button>
+                    <button class="journal-toggle-all" id="journal-select-none">Select none</button>
+                    <div class="journal-chips" id="journal-chips"></div>
+                </details>
+                <div class="auto-row" style="margin-top: 10px;">
+                    <button class="auto-start" id="auto-start">Start Auto-Discovery</button>
+                    <button class="auto-stop" id="auto-stop">Stop</button>
+                </div>
+            </div>
+            <div class="auto-progress" id="auto-progress">
+                <div class="prog-bar"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+                <div class="prog-text" id="prog-text">Starting...</div>
+            </div>
+            <div class="auto-results" id="auto-results"></div>
+        </div>
+
+        <div class="finder-added-count">
+            <span id="added-count">0 papers added this session</span>
+            <button class="finder-export" id="finder-export" title="Download added papers as JSON">Export Added</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container"><p>&copy; 2024 Jabari Myles. All rights reserved.</p></div>
+    </footer>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="inventory_data.js"></script>
+    <script>
+    (function(){
+        // ── Parse data ────────────────────────────────────────────────
+        const papers = PAPERS.map(p => ({
+            id:p[0], authors:p[1], year:p[2], title:p[3], venue:p[4],
+            cat:p[5], subcat:p[6], citations:p[7], desc:p[8], parents:p[9]
+        }));
+        const paperMap = {};
+        papers.forEach(p => paperMap[p.id] = p);
+        document.getElementById('total-count').textContent = papers.length;
+
+        // ── Assign metro lines ────────────────────────────────────────
+        const catToLine = {};
+        Object.entries(LINE_GROUPS).forEach(([lineId, info]) => {
+            info.cats.forEach(c => catToLine[c] = lineId);
+        });
+        papers.forEach(p => { p.line = catToLine[p.cat] || 'stochastic_policies'; });
+
+        // Build child map
+        const childMap = {};
+        papers.forEach(p => {
+            p.parents.forEach(pid => {
+                if (!childMap[pid]) childMap[pid] = [];
+                childMap[pid].push(p.id);
+            });
+        });
+
+        // Determine landmark papers (high citation or many children)
+        const LANDMARK_THRESHOLD = 800;
+        papers.forEach(p => {
+            const children = childMap[p.id] || [];
+            p.isLandmark = p.citations >= LANDMARK_THRESHOLD || children.length >= 3 || p.id === 'dm2024';
+        });
+
+        // ── Legend ────────────────────────────────────────────────────
+        const activeLines = new Set(Object.keys(LINE_GROUPS));
+        const legend = document.getElementById('legend');
+        Object.entries(LINE_GROUPS).forEach(([id, info]) => {
+            const el = document.createElement('span');
+            el.className = 'legend-item';
+            el.innerHTML = `<span class="legend-dot" style="background:${info.color}"></span>${info.name}`;
+            el.addEventListener('click', () => {
+                if (activeLines.has(id)) { activeLines.delete(id); el.classList.add('inactive'); }
+                else { activeLines.add(id); el.classList.remove('inactive'); }
+                renderMetro();
+                renderList();
+            });
+            legend.appendChild(el);
+        });
+
+        // ── View toggle ──────────────────────────────────────────────
+        let currentView = 'map';
+        document.getElementById('btn-map').addEventListener('click', () => { currentView='map'; updateView(); });
+        document.getElementById('btn-list').addEventListener('click', () => { currentView='list'; updateView(); });
+        function updateView() {
+            document.querySelectorAll('.view-toggle button').forEach(b => b.classList.remove('active'));
+            document.getElementById('btn-'+currentView).classList.add('active');
+            document.getElementById('metro-section').classList.toggle('hidden', currentView!=='map');
+            document.getElementById('list-section').classList.toggle('active', currentView==='list');
+        }
+
+        // ── Search ───────────────────────────────────────────────────
+        let searchTerm = '';
+        document.getElementById('search').addEventListener('input', e => {
+            searchTerm = e.target.value.toLowerCase();
+            renderMetro();
+            renderList();
+        });
+
+        function matchesSearch(p) {
+            if (!searchTerm) return true;
+            return p.title.toLowerCase().includes(searchTerm) ||
+                   p.authors.toLowerCase().includes(searchTerm) ||
+                   p.venue.toLowerCase().includes(searchTerm) ||
+                   p.desc.toLowerCase().includes(searchTerm) ||
+                   String(p.year).includes(searchTerm);
+        }
+
+        // ── Tooltip ──────────────────────────────────────────────────
+        const tooltip = document.getElementById('tooltip');
+        function showTooltip(p, event) {
+            const lineInfo = LINE_GROUPS[p.line];
+            tooltip.innerHTML = `
+                <span class="tt-line-badge" style="background:${lineInfo.color}">${lineInfo.name}</span>
+                <h4>${p.title}</h4>
+                <div class="tt-authors">${p.authors} (${p.year})</div>
+                <div class="tt-venue">${p.venue}</div>
+                <div class="tt-desc">${p.desc}</div>
+                <div class="tt-cite">~${p.citations.toLocaleString()}+ citations</div>
+            `;
+            tooltip.classList.add('visible');
+            positionTooltip(event);
+        }
+        function positionTooltip(event) {
+            const tt = tooltip;
+            const r = tt.getBoundingClientRect();
+            let x = event.clientX + 16;
+            let y = event.clientY - 10;
+            if (x + r.width > window.innerWidth - 20) x = event.clientX - r.width - 16;
+            if (y + r.height > window.innerHeight - 20) y = window.innerHeight - r.height - 20;
+            if (y < 10) y = 10;
+            tt.style.left = x + 'px';
+            tt.style.top = y + 'px';
+        }
+        function hideTooltip() { tooltip.classList.remove('visible'); }
+
+        // ── METRO MAP RENDERING ──────────────────────────────────────
+        const MARGIN = { top: 50, right: 60, bottom: 30, left: 220 };
+        const LINE_SPACING = 70;
+        const MIN_NODE_R = 3.5;
+        const MAX_NODE_R = 14;
+
+        function renderMetro() {
+            const container = document.getElementById('metro-container');
+            container.innerHTML = '';
+
+            // Filter papers
+            const visible = papers.filter(p => activeLines.has(p.line));
+            const searched = searchTerm ? visible.filter(matchesSearch) : null;
+            const searchIds = searched ? new Set(searched.map(p => p.id)) : null;
+
+            // Count for display
+            const count = searched ? searched.length : visible.length;
+            document.getElementById('result-count').textContent = `${count} papers`;
+
+            // Sorted lines
+            const lineOrder = Object.entries(LINE_GROUPS)
+                .filter(([id]) => activeLines.has(id))
+                .sort((a,b) => a[1].order - b[1].order);
+            const lineYMap = {};
+            lineOrder.forEach(([id], i) => { lineYMap[id] = MARGIN.top + i * LINE_SPACING; });
+
+            const svgH = MARGIN.top + lineOrder.length * LINE_SPACING + MARGIN.bottom;
+
+            // Time scale — compressed: sparse early decades get less space
+            const yearMin = 1910, yearMax = 2028;
+            // Use a sqrt-like compression: more space for recent decades
+            function yearToX(y) {
+                const t = (y - yearMin) / (yearMax - yearMin);
+                const compressed = Math.pow(t, 0.7); // compress early years
+                return MARGIN.left + compressed * 2200;
+            }
+            const svgW = yearToX(yearMax) + MARGIN.right;
+
+            // Citation scale for node size
+            const citScale = d3.scaleSqrt()
+                .domain([50, 10000])
+                .range([MIN_NODE_R, MAX_NODE_R])
+                .clamp(true);
+
+            // Compute positions
+            // Handle collisions: papers in same line + nearby year get y-offset
+            const positions = {};
+            const lineSlots = {}; // track occupied slots per line
+            visible.sort((a,b) => a.year - b.year);
+            visible.forEach(p => {
+                const baseY = lineYMap[p.line];
+                if (baseY === undefined) return;
+                const x = yearToX(p.year);
+                // Find a y-slot that doesn't collide
+                const key = p.line;
+                if (!lineSlots[key]) lineSlots[key] = [];
+                let y = baseY;
+                const r = citScale(p.citations);
+                let attempts = 0;
+                const offsets = [0, -12, 12, -24, 24, -36, 36, -8, 8, -18, 18];
+                while (attempts < offsets.length) {
+                    y = baseY + offsets[attempts];
+                    const collision = lineSlots[key].some(s => Math.abs(s.x - x) < (r + s.r + 2) && Math.abs(s.y - y) < (r + s.r + 2));
+                    if (!collision) break;
+                    attempts++;
+                }
+                lineSlots[key].push({x, y, r});
+                positions[p.id] = {x, y, r};
+            });
+
+            // Create SVG
+            const svg = d3.select(container)
+                .append('svg')
+                .attr('width', svgW)
+                .attr('height', svgH)
+                .style('font-family', '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif');
+
+            // Decade gridlines
+            const decades = [1920,1930,1940,1950,1960,1970,1980,1990,2000,2010,2020];
+            decades.forEach(d => {
+                const x = yearToX(d);
+                svg.append('line').attr('class','decade-line')
+                    .attr('x1',x).attr('x2',x).attr('y1',MARGIN.top-20).attr('y2',svgH-MARGIN.bottom);
+                svg.append('text').attr('class','decade-text')
+                    .attr('x',x).attr('y',MARGIN.top-25).attr('text-anchor','middle').text(d);
+            });
+
+            // Line labels (left side)
+            lineOrder.forEach(([id, info]) => {
+                const y = lineYMap[id];
+                svg.append('text').attr('class','line-label')
+                    .attr('x', MARGIN.left - 12).attr('y', y + 4)
+                    .attr('text-anchor','end')
+                    .attr('fill', info.color)
+                    .text(info.name);
+                // Faint horizontal guide line
+                svg.append('line')
+                    .attr('x1', MARGIN.left).attr('x2', svgW - MARGIN.right)
+                    .attr('y1', y).attr('y2', y)
+                    .attr('stroke', info.color).attr('stroke-width', 1.5).attr('opacity', 0.1);
+            });
+
+            // Metro lines: draw smooth paths through each line's papers
+            lineOrder.forEach(([lineId, info]) => {
+                const linePapers = visible.filter(p => p.line === lineId && positions[p.id])
+                    .sort((a,b) => a.year - b.year);
+                if (linePapers.length < 2) return;
+                const pts = linePapers.map(p => [positions[p.id].x, positions[p.id].y]);
+                const lineGen = d3.line().curve(d3.curveCatmullRom.alpha(0.5));
+                svg.append('path')
+                    .attr('class', 'metro-line')
+                    .attr('d', lineGen(pts))
+                    .attr('stroke', info.color);
+            });
+
+            // Cross-links (parent on different line)
+            visible.forEach(p => {
+                const pos = positions[p.id];
+                if (!pos) return;
+                p.parents.forEach(pid => {
+                    const parent = paperMap[pid];
+                    const ppos = positions[pid];
+                    if (!parent || !ppos) return;
+                    if (parent.line === p.line) return; // same line, no cross-link needed
+                    const lineInfo = LINE_GROUPS[parent.line];
+                    if (!lineInfo) return;
+                    svg.append('path')
+                        .attr('class', 'cross-link')
+                        .attr('stroke', lineInfo.color)
+                        .attr('d', `M${ppos.x},${ppos.y} C${(ppos.x+pos.x)/2},${ppos.y} ${(ppos.x+pos.x)/2},${pos.y} ${pos.x},${pos.y}`);
+                });
+            });
+
+            // Nodes
+            const nodeG = svg.append('g');
+            visible.forEach(p => {
+                const pos = positions[p.id];
+                if (!pos) return;
+                const lineInfo = LINE_GROUPS[p.line];
+                const isSearched = searchIds ? searchIds.has(p.id) : true;
+                const opacity = isSearched ? 1 : 0.15;
+
+                const g = nodeG.append('g')
+                    .attr('transform', `translate(${pos.x},${pos.y})`)
+                    .attr('opacity', opacity)
+                    .style('cursor', 'pointer');
+
+                // Circle
+                const circle = g.append('circle')
+                    .attr('class', 'metro-node' + (p.id === 'dm2024' ? ' node-highlight' : ''))
+                    .attr('r', pos.r)
+                    .attr('fill', lineInfo.color)
+                    .attr('stroke', p.id === 'dm2024' ? '#FFD700' : '#fff')
+                    .attr('stroke-width', p.id === 'dm2024' ? 2.5 : 1.2);
+
+                // Label for landmarks
+                if (p.isLandmark && isSearched) {
+                    const shortName = p.authors.split(',')[0].split(' ').pop() + ' ' + p.year;
+                    g.append('text')
+                        .attr('class', 'metro-label')
+                        .attr('x', 0)
+                        .attr('y', -(pos.r + 5))
+                        .attr('text-anchor', 'middle')
+                        .attr('font-size', p.id === 'dm2024' ? '10px' : '8.5px')
+                        .attr('font-weight', p.id === 'dm2024' ? '700' : '500')
+                        .attr('fill', p.id === 'dm2024' ? '#D50A0A' : '#555')
+                        .text(shortName);
+                }
+
+                // Interactions
+                g.on('mouseenter', (event) => { showTooltip(p, event); circle.attr('r', pos.r * 1.4); })
+                 .on('mousemove', (event) => { positionTooltip(event); })
+                 .on('mouseleave', () => { hideTooltip(); circle.attr('r', pos.r); })
+                 .on('click', (event) => {
+                     event.stopPropagation();
+                     highlightLineage(p.id, nodeG, positions, visible);
+                 });
+            });
+
+            // Click background to clear highlight
+            svg.on('click', () => {
+                nodeG.selectAll('g').attr('opacity', searchIds ? (function() {
+                    // restore search-based opacity
+                    return null; // will be handled by re-render
+                }) : 1);
+                renderMetro(); // simplest: just re-render
+            });
+        }
+
+        function highlightLineage(paperId, nodeG, positions, visible) {
+            // BFS ancestors and descendants
+            const ancestors = new Set();
+            const descendants = new Set();
+            // Ancestors
+            const queue = [paperId];
+            while (queue.length) {
+                const id = queue.shift();
+                const p = paperMap[id];
+                if (!p) continue;
+                p.parents.forEach(pid => {
+                    if (!ancestors.has(pid)) { ancestors.add(pid); queue.push(pid); }
+                });
+            }
+            // Descendants
+            const dq = [paperId];
+            while (dq.length) {
+                const id = dq.shift();
+                const children = childMap[id] || [];
+                children.forEach(cid => {
+                    if (!descendants.has(cid)) { descendants.add(cid); dq.push(cid); }
+                });
+            }
+            const highlighted = new Set([paperId, ...ancestors, ...descendants]);
+
+            // Apply opacity
+            nodeG.selectAll('g').each(function() {
+                const el = d3.select(this);
+                const transform = el.attr('transform');
+                // find which paper this is by matching position
+                const match = visible.find(p => {
+                    const pos = positions[p.id];
+                    return pos && transform === `translate(${pos.x},${pos.y})`;
+                });
+                if (match) {
+                    el.attr('opacity', highlighted.has(match.id) ? 1 : 0.08);
+                }
+            });
+        }
+
+        // ── LIST VIEW RENDERING ──────────────────────────────────────
+        function renderList() {
+            const filtered = papers.filter(p => activeLines.has(p.line) && matchesSearch(p));
+            filtered.sort((a,b) => b.citations - a.citations);
+            if (currentView === 'list') {
+                document.getElementById('result-count').textContent = `${filtered.length} papers`;
+            }
+            const container = document.getElementById('list-container');
+            container.innerHTML = filtered.map(p => {
+                const lineInfo = LINE_GROUPS[p.line];
+                return `<div class="l-card${p.id==='dm2024'?' hl':''}" onclick="this.classList.toggle('expanded')">
+                    <span class="lc-year">${p.year}</span>
+                    <div class="lc-title">${p.title}</div>
+                    <div class="lc-auth">${p.authors}</div>
+                    <div class="lc-venue">${p.venue}</div>
+                    <div class="lc-meta">
+                        <span class="lc-badge" style="background:${lineInfo.color}">${lineInfo.name}</span>
+                        <span class="lc-cite">~${p.citations.toLocaleString()}+ citations</span>
+                    </div>
+                    <div class="lc-desc">${p.desc}</div>
+                </div>`;
+            }).join('');
+        }
+
+        // ── Initial render ───────────────────────────────────────────
+        renderMetro();
+        renderList();
+
+        // ── FIND & ADD PANEL ─────────────────────────────────────────
+        const finderPanel = document.getElementById('finder-panel');
+        const finderInput = document.getElementById('finder-input');
+        const finderResults = document.getElementById('finder-results');
+        const addedPapers = []; // track papers added this session
+
+        // Build a set of existing titles (lowercase) for dedup
+        const existingTitles = new Set(papers.map(p => p.title.toLowerCase().replace(/[^a-z0-9]/g,'')));
+
+        const finderOverlay = document.getElementById('finder-overlay');
+        function openFinder() { finderPanel.classList.add('open'); finderOverlay.classList.add('open'); finderInput.focus(); }
+        function closeFinder() { finderPanel.classList.remove('open'); finderOverlay.classList.remove('open'); if (autoRunning) stopAuto(); }
+        document.getElementById('open-finder').addEventListener('click', openFinder);
+        document.getElementById('finder-close').addEventListener('click', closeFinder);
+        finderOverlay.addEventListener('click', closeFinder);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && finderPanel.classList.contains('open')) closeFinder(); });
+
+        // Tab switching
+        document.querySelectorAll('.finder-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.finder-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById('manual-panel').classList.toggle('active', tab.dataset.tab === 'manual');
+                document.getElementById('auto-panel').classList.toggle('active', tab.dataset.tab === 'auto');
+            });
+        });
+
+        // Populate default line dropdown
+        const autoLineSelect = document.getElementById('auto-default-line');
+        Object.entries(LINE_GROUPS).forEach(([id, info]) => {
+            const opt = document.createElement('option');
+            opt.value = id; opt.textContent = info.name;
+            autoLineSelect.appendChild(opt);
+        });
+
+        finderInput.addEventListener('keydown', e => { if (e.key === 'Enter') doFinderSearch(); });
+        document.getElementById('finder-go').addEventListener('click', doFinderSearch);
+
+        async function doFinderSearch() {
+            const q = finderInput.value.trim();
+            if (!q) return;
+            finderResults.innerHTML = '<div class="finder-status">Searching OpenAlex...</div>';
+
+            try {
+                // Two-phase search: title-specific first, then broad keyword
+                const titleUrl = `https://api.openalex.org/works?filter=title.search:${encodeURIComponent(q)}&per_page=25&sort=cited_by_count:desc&select=id,title,authorships,publication_year,primary_location,cited_by_count,abstract_inverted_index&mailto=jmyles@ncsu.edu`;
+                const broadUrl = `https://api.openalex.org/works?search=${encodeURIComponent(q)}&per_page=30&select=id,title,authorships,publication_year,primary_location,cited_by_count,abstract_inverted_index&mailto=jmyles@ncsu.edu`;
+
+                const [titleResp, broadResp] = await Promise.all([
+                    fetch(titleUrl).then(r => r.ok ? r.json() : {results:[]}),
+                    fetch(broadUrl).then(r => r.ok ? r.json() : {results:[]})
+                ]);
+
+                // Merge: title matches first, then broad results (deduped)
+                const seenIds = new Set();
+                const merged = [];
+                for (const r of [...(titleResp.results||[]), ...(broadResp.results||[])]) {
+                    if (!seenIds.has(r.id)) { seenIds.add(r.id); merged.push(r); }
+                }
+                const data = { results: merged };
+                const results = data.results || [];
+
+                if (!results.length) {
+                    finderResults.innerHTML = '<div class="finder-status">No results found. Try different keywords.</div>';
+                    return;
+                }
+
+                finderResults.innerHTML = `<div class="finder-status">${results.length} results (sorted by citations)</div>`;
+                results.forEach(w => {
+                    const title = w.title || '';
+                    const year = w.publication_year || '';
+                    const cites = w.cited_by_count || 0;
+                    const authors = (w.authorships || []).slice(0,4).map(a => a.author?.display_name || '').filter(Boolean).join(', ');
+                    const venue = w.primary_location?.source?.display_name || '';
+                    const abstract = reconstructAbstract(w.abstract_inverted_index);
+                    const titleKey = title.toLowerCase().replace(/[^a-z0-9]/g,'');
+                    const alreadyExists = existingTitles.has(titleKey);
+
+                    const lineOptions = Object.entries(LINE_GROUPS).map(([id, info]) =>
+                        `<option value="${id}">${info.name}</option>`
+                    ).join('');
+
+                    const card = document.createElement('div');
+                    card.className = 'finder-card' + (alreadyExists ? ' already-added' : '');
+                    card.innerHTML = `
+                        <div class="fc-title">${escHtml(title)}</div>
+                        <div class="fc-authors">${escHtml(authors)} (${year})</div>
+                        <div class="fc-venue">${escHtml(venue)}</div>
+                        <div class="fc-meta"><span class="fc-cite">${cites.toLocaleString()} citations</span></div>
+                        ${abstract ? `<div class="fc-abstract">${escHtml(abstract.slice(0,200))}${abstract.length>200?'...':''}</div>` : ''}
+                        <div class="fc-actions">
+                            ${alreadyExists
+                                ? '<button class="fc-add added">Already in map</button>'
+                                : `<select class="fc-line-select">${lineOptions}</select>
+                                   <button class="fc-add" data-title="${escAttr(title)}" data-authors="${escAttr(authors)}" data-year="${year}" data-venue="${escAttr(venue)}" data-cites="${cites}" data-abstract="${escAttr(abstract?.slice(0,300) || '')}">+ Add to Map</button>`
+                            }
+                        </div>
+                    `;
+                    finderResults.appendChild(card);
+                });
+
+                // Attach add handlers
+                finderResults.querySelectorAll('.fc-add:not(.added)').forEach(btn => {
+                    attachAddHandler(btn);
+                });
+
+            } catch(err) {
+                finderResults.innerHTML = `<div class="finder-status">Error: ${err.message}. Check your internet connection.</div>`;
+            }
+        }
+
+        function reconstructAbstract(invIndex) {
+            if (!invIndex) return '';
+            const words = [];
+            Object.entries(invIndex).forEach(([word, positions]) => {
+                positions.forEach(pos => { words[pos] = word; });
+            });
+            return words.join(' ').slice(0, 500);
+        }
+
+        function escHtml(s) { return s ? s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;') : ''; }
+        function escAttr(s) { return s ? s.replace(/"/g,'&quot;').replace(/'/g,'&#39;') : ''; }
+
+        // ── AUTO-DISCOVER ENGINE ─────────────────────────────────────
+        const AUTO_QUERIES = [
+            // Category-aware: [query, suggested line]
+            ["economic order quantity", "eoq_foundations"],
+            ["inventory policy stochastic demand", "stochastic_policies"],
+            ["(s,S) inventory policy optimal", "stochastic_policies"],
+            ["newsvendor problem", "stochastic_policies"],
+            ["base stock policy", "stochastic_policies"],
+            ["lost sales inventory model", "stochastic_policies"],
+            ["continuous review inventory", "stochastic_policies"],
+            ["periodic review inventory", "stochastic_policies"],
+            ["inventory demand uncertainty", "stochastic_policies"],
+            ["Bayesian inventory demand learning", "stochastic_policies"],
+            ["inventory rationing demand classes", "stochastic_policies"],
+            ["multi-echelon inventory system", "multi_echelon"],
+            ["serial inventory system echelon", "multi_echelon"],
+            ["assembly system inventory", "multi_echelon"],
+            ["safety stock placement supply chain", "multi_echelon"],
+            ["assemble-to-order system", "multi_echelon"],
+            ["multi-echelon spare parts", "multi_echelon"],
+            ["bullwhip effect supply chain", "supply_chain"],
+            ["supply chain information sharing inventory", "supply_chain"],
+            ["vendor managed inventory", "supply_chain"],
+            ["supply chain disruption risk inventory", "supply_chain"],
+            ["supply chain visibility inventory", "supply_chain"],
+            ["supply chain coordination contracts", "coordination"],
+            ["revenue sharing contract supply chain", "coordination"],
+            ["buyback contract supply chain", "coordination"],
+            ["quantity flexibility contract", "coordination"],
+            ["integrated vendor buyer inventory", "coordination"],
+            ["consignment inventory model", "coordination"],
+            ["joint pricing inventory optimization", "pricing"],
+            ["dynamic pricing inventory control", "pricing"],
+            ["revenue management perishable inventory", "pricing"],
+            ["quantity discount inventory model", "pricing"],
+            ["markdown pricing inventory", "pricing"],
+            ["retail inventory management", "pricing"],
+            ["omnichannel inventory fulfillment", "pricing"],
+            ["assortment optimization inventory", "pricing"],
+            ["deteriorating inventory model", "deteriorating"],
+            ["perishable inventory management", "deteriorating"],
+            ["inventory permissible delay payment trade credit", "deteriorating"],
+            ["non-instantaneous deterioration inventory", "deteriorating"],
+            ["preservation technology deteriorating", "deteriorating"],
+            ["green sustainable inventory carbon", "deteriorating"],
+            ["healthcare hospital inventory management", "deteriorating"],
+            ["blood bank inventory perishable", "deteriorating"],
+            ["economic production quantity model", "production"],
+            ["imperfect quality production inventory", "production"],
+            ["lot sizing problem dynamic", "production"],
+            ["capacitated lot sizing", "production"],
+            ["joint replenishment problem", "production"],
+            ["Wagner Whitin lot size", "production"],
+            ["production planning inventory uncertainty", "production"],
+            ["random yield inventory production", "production"],
+            ["setup cost reduction inventory", "production"],
+            ["closed-loop supply chain remanufacturing", "reverse_spare"],
+            ["reverse logistics inventory quantitative", "reverse_spare"],
+            ["remanufacturing inventory management", "reverse_spare"],
+            ["spare parts inventory optimization", "reverse_spare"],
+            ["recoverable item inventory METRIC", "reverse_spare"],
+            ["intermittent demand forecasting spare parts", "reverse_spare"],
+            ["inventory routing problem", "reverse_spare"],
+            ["lateral transshipment inventory", "reverse_spare"],
+            ["inventory risk pooling centralization", "reverse_spare"],
+            ["emergency transshipment inventory", "reverse_spare"],
+            ["approximation algorithm inventory", "algorithms_modern"],
+            ["dual sourcing inventory management", "algorithms_modern"],
+            ["robust optimization inventory", "algorithms_modern"],
+            ["distributionally robust inventory newsvendor", "algorithms_modern"],
+            ["data-driven inventory optimization", "algorithms_modern"],
+            ["machine learning inventory management", "algorithms_modern"],
+            ["reinforcement learning inventory control", "algorithms_modern"],
+            ["online learning inventory censored demand", "algorithms_modern"],
+            ["sample average approximation inventory", "algorithms_modern"],
+            ["deep learning demand forecasting inventory", "algorithms_modern"],
+            ["inventory record inaccuracy", "stochastic_policies"],
+            ["ABC inventory classification multi-criteria", "stochastic_policies"],
+            ["stochastic inventory lead time", "stochastic_policies"],
+            ["capacitated inventory system production", "production"],
+            ["inventory model inflation", "deteriorating"],
+            ["two-warehouse inventory model", "deteriorating"],
+            ["stock-dependent demand inventory", "deteriorating"],
+        ];
+
+        let autoRunning = false;
+        let autoAbort = false;
+
+        // Journal filter — major journals default ON, others default OFF
+        const MAJOR_JOURNALS = [
+            "Management Science",
+            "Operations Research",
+            "Manufacturing & Service Operations Management",
+            "Mathematics of Operations Research",
+            "Production and Operations Management",
+            "Naval Research Logistics",
+            "Econometrica",
+        ];
+        const OTHER_JOURNALS = [
+            "Marketing Science",
+            "European Journal of Operational Research",
+            "International Journal of Production Economics",
+            "International Journal of Production Research",
+            "Journal of the Operational Research Society",
+            "Transportation Science",
+            "Computers & Operations Research",
+            "Omega",
+            "Decision Sciences",
+            "IIE Transactions",
+            "IISE Transactions",
+            "Annals of Operations Research",
+            "OR Spectrum",
+            "INFORMS Journal on Computing",
+            "Harvard Business Review",
+            "Sloan Management Review",
+            "California Management Review",
+            "Interfaces",
+            "Journal of Operations Management",
+            "Supply Chain Management",
+            "Journal of Business Logistics",
+            "Transportation Research Part E",
+            "Computers & Industrial Engineering",
+            "Expert Systems with Applications",
+            "SIAM Journal on Applied Mathematics",
+            "SIAM Review",
+            "Mathematical Programming",
+            "Journal of Applied Probability",
+            "Queueing Systems",
+            "Journal of Cleaner Production",
+            "IEEE Transactions on Automation Science and Engineering",
+            "International Journal of Forecasting",
+            "Decision Support Systems",
+            "Fuzzy Sets and Systems",
+        ];
+        const ALLOWED_JOURNALS = [...MAJOR_JOURNALS, ...OTHER_JOURNALS];
+        const activeJournals = new Set(MAJOR_JOURNALS.map(j => j.toLowerCase()));
+        const journalChips = document.getElementById('journal-chips');
+
+        ALLOWED_JOURNALS.forEach(j => {
+            const isMajor = MAJOR_JOURNALS.includes(j);
+            const chip = document.createElement('span');
+            chip.className = 'journal-chip' + (isMajor ? ' active' : '');
+            chip.textContent = j;
+            chip.dataset.journal = j.toLowerCase();
+            chip.addEventListener('click', () => {
+                const key = j.toLowerCase();
+                if (activeJournals.has(key)) {
+                    activeJournals.delete(key);
+                    chip.classList.remove('active');
+                } else {
+                    activeJournals.add(key);
+                    chip.classList.add('active');
+                }
+            });
+            journalChips.appendChild(chip);
+        });
+
+        document.getElementById('journal-select-all').addEventListener('click', () => {
+            ALLOWED_JOURNALS.forEach(j => activeJournals.add(j.toLowerCase()));
+            journalChips.querySelectorAll('.journal-chip').forEach(c => c.classList.add('active'));
+        });
+        document.getElementById('journal-select-none').addEventListener('click', () => {
+            activeJournals.clear();
+            journalChips.querySelectorAll('.journal-chip').forEach(c => c.classList.remove('active'));
+        });
+
+        function journalAllowed(venue) {
+            if (!venue) return false;
+            if (activeJournals.size === 0) return true; // if none selected, allow all
+            const v = venue.toLowerCase();
+            for (const j of activeJournals) {
+                if (v.includes(j) || j.includes(v)) return true;
+            }
+            return false;
+        }
+
+        document.getElementById('auto-start').addEventListener('click', startAuto);
+        document.getElementById('auto-stop').addEventListener('click', stopAuto);
+
+        function stopAuto() {
+            autoAbort = true;
+            autoRunning = false;
+            document.getElementById('auto-start').disabled = false;
+            document.getElementById('auto-stop').style.display = 'none';
+            document.getElementById('prog-text').textContent = 'Stopped.';
+        }
+
+        async function startAuto() {
+            if (autoRunning) return;
+            autoRunning = true;
+            autoAbort = false;
+
+            const minCites = parseInt(document.getElementById('auto-min-cites').value) || 100;
+            const autoAddThreshold = parseInt(document.getElementById('auto-add-threshold').value) || 500;
+            const defaultLine = document.getElementById('auto-default-line').value;
+
+            document.getElementById('auto-start').disabled = true;
+            document.getElementById('auto-stop').style.display = 'inline-block';
+            document.getElementById('auto-progress').style.display = 'block';
+            const autoResults = document.getElementById('auto-results');
+            autoResults.innerHTML = '';
+
+            let totalFound = 0;
+            let totalAdded = 0;
+            let totalSkipped = 0;
+
+            for (let i = 0; i < AUTO_QUERIES.length; i++) {
+                if (autoAbort) break;
+
+                const [query, suggestedLine] = AUTO_QUERIES[i];
+                const pct = Math.round(((i + 1) / AUTO_QUERIES.length) * 100);
+                document.getElementById('prog-fill').style.width = pct + '%';
+                document.getElementById('prog-text').textContent = `[${i+1}/${AUTO_QUERIES.length}] Searching: ${query}...`;
+
+                try {
+                    const titleUrl = `https://api.openalex.org/works?filter=title.search:${encodeURIComponent(query)}&per_page=25&sort=cited_by_count:desc&select=id,title,authorships,publication_year,primary_location,cited_by_count,abstract_inverted_index&mailto=jmyles@ncsu.edu`;
+                    const resp = await fetch(titleUrl);
+                    if (!resp.ok) { await sleep(2000); continue; }
+                    const data = await resp.json();
+                    const results = (data.results || []).filter(w => (w.cited_by_count || 0) >= minCites && w.title && w.publication_year);
+
+                    // Filter to only new papers from allowed journals
+                    const newPapers = results.filter(w => {
+                        const titleKey = w.title.toLowerCase().replace(/[^a-z0-9]/g, '');
+                        if (existingTitles.has(titleKey)) return false;
+                        const venue = w.primary_location?.source?.display_name || '';
+                        return journalAllowed(venue);
+                    });
+
+                    if (newPapers.length > 0) {
+                        // Add batch header
+                        const header = document.createElement('div');
+                        header.className = 'auto-batch-header';
+                        header.innerHTML = `"${query}" &mdash; ${newPapers.length} new paper${newPapers.length>1?'s':''}`;
+
+                        // Add all button for this batch
+                        const addAllBtn = document.createElement('button');
+                        addAllBtn.className = 'auto-add-all';
+                        addAllBtn.textContent = `Add all ${newPapers.length}`;
+                        addAllBtn.addEventListener('click', function() {
+                            this.parentElement.nextElementSibling?.querySelectorAll('.fc-add:not(.added)').forEach(b => b.click());
+                            // also click any subsequent siblings that are part of this batch
+                            let el = this.parentElement.nextElementSibling;
+                            while (el && !el.classList.contains('auto-batch-header')) {
+                                el.querySelectorAll('.fc-add:not(.added)').forEach(b => b.click());
+                                el = el.nextElementSibling;
+                            }
+                            this.textContent = 'Added all';
+                            this.disabled = true;
+                        });
+                        header.appendChild(addAllBtn);
+                        autoResults.appendChild(header);
+
+                        const lineId = suggestedLine || defaultLine;
+                        const lineInfo = LINE_GROUPS[lineId];
+                        const lineOptions = Object.entries(LINE_GROUPS).map(([id, info]) =>
+                            `<option value="${id}" ${id===lineId?'selected':''}>${info.name}</option>`
+                        ).join('');
+
+                        for (const w of newPapers) {
+                            totalFound++;
+                            const title = w.title;
+                            const year = w.publication_year;
+                            const cites = w.cited_by_count || 0;
+                            const authors = (w.authorships || []).slice(0,4).map(a => a.author?.display_name || '').filter(Boolean).join(', ');
+                            const venue = w.primary_location?.source?.display_name || '';
+                            const abstract = reconstructAbstract(w.abstract_inverted_index);
+
+                            // Auto-add if above threshold
+                            const shouldAutoAdd = cites >= autoAddThreshold;
+
+                            const card = document.createElement('div');
+                            card.className = 'finder-card' + (shouldAutoAdd ? ' already-added' : '');
+                            card.innerHTML = `
+                                <div class="fc-title">${escHtml(title)}</div>
+                                <div class="fc-authors">${escHtml(authors)} (${year})</div>
+                                <div class="fc-venue">${escHtml(venue)}</div>
+                                <div class="fc-meta"><span class="fc-cite">${cites.toLocaleString()} citations</span></div>
+                                <div class="fc-actions">
+                                    <select class="fc-line-select">${lineOptions}</select>
+                                    <button class="fc-add${shouldAutoAdd ? ' added' : ''}" data-title="${escAttr(title)}" data-authors="${escAttr(authors)}" data-year="${year}" data-venue="${escAttr(venue)}" data-cites="${cites}" data-abstract="${escAttr(abstract?.slice(0,300) || '')}">${shouldAutoAdd ? 'Auto-added' : '+ Add'}</button>
+                                </div>
+                            `;
+                            autoResults.appendChild(card);
+
+                            // Attach handler
+                            const btn = card.querySelector('.fc-add');
+                            if (!shouldAutoAdd) {
+                                attachAddHandler(btn);
+                            } else {
+                                // Auto-add immediately
+                                addPaperFromBtn(btn);
+                                totalAdded++;
+                            }
+                        }
+                    } else {
+                        totalSkipped++;
+                    }
+
+                } catch(err) {
+                    console.warn(`Query "${query}" failed:`, err);
+                }
+
+                // Rate limit - be polite to OpenAlex
+                await sleep(350);
+            }
+
+            document.getElementById('prog-fill').style.width = '100%';
+            document.getElementById('prog-text').textContent = `Done! Found ${totalFound} new papers. Auto-added ${totalAdded} (${autoAddThreshold}+ citations). ${totalFound - totalAdded} awaiting your review.`;
+            document.getElementById('auto-start').disabled = false;
+            document.getElementById('auto-stop').style.display = 'none';
+            autoRunning = false;
+
+            renderMetro();
+            renderList();
+        }
+
+        function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+        function addPaperFromBtn(btn) {
+            const lineSelect = btn.parentElement.querySelector('.fc-line-select');
+            const lineId = lineSelect.value;
+            const lineInfo = LINE_GROUPS[lineId];
+            const firstCat = lineInfo.cats[0];
+            const id = 'added_' + Date.now() + '_' + Math.random().toString(36).slice(2,6);
+            const newPaper = {
+                id,
+                authors: btn.dataset.authors,
+                year: parseInt(btn.dataset.year) || 2000,
+                title: btn.dataset.title,
+                venue: btn.dataset.venue,
+                cat: firstCat,
+                subcat: 'added',
+                citations: parseInt(btn.dataset.cites) || 0,
+                desc: btn.dataset.abstract || '',
+                parents: [],
+                line: lineId,
+                isLandmark: parseInt(btn.dataset.cites) >= 800
+            };
+            papers.push(newPaper);
+            paperMap[newPaper.id] = newPaper;
+            existingTitles.add(btn.dataset.title.toLowerCase().replace(/[^a-z0-9]/g,''));
+            addedPapers.push(newPaper);
+
+            btn.textContent = 'Added';
+            btn.classList.add('added');
+            const card = btn.closest('.finder-card');
+            if (card) card.classList.add('already-added');
+
+            document.getElementById('added-count').textContent = `${addedPapers.length} paper${addedPapers.length>1?'s':''} added this session`;
+            document.getElementById('total-count').textContent = papers.length;
+        }
+
+        function attachAddHandler(btn) {
+            btn.addEventListener('click', function() {
+                addPaperFromBtn(this);
+                renderMetro();
+                renderList();
+            });
+        }
+
+        // Export added papers
+        document.getElementById('finder-export').addEventListener('click', () => {
+            if (!addedPapers.length) { alert('No papers added yet.'); return; }
+            const exportData = addedPapers.map(p => [p.id, p.authors, p.year, p.title, p.venue, p.cat, p.subcat, p.citations, p.desc, p.parents]);
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = 'added_papers.json'; a.click();
+            URL.revokeObjectURL(url);
+        });
+
+        // Mobile nav
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('active');
+            document.querySelector('.nav-toggle').classList.toggle('active');
+        });
+    })();
+    </script>
+</body>
+</html>
