@@ -60,7 +60,7 @@
         .metro-tooltip .tt-cite { font-size: 0.75rem; color: var(--gray-400); margin-top: 6px; }
         .metro-tooltip .tt-line-badge { display: inline-block; padding: 1px 8px; border-radius: 8px; font-size: 0.7rem; font-weight: 600; color: white; margin-bottom: 6px; }
 
-        /* Highlight pulse for dm2024 */
+        /* Highlight pulse for dm2026 */
         @keyframes pulse { 0%,100% { filter: drop-shadow(0 0 3px rgba(213,10,10,0.4)); } 50% { filter: drop-shadow(0 0 8px rgba(213,10,10,0.8)); } }
         .node-highlight { animation: pulse 2s ease-in-out infinite; }
 
@@ -207,7 +207,7 @@
             <div class="stats">
                 <div class="stat"><div class="stat-num" id="total-count">0</div><div class="stat-label">Papers</div></div>
                 <div class="stat"><div class="stat-num">10</div><div class="stat-label">Research Lines</div></div>
-                <div class="stat"><div class="stat-num">1913 &ndash; 2024</div><div class="stat-label">Span</div></div>
+                <div class="stat"><div class="stat-num">1913 &ndash; 2026</div><div class="stat-label">Span</div></div>
             </div>
         </div>
     </header>
@@ -302,7 +302,7 @@
     </div>
 
     <footer class="footer">
-        <div class="container"><p>&copy; 2024 Jabari Myles. All rights reserved.</p></div>
+        <div class="container"><p>&copy; 2026 Jabari Myles. All rights reserved.</p></div>
     </footer>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -338,7 +338,7 @@
         const LANDMARK_THRESHOLD = 800;
         papers.forEach(p => {
             const children = childMap[p.id] || [];
-            p.isLandmark = p.citations >= LANDMARK_THRESHOLD || children.length >= 3 || p.id === 'dm2024';
+            p.isLandmark = p.citations >= LANDMARK_THRESHOLD || children.length >= 3 || p.id === 'dm2026';
         });
 
         // ── Legend ────────────────────────────────────────────────────
@@ -562,11 +562,11 @@
 
                 // Circle
                 const circle = g.append('circle')
-                    .attr('class', 'metro-node' + (p.id === 'dm2024' ? ' node-highlight' : ''))
+                    .attr('class', 'metro-node' + (p.id === 'dm2026' ? ' node-highlight' : ''))
                     .attr('r', pos.r)
                     .attr('fill', lineInfo.color)
-                    .attr('stroke', p.id === 'dm2024' ? '#FFD700' : '#fff')
-                    .attr('stroke-width', p.id === 'dm2024' ? 2.5 : 1.2);
+                    .attr('stroke', p.id === 'dm2026' ? '#FFD700' : '#fff')
+                    .attr('stroke-width', p.id === 'dm2026' ? 2.5 : 1.2);
 
                 // Label for landmarks
                 if (p.isLandmark && isSearched) {
@@ -576,9 +576,9 @@
                         .attr('x', 0)
                         .attr('y', -(pos.r + 5))
                         .attr('text-anchor', 'middle')
-                        .attr('font-size', p.id === 'dm2024' ? '10px' : '8.5px')
-                        .attr('font-weight', p.id === 'dm2024' ? '700' : '500')
-                        .attr('fill', p.id === 'dm2024' ? '#D50A0A' : '#555')
+                        .attr('font-size', p.id === 'dm2026' ? '10px' : '8.5px')
+                        .attr('font-weight', p.id === 'dm2026' ? '700' : '500')
+                        .attr('fill', p.id === 'dm2026' ? '#D50A0A' : '#555')
                         .text(shortName);
                 }
 
@@ -652,7 +652,7 @@
             const container = document.getElementById('list-container');
             container.innerHTML = filtered.map(p => {
                 const lineInfo = LINE_GROUPS[p.line];
-                return `<div class="l-card${p.id==='dm2024'?' hl':''}" onclick="this.classList.toggle('expanded')">
+                return `<div class="l-card${p.id==='dm2026'?' hl':''}" onclick="this.classList.toggle('expanded')">
                     <span class="lc-year">${p.year}</span>
                     <div class="lc-title">${p.title}</div>
                     <div class="lc-auth">${p.authors}</div>
