@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrossFit Open Analysis | Jabari Myles</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .article-header {
+            padding: 120px 0 48px;
+            background: linear-gradient(180deg, var(--gray-50) 0%, var(--white) 100%);
+        }
+        .article-header h1 { font-size: 2.5rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+        .article-meta { font-size: 1rem; color: var(--gray-500); margin-bottom: 16px; }
+        .article-subtitle { font-size: 1.2rem; color: var(--gray-600); max-width: 720px; line-height: 1.7; }
+        .article-body { max-width: 960px; margin: 0 auto; padding: 48px 24px 80px; }
+        .article-body h2 { font-size: 1.75rem; font-weight: 700; color: var(--navy); margin: 56px 0 16px; }
+        .article-body h3 { font-size: 1.3rem; font-weight: 600; color: var(--gray-800); margin: 32px 0 12px; }
+        .article-body p { font-size: 1.05rem; color: var(--gray-700); line-height: 1.8; margin-bottom: 16px; }
+        .article-body ul, .article-body ol { margin: 0 0 20px 24px; color: var(--gray-700); font-size: 1.05rem; line-height: 1.8; }
+        .article-body li { margin-bottom: 8px; }
+        .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--navy); text-decoration: none; font-weight: 500; font-size: 0.95rem; margin-bottom: 16px; }
+        .back-link:hover { text-decoration: underline; }
+
+        /* Stats cards */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin: 24px 0; }
+        .stat-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 12px; padding: 24px; text-align: center; }
+        .stat-value { font-size: 2rem; font-weight: 700; color: var(--navy); display: block; }
+        .stat-label { font-size: 0.85rem; color: var(--gray-500); margin-top: 4px; }
+
+        /* Key finding callout */
+        .key-finding { background: var(--gray-50); border-left: 4px solid var(--navy); padding: 20px 24px; border-radius: 0 8px 8px 0; margin: 24px 0; }
+        .key-finding p { margin-bottom: 0; color: var(--gray-800); font-weight: 500; }
+
+        /* Filters */
+        .filter-bar {
+            display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+            background: var(--gray-50); padding: 16px 20px; border-radius: 10px;
+            margin: 20px 0; border: 1px solid var(--gray-200);
+        }
+        .filter-bar label { font-size: 0.9rem; font-weight: 600; color: var(--gray-700); }
+        .filter-bar select {
+            padding: 8px 12px; border-radius: 6px; border: 1px solid var(--gray-300);
+            font-size: 0.9rem; background: var(--white); color: var(--gray-800);
+            cursor: pointer; min-width: 120px;
+        }
+        .filter-bar select:focus { outline: none; border-color: var(--navy); }
+
+        /* Data tables */
+        .data-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+        .data-table th { background: var(--navy); color: var(--white); padding: 10px 14px; text-align: left; font-weight: 600; white-space: nowrap; }
+        .data-table td { padding: 9px 14px; border-bottom: 1px solid var(--gray-200); color: var(--gray-700); }
+        .data-table tr:nth-child(even) { background: var(--gray-50); }
+        .data-table tr:hover { background: var(--gray-100); }
+        .highlight-red { color: var(--red); font-weight: 600; }
+        .highlight-green { color: #16a34a; font-weight: 600; }
+
+        /* Correlation bar */
+        .corr-bar-container { display: flex; align-items: center; gap: 8px; }
+        .corr-bar { height: 16px; border-radius: 3px; min-width: 2px; }
+        .corr-bar.positive { background: var(--red); }
+        .corr-bar.negative { background: #2563eb; }
+        .corr-value { font-size: 0.85rem; font-weight: 600; min-width: 50px; }
+
+        /* Tabs */
+        .tab-bar { display: flex; gap: 4px; border-bottom: 2px solid var(--gray-200); margin-bottom: 24px; }
+        .tab-btn {
+            padding: 10px 20px; border: none; background: none; font-size: 0.95rem;
+            font-weight: 500; color: var(--gray-500); cursor: pointer;
+            border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s ease;
+        }
+        .tab-btn:hover { color: var(--gray-700); }
+        .tab-btn.active { color: var(--navy); border-bottom-color: var(--navy); font-weight: 600; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Athlete cards */
+        .athlete-card {
+            border: 1px solid var(--gray-200); border-radius: 10px; padding: 20px;
+            margin-bottom: 12px; background: var(--white); transition: all 0.2s ease;
+        }
+        .athlete-card:hover { border-color: var(--navy); box-shadow: var(--shadow-md); }
+        .athlete-header { display: flex; justify-content: space-between; align-items: start; flex-wrap: wrap; gap: 12px; }
+        .athlete-name { font-size: 1.1rem; font-weight: 600; color: var(--gray-900); }
+        .athlete-meta { font-size: 0.85rem; color: var(--gray-500); }
+        .athlete-badge {
+            display: inline-block; padding: 4px 10px; border-radius: 20px;
+            font-size: 0.8rem; font-weight: 600;
+        }
+        .badge-over { background: #dcfce7; color: #166534; }
+        .badge-under { background: #fef2f2; color: #991b1b; }
+        .athlete-spark { display: flex; gap: 4px; align-items: end; margin-top: 12px; height: 40px; }
+        .spark-bar { flex: 1; border-radius: 2px 2px 0 0; min-width: 8px; max-width: 24px; }
+        .athlete-yearly { display: flex; gap: 4px; font-size: 0.75rem; color: var(--gray-400); margin-top: 4px; }
+        .athlete-yearly span { flex: 1; text-align: center; min-width: 8px; max-width: 24px; }
+
+        /* Search */
+        .search-box {
+            width: 100%; padding: 12px 16px; border: 1px solid var(--gray-300);
+            border-radius: 8px; font-size: 1rem; margin-bottom: 16px;
+        }
+        .search-box:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(1,51,105,0.1); }
+
+        /* Figure */
+        .figure { margin: 32px 0; text-align: center; }
+        .figure img { max-width: 100%; border-radius: 8px; border: 1px solid var(--gray-200); box-shadow: var(--shadow-md); }
+        .figure-caption { margin-top: 12px; font-size: 0.9rem; color: var(--gray-500); font-style: italic; }
+
+        .no-data { padding: 40px; text-align: center; color: var(--gray-400); font-size: 1rem; }
+
+        @media (max-width: 768px) {
+            .article-header h1 { font-size: 1.75rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .filter-bar { flex-direction: column; align-items: stretch; }
+            .data-table { font-size: 0.78rem; }
+            .data-table th, .data-table td { padding: 6px 8px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Jabari Myles</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">About</a></li>
+                <li><a href="index.html#papers" class="nav-link">Research</a></li>
+                <li><a href="index.html#projects" class="nav-link active">Projects</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <div class="container">
+            <a href="index.html" class="back-link">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 12L6 8L10 4"/></svg>
+                Back to Projects
+            </a>
+            <h1>Does Body Type Matter in the CrossFit Open?</h1>
+            <p class="article-meta" id="headerMeta"></p>
+            <p class="article-subtitle">
+                An interactive analysis of CrossFit Open participants across 16 years of competition,
+                examining whether height, weight, and gender predict performance in individual workouts and overall placement.
+            </p>
+        </div>
+    </header>
+
+    <div class="article-body">
+
+        <div class="stats-grid" id="summaryStats"></div>
+
+        <!-- SECTION: Intro -->
+        <h2>Background</h2>
+        <p>
+            The CrossFit Open is the largest participatory fitness competition in the world. Every year,
+            hundreds of thousands of athletes complete the same series of workouts and submit their scores
+            to a global leaderboard. The competition is designed to test broad fitness across multiple
+            domains: strength, endurance, gymnastics, and metabolic conditioning.
+        </p>
+        <p>
+            A natural question arises: does body type predict who performs best? CrossFit markets itself
+            as a sport that rewards general fitness over specialization, but the physical demands of individual
+            workouts vary dramatically. A heavy barbell workout might favor larger athletes, while a high-rep
+            bodyweight workout might favor lighter ones.
+        </p>
+        <p>
+            To answer this, I scraped the complete CrossFit Open leaderboard from the competition API,
+            covering every participant from 2011 through 2026. Height and weight data became available
+            starting in 2017, giving us ten years of physical attribute data to work with.
+        </p>
+
+        <div class="key-finding">
+            <p>
+                Height and weight have a statistically significant but practically small effect on CrossFit Open placement.
+                The effects are real, consistent across years, and vary by workout, but they explain very little of the
+                variance in performance. Fitness, training, and experience matter far more than body type.
+            </p>
+        </div>
+
+        <!-- SECTION: Correlations by Year/Workout -->
+        <h2>How Body Type Affects Placement</h2>
+        <p>
+            The charts below show Spearman correlations between physical attributes and workout rank.
+            A positive value means larger/heavier/older athletes place worse; a negative value means they
+            place better. Use the filters to explore by year, division, and workout.
+        </p>
+
+        <div class="filter-bar">
+            <label>Year:</label>
+            <select id="corrYear"></select>
+            <label>Division:</label>
+            <select id="corrDiv">
+                <option value="Men">Men</option>
+                <option value="Women">Women</option>
+            </select>
+        </div>
+        <div id="corrTable"></div>
+
+        <!-- SECTION: Tier Profiles -->
+        <h2>Physical Profiles by Performance Tier</h2>
+        <p>
+            How do the physical attributes of top performers compare to the rest of the field?
+            Select a year and division to see the breakdown. The "Overall" view shows aggregate tier data
+            for that year; individual workouts show tier profiles specific to each workout.
+        </p>
+
+        <div class="filter-bar">
+            <label>Year:</label>
+            <select id="tierYear"></select>
+            <label>Division:</label>
+            <select id="tierDiv">
+                <option value="Men">Men</option>
+                <option value="Women">Women</option>
+            </select>
+            <label>Workout:</label>
+            <select id="tierWorkout"></select>
+        </div>
+        <div id="tierTable"></div>
+
+        <!-- SECTION: Workout Heatmap Table -->
+        <h2>Weight Advantage by Workout (All Years)</h2>
+        <p>
+            This table shows the weight-rank correlation for every workout across all years.
+            Blue values indicate heavier athletes performed better; red values indicate lighter athletes
+            performed better. Stronger colors mean larger effects.
+        </p>
+        <div class="filter-bar">
+            <label>Division:</label>
+            <select id="heatDiv">
+                <option value="Men">Men</option>
+                <option value="Women">Women</option>
+            </select>
+        </div>
+        <div id="heatmapTable"></div>
+
+        <div class="figure">
+            <img src="weight_workout_heatmap.png" alt="Heatmap of weight vs workout rank correlations">
+            <p class="figure-caption">
+                Weight vs workout rank correlation by year. Red cells indicate heavier athletes placed worse;
+                blue cells indicate heavier athletes placed better.
+            </p>
+        </div>
+
+        <!-- SECTION: Athletes -->
+        <h2>Individual Athlete Performance</h2>
+        <p>
+            Which athletes performed significantly better or worse than expected, based on their history?
+            For each athlete with 3+ years of data, I computed their expected percentile rank from their
+            other years and flagged the largest deviations. A negative residual means the athlete did
+            better than expected; a positive residual means they underperformed.
+        </p>
+
+        <div class="tab-bar">
+            <button class="tab-btn active" data-tab="overperformers">Biggest Overperformers</button>
+            <button class="tab-btn" data-tab="underperformers">Biggest Underperformers</button>
+            <button class="tab-btn" data-tab="search">Search Athletes</button>
+        </div>
+
+        <div class="tab-content active" id="tab-overperformers">
+            <div class="filter-bar">
+                <label>Division:</label>
+                <select id="overDiv">
+                    <option value="">All</option>
+                    <option value="Men">Men</option>
+                    <option value="Women">Women</option>
+                </select>
+                <label>Year:</label>
+                <select id="overYear"></select>
+            </div>
+            <div id="overList"></div>
+        </div>
+
+        <div class="tab-content" id="tab-underperformers">
+            <div class="filter-bar">
+                <label>Division:</label>
+                <select id="underDiv">
+                    <option value="">All</option>
+                    <option value="Men">Men</option>
+                    <option value="Women">Women</option>
+                </select>
+                <label>Year:</label>
+                <select id="underYear"></select>
+            </div>
+            <div id="underList"></div>
+        </div>
+
+        <div class="tab-content" id="tab-search">
+            <input type="text" class="search-box" id="athleteSearch" placeholder="Search by athlete name...">
+            <div id="searchResults"></div>
+        </div>
+
+        <!-- SECTION: Methodology -->
+        <h2>Methodology</h2>
+        <p>
+            Data was collected by scraping the CrossFit Games leaderboard API
+            (<code>c3po.crossfit.com</code>) for all Open competition years from 2011 through 2026.
+            Height and weight data is self-reported by athletes and was available starting in 2017.
+            Coverage varies by year and division, ranging from about 27% to 87% of athletes having
+            physical data on file.
+        </p>
+        <p>
+            All correlations use Spearman's rank correlation coefficient, which is appropriate for
+            non-linear monotonic relationships. Percentile ranks are computed within each
+            year-and-division group. The over/under-performance analysis computes each athlete's
+            "expected" percentile as the mean of their percentile ranks in all other years they
+            competed, then flags the largest residuals. Only athletes with 3+ years of data are
+            included in the outlier analysis for stability.
+        </p>
+        <p>
+            One important caveat: athletes who report height and weight may differ systematically
+            from those who do not. More serious competitors are more likely to fill out their profiles,
+            which could introduce selection bias.
+        </p>
+
+        <h2>Key Takeaways</h2>
+        <ol>
+            <li>
+                <strong>Age is the biggest physical predictor of placement,</strong> not height or weight.
+                Top 1% athletes are about 7-8 years younger than the field average.
+            </li>
+            <li>
+                <strong>Weight matters more for women than men.</strong> Lighter women consistently place
+                better (r = 0.089), while the relationship for men is weaker and non-linear.
+            </li>
+            <li>
+                <strong>Height is nearly irrelevant overall,</strong> explaining less than 0.3% of variance
+                in placement for either gender.
+            </li>
+            <li>
+                <strong>Individual workouts can strongly favor certain body types.</strong> The range of
+                weight-rank correlations across workouts goes from -0.22 to +0.28, meaning workout selection
+                by competition designers has a real impact on which body types are advantaged.
+            </li>
+            <li>
+                <strong>The "elite" body type has been stable for a decade.</strong> Top male performers
+                average 5'9.8", 192 lbs. Top female performers average 5'4.6", 143 lbs. These numbers have
+                barely moved since 2017.
+            </li>
+        </ol>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Jabari Myles. All rights reserved.</p>
+        </div>
+    </footer>
+
+<script>
+let DATA = null;
+
+async function loadData() {
+    const resp = await fetch('dashboard_data.json');
+    DATA = await resp.json();
+    initPage();
+}
+
+function initPage() {
+    renderSummary();
+    initCorrFilters();
+    initTierFilters();
+    initHeatmap();
+    initAthletes();
+    initTabs();
+    initNav();
+}
+
+// --- Summary Stats ---
+function renderSummary() {
+    const s = DATA.summary;
+    document.getElementById('headerMeta').textContent =
+        `March 2026 \u00B7 ${(s.total_entries/1e6).toFixed(1)}M athletes analyzed \u00B7 ${s.years[0]} to ${s.years[s.years.length-1]}`;
+    document.getElementById('summaryStats').innerHTML = [
+        statCard((s.total_entries/1e6).toFixed(2) + 'M', 'Total athlete-year entries'),
+        statCard(s.years.length, 'Years of Open data'),
+        statCard((s.entries_with_phys/1e6).toFixed(2) + 'M', 'Entries with height + weight'),
+        statCard(s.unique_affiliates.toLocaleString(), 'Unique affiliates worldwide'),
+    ].join('');
+}
+
+function statCard(val, label) {
+    return `<div class="stat-card"><span class="stat-value">${val}</span><span class="stat-label">${label}</span></div>`;
+}
+
+// --- Correlation Table ---
+function initCorrFilters() {
+    const years = [...new Set(DATA.workout_correlations.map(d => d.year))].sort();
+    populateSelect('corrYear', years.map(y => ({value: y, label: y})));
+    document.getElementById('corrYear').value = years[years.length - 1];
+    document.getElementById('corrYear').addEventListener('change', renderCorr);
+    document.getElementById('corrDiv').addEventListener('change', renderCorr);
+    renderCorr();
+}
+
+function renderCorr() {
+    const year = +document.getElementById('corrYear').value;
+    const div = document.getElementById('corrDiv').value;
+    const rows = DATA.workout_correlations.filter(d => d.year === year && d.division === div);
+    if (!rows.length) { document.getElementById('corrTable').innerHTML = '<div class="no-data">No data for this selection.</div>'; return; }
+
+    rows.sort((a, b) => {
+        if (a.workout === 'Overall') return -1;
+        if (b.workout === 'Overall') return 1;
+        return a.workout.localeCompare(b.workout);
+    });
+
+    let html = '<table class="data-table"><thead><tr><th>Workout</th><th>Height Corr</th><th></th><th>Weight Corr</th><th></th><th>Age Corr</th><th></th><th>N</th></tr></thead><tbody>';
+    for (const r of rows) {
+        html += `<tr${r.workout === 'Overall' ? ' style="font-weight:600;background:var(--gray-100)"' : ''}>`;
+        html += `<td>${r.workout}</td>`;
+        html += `<td>${corrCell(r.r_height)}</td><td>${corrBar(r.r_height)}</td>`;
+        html += `<td>${corrCell(r.r_weight)}</td><td>${corrBar(r.r_weight)}</td>`;
+        html += `<td>${corrCell(r.r_age)}</td><td>${corrBar(r.r_age)}</td>`;
+        html += `<td>${r.n.toLocaleString()}</td>`;
+        html += '</tr>';
+    }
+    html += '</tbody></table>';
+    html += '<p style="font-size:0.85rem;color:var(--gray-500);">Positive = larger/heavier/older athletes rank worse. Negative = they rank better.</p>';
+    document.getElementById('corrTable').innerHTML = html;
+}
+
+function corrCell(r) {
+    const cls = r < -0.05 ? 'highlight-green' : r > 0.05 ? 'highlight-red' : '';
+    return `<span class="${cls}">${r.toFixed(4)}</span>`;
+}
+
+function corrBar(r) {
+    const w = Math.min(Math.abs(r) * 400, 80);
+    const cls = r >= 0 ? 'positive' : 'negative';
+    return `<div class="corr-bar ${cls}" style="width:${w}px;display:inline-block"></div>`;
+}
+
+// --- Tier Table ---
+function initTierFilters() {
+    const years = [...new Set(DATA.tiers.map(d => d.year))].sort();
+    populateSelect('tierYear', years.map(y => ({value: y, label: y})));
+    document.getElementById('tierYear').value = years[years.length - 1];
+    document.getElementById('tierYear').addEventListener('change', () => { updateTierWorkouts(); renderTiers(); });
+    document.getElementById('tierDiv').addEventListener('change', () => { updateTierWorkouts(); renderTiers(); });
+    document.getElementById('tierWorkout').addEventListener('change', renderTiers);
+    updateTierWorkouts();
+    renderTiers();
+}
+
+function updateTierWorkouts() {
+    const year = +document.getElementById('tierYear').value;
+    const div = document.getElementById('tierDiv').value;
+    const workouts = DATA.workout_tiers
+        .filter(d => d.year === year && d.division === div)
+        .map(d => d.workout);
+    const unique = [...new Set(workouts)].sort();
+    const opts = [{value: 'Overall', label: 'Overall'}, ...unique.map(w => ({value: w, label: 'WOD ' + w.split('.')[1]}))];
+    populateSelect('tierWorkout', opts);
+}
+
+function renderTiers() {
+    const year = +document.getElementById('tierYear').value;
+    const div = document.getElementById('tierDiv').value;
+    const workout = document.getElementById('tierWorkout').value;
+
+    let rows;
+    if (workout === 'Overall') {
+        rows = DATA.tiers.filter(d => d.year === year && d.division === div);
+    } else {
+        rows = DATA.workout_tiers.filter(d => d.year === year && d.division === div && d.workout === workout);
+    }
+
+    if (!rows.length) { document.getElementById('tierTable').innerHTML = '<div class="no-data">No data for this selection.</div>'; return; }
+
+    const tierOrder = ['Top 1%', 'Top 5%', 'Top 10%', 'Top 25%', 'Top 50%', 'Bottom 50%'];
+    rows.sort((a, b) => tierOrder.indexOf(a.tier) - tierOrder.indexOf(b.tier));
+
+    let html = '<table class="data-table"><thead><tr><th>Tier</th><th>Count</th><th>Avg Height</th><th>Avg Weight</th><th>Avg BMI</th><th>Avg Age</th></tr></thead><tbody>';
+    for (const r of rows) {
+        html += `<tr><td><strong>${r.tier}</strong></td>`;
+        html += `<td>${r.n.toLocaleString()}</td>`;
+        html += `<td>${inchesToFeetStr(r.avg_height)}</td>`;
+        html += `<td>${r.avg_weight} lbs</td>`;
+        html += `<td>${r.avg_bmi}</td>`;
+        html += `<td class="${r.tier === 'Top 1%' ? 'highlight-red' : ''}">${r.avg_age}</td>`;
+        html += '</tr>';
+    }
+    html += '</tbody></table>';
+    document.getElementById('tierTable').innerHTML = html;
+}
+
+// --- Heatmap Table ---
+function initHeatmap() {
+    document.getElementById('heatDiv').addEventListener('change', renderHeatmap);
+    renderHeatmap();
+}
+
+function renderHeatmap() {
+    const div = document.getElementById('heatDiv').value;
+    const rows = DATA.workout_correlations.filter(d => d.division === div && d.workout !== 'Overall');
+
+    const years = [...new Set(rows.map(d => d.year))].sort();
+    const wods = [1, 2, 3, 4, 5, 6];
+
+    // Build lookup
+    const lookup = {};
+    for (const r of rows) {
+        const wodNum = parseInt(r.workout.split('.')[1]);
+        lookup[`${r.year}_${wodNum}`] = r;
+    }
+
+    let html = '<div style="overflow-x:auto"><table class="data-table"><thead><tr><th>Year</th>';
+    for (const w of wods) html += `<th>WOD ${w}</th>`;
+    html += '</tr></thead><tbody>';
+
+    for (const year of years) {
+        html += `<tr><td><strong>${year}</strong></td>`;
+        for (const w of wods) {
+            const r = lookup[`${year}_${w}`];
+            if (r) {
+                const val = r.r_weight;
+                const intensity = Math.min(Math.abs(val) / 0.3, 1);
+                const bg = val < 0
+                    ? `rgba(37,99,235,${intensity * 0.4})`
+                    : `rgba(213,10,10,${intensity * 0.4})`;
+                html += `<td style="background:${bg};text-align:center;font-weight:600;font-size:0.85rem">${val.toFixed(3)}</td>`;
+            } else {
+                html += '<td style="text-align:center;color:var(--gray-300)">-</td>';
+            }
+        }
+        html += '</tr>';
+    }
+    html += '</tbody></table></div>';
+    html += '<p style="font-size:0.85rem;color:var(--gray-500);">Blue = heavier athletes ranked better. Red = lighter athletes ranked better.</p>';
+    document.getElementById('heatmapTable').innerHTML = html;
+}
+
+// --- Athletes Section ---
+function initAthletes() {
+    // Populate year filters for over/under
+    const overYears = [...new Set(DATA.overperformers.map(d => d.year))].sort();
+    const underYears = [...new Set(DATA.underperformers.map(d => d.year))].sort();
+    populateSelect('overYear', [{value: '', label: 'All'}, ...overYears.map(y => ({value: y, label: y}))]);
+    populateSelect('underYear', [{value: '', label: 'All'}, ...underYears.map(y => ({value: y, label: y}))]);
+
+    document.getElementById('overDiv').addEventListener('change', renderOver);
+    document.getElementById('overYear').addEventListener('change', renderOver);
+    document.getElementById('underDiv').addEventListener('change', renderUnder);
+    document.getElementById('underYear').addEventListener('change', renderUnder);
+
+    let searchTimeout;
+    document.getElementById('athleteSearch').addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => renderSearch(e.target.value), 300);
+    });
+
+    renderOver();
+    renderUnder();
+}
+
+function renderOver() {
+    const div = document.getElementById('overDiv').value;
+    const year = document.getElementById('overYear').value;
+    let items = DATA.overperformers;
+    if (div) items = items.filter(d => d.division === div);
+    if (year) items = items.filter(d => d.year === +year);
+    document.getElementById('overList').innerHTML = items.slice(0, 50).map(d => athleteCard(d, 'over')).join('');
+}
+
+function renderUnder() {
+    const div = document.getElementById('underDiv').value;
+    const year = document.getElementById('underYear').value;
+    let items = DATA.underperformers;
+    if (div) items = items.filter(d => d.division === div);
+    if (year) items = items.filter(d => d.year === +year);
+    document.getElementById('underList').innerHTML = items.slice(0, 50).map(d => athleteCard(d, 'under')).join('');
+}
+
+function renderSearch(query) {
+    const el = document.getElementById('searchResults');
+    if (!query || query.length < 2) { el.innerHTML = '<div class="no-data">Type at least 2 characters to search.</div>'; return; }
+    const q = query.toLowerCase();
+    const results = DATA.athletes.filter(a => a.name.toLowerCase().includes(q)).slice(0, 30);
+    if (!results.length) { el.innerHTML = '<div class="no-data">No athletes found.</div>'; return; }
+    el.innerHTML = results.map(a => athleteSearchCard(a)).join('');
+}
+
+function athleteCard(d, type) {
+    const residual = d.residual;
+    const badgeClass = type === 'over' ? 'badge-over' : 'badge-under';
+    const sign = residual > 0 ? '+' : '';
+    const physInfo = [];
+    if (d.height) physInfo.push(inchesToFeetStr(d.height));
+    if (d.weight) physInfo.push(d.weight + ' lbs');
+    const physStr = physInfo.length ? physInfo.join(', ') : '';
+
+    let wodHtml = '';
+    if (d.wod_results && d.wod_results.length) {
+        wodHtml = '<div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">';
+        for (const w of d.wod_results) {
+            const color = w.pct <= 10 ? '#166534' : w.pct <= 25 ? '#15803d' : w.pct <= 50 ? '#6b7280' : w.pct <= 75 ? '#c2410c' : '#991b1b';
+            wodHtml += `<span style="font-size:0.78rem;padding:2px 8px;border-radius:4px;background:var(--gray-100);color:${color}">${w.workout}: ${w.pct.toFixed(0)}%</span>`;
+        }
+        wodHtml += '</div>';
+    }
+
+    return `<div class="athlete-card">
+        <div class="athlete-header">
+            <div>
+                <div class="athlete-name">${d.name}</div>
+                <div class="athlete-meta">${d.division} &middot; ${d.country || 'Unknown'} &middot; ${physStr}</div>
+            </div>
+            <div style="text-align:right">
+                <span class="athlete-badge ${badgeClass}">${sign}${residual.toFixed(1)} percentile pts</span>
+                <div class="athlete-meta" style="margin-top:4px">${d.year} &middot; Actual: ${d.actual_pct.toFixed(1)}% &middot; Expected: ${d.expected_pct.toFixed(1)}%</div>
+            </div>
+        </div>
+        ${wodHtml}
+    </div>`;
+}
+
+function athleteSearchCard(a) {
+    const physInfo = [];
+    if (a.height) physInfo.push(inchesToFeetStr(a.height));
+    if (a.weight) physInfo.push(a.weight + ' lbs');
+    const physStr = physInfo.length ? ' &middot; ' + physInfo.join(', ') : '';
+
+    const trendStr = a.trend !== null
+        ? (a.trend < -1 ? '<span class="highlight-green">Improving</span>'
+           : a.trend > 1 ? '<span class="highlight-red">Declining</span>'
+           : '<span style="color:var(--gray-500)">Stable</span>')
+        : '';
+
+    // Sparkline
+    const pcts = a.yearly.map(y => y.pct);
+    const maxPct = Math.max(...pcts, 1);
+    let sparkHtml = '<div class="athlete-spark">';
+    let yearLabels = '<div class="athlete-yearly">';
+    for (const y of a.yearly) {
+        const h = Math.max(4, (1 - y.pct / 100) * 40);
+        const color = y.pct <= 10 ? '#166534' : y.pct <= 25 ? '#15803d' : y.pct <= 50 ? '#ca8a04' : '#dc2626';
+        sparkHtml += `<div class="spark-bar" style="height:${h}px;background:${color}" title="${y.year}: ${y.pct.toFixed(1)}%"></div>`;
+        yearLabels += `<span>${String(y.year).slice(-2)}</span>`;
+    }
+    sparkHtml += '</div>';
+    yearLabels += '</div>';
+
+    return `<div class="athlete-card">
+        <div class="athlete-header">
+            <div>
+                <div class="athlete-name">${a.name}</div>
+                <div class="athlete-meta">${a.division} &middot; ${a.country || 'Unknown'}${physStr} &middot; ${a.years_competed} years (${a.first_year}-${a.last_year})</div>
+            </div>
+            <div style="text-align:right">
+                <div style="font-size:0.9rem">Career avg: <strong>${a.career_avg_pct.toFixed(1)}%</strong></div>
+                <div class="athlete-meta">Best: ${a.best_pct.toFixed(1)}% (${a.best_year}) &middot; ${trendStr}</div>
+            </div>
+        </div>
+        ${sparkHtml}
+        ${yearLabels}
+    </div>`;
+}
+
+// --- Tabs ---
+function initTabs() {
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+        });
+    });
+}
+
+// --- Nav ---
+function initNav() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    if (navToggle) {
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
+}
+
+// --- Helpers ---
+function populateSelect(id, options) {
+    const sel = document.getElementById(id);
+    sel.innerHTML = options.map(o => `<option value="${o.value}">${o.label}</option>`).join('');
+}
+
+function inchesToFeetStr(inches) {
+    if (!inches) return '-';
+    const ft = Math.floor(inches / 12);
+    const inn = Math.round(inches % 12);
+    return `${ft}'${inn}"`;
+}
+
+// --- Load ---
+loadData();
+</script>
+</body>
+</html>
