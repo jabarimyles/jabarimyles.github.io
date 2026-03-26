@@ -1,0 +1,9 @@
+Ewelina Świetlaga	W	Poland			2	3.3	2025:4.4,2026:2.2
+Monika Świderek	W	Poland	66.5	143.0	2	3.8	2017:4.3,2019:3.3
+Krzysztof Świdziński	M	Poland	70.1	172.0	2	23.3	2025:28.8,2026:17.9
+Rafał Święty	M	Poland	69.3	156.5	6	28.0	2021:42.8,2022:23.6,2023:35.5,2024:20.2,2025:24.4,2026:21.5
+Paweł Ślęzak	M	Poland			2	37.0	2025:27.6,2026:46.5
+Mateusz Śliwiński	M	Poland			2	53.5	2025:61.5,2026:45.5
+Grzegorz Świdziński	M	Poland			2	59.4	2024:62.9,2026:55.9
+Damian Ślęk	M	Poland	68.5	163.1	2	64.2	2017:86.8,2019:41.6
+Andrzej Ścibor	M	Poland			3	67.0	2023:42.4,2025:62.1,2026:96.4
