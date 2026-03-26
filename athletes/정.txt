@@ -1,0 +1,20 @@
+혜린 정	W	Korea, Republic of	66.9		3	8.7	2024:8.8,2025:8.7,2026:8.8
+승호 정	M	Korea, Republic of			3	11.6	2024:18.8,2025:12.4,2026:3.5
+박 정현	W	Korea, Republic of			2	15.9	2023:26.4,2024:5.5
+용채 정	M	Korea, Republic of			2	18.6	2025:22.3,2026:14.9
+하은 정	W	Korea, Republic of			2	22.4	2023:34.6,2024:10.2
+양헌 정	M	Korea, Republic of			3	26.0	2023:39.4,2024:17.7,2025:20.8
+문 정서	W	Korea, Republic of			2	26.7	2025:21.6,2026:31.8
+민석 정	M	Korea, Republic of	67.3	160.9	3	26.7	2024:35.1,2025:20.5,2026:24.6
+찬호 정	M	Korea, Republic of			3	35.3	2023:47.0,2025:27.3,2026:31.5
+수미 정	W	Korea, Republic of			3	41.9	2024:55.3,2025:43.6,2026:26.8
+찬영 정	M	Korea, Republic of			2	42.4	2023:56.7,2024:28.0
+의규 정	M	Korea, Republic of			2	43.5	2025:30.6,2026:56.3
+형호 정	M	Korea, Republic of			2	53.2	2025:43.8,2026:62.6
+세현 정	M	Korea, Republic of			2	56.1	2025:79.5,2026:32.6
+종혁 정	M	Korea, Republic of	71.3	165.3	4	60.9	2023:63.0,2024:67.4,2025:56.4,2026:56.6
+술옥 정	M	Korea, Republic of			2	62.5	2023:82.5,2024:42.6
+해인 정	W	Korea, Republic of			2	62.6	2024:65.1,2025:60.1
+승표 정	M	Korea, Republic of			2	67.7	2024:67.7,2025:67.7
+종현 정	M	Korea, Republic of	66.1	163.1	3	77.5	2023:77.7,2024:65.9,2025:88.9
+유석 정	M	Korea, Republic of			3	78.3	2024:76.9,2025:84.4,2026:73.7

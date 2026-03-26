@@ -1,0 +1,8 @@
+현진 임	M	Korea, Republic of			3	10.2	2024:16.4,2025:6.2,2026:8.1
+지훈 임	M	Korea, Republic of			2	19.1	2024:19.9,2025:18.2
+대만 임	M	Korea, Republic of			2	26.7	2023:28.1,2024:25.3
+희준 임	M	Korea, Republic of			2	26.7	2025:36.3,2026:17.1
+지연 임	W	Korea, Republic of			3	27.7	2024:28.2,2025:32.7,2026:22.0
+지현 임	W	Korea, Republic of			2	34.6	2025:45.6,2026:23.7
+병근 임	M	Korea, Republic of			2	37.1	2025:37.4,2026:36.7
+지현 임	M	Korea, Republic of	69.3	211.6	4	53.3	2023:57.7,2024:61.9,2025:52.3,2026:41.4

@@ -1,0 +1,53 @@
+태균 이	M	Korea, Republic of			3	6.9	2024:12.8,2025:4.4,2026:3.6
+한송 이	M	Korea, Republic of			3	7.2	2023:8.7,2024:7.8,2025:5.1
+현준 이	M	Korea, Republic of	75.2	200.6	2	11.9	2025:11.9,2026:11.9
+연빈 이	M	Korea, Republic of			2	13.4	2025:17.6,2026:9.3
+용석 이	M	Korea, Republic of	70.5	187.4	2	13.8	2023:18.7,2024:8.9
+지현 이	W	Korea, Republic of			3	14.9	2023:30.9,2024:8.1,2025:5.7
+시현 이	M	Korea, Republic of			2	18.3	2025:18.9,2026:17.7
+은지 이	W	Korea, Republic of			2	19.7	2023:11.9,2024:27.4
+도윤 이	M	Korea, Republic of			3	21.6	2023:38.5,2024:12.4,2025:13.9
+준규 이	M	Korea, Republic of			3	21.8	2024:26.0,2025:18.2,2026:21.1
+지노 이	M	Korea, Republic of			2	21.9	2023:29.8,2024:14.1
+호진 이	M	Korea, Republic of			2	23.0	2024:36.0,2025:10.1
+준상 이	M	Korea, Republic of			3	24.8	2024:45.0,2025:15.6,2026:13.9
+경민 이	M	Korea, Republic of			2	26.2	2025:37.2,2026:15.2
+수민 이	M	Korea, Republic of			2	29.3	2025:42.8,2026:15.8
+동근 이	M	Korea, Republic of			4	31.6	2023:58.0,2024:20.8,2025:23.3,2026:24.2
+재용 이	M	Korea, Republic of			3	32.6	2024:54.4,2025:23.3,2026:20.0
+택훈 이	M	Korea, Republic of			4	33.9	2023:43.4,2024:30.2,2025:21.7,2026:40.3
+정민 이	M	Korea, Republic of			3	33.9	2024:26.9,2025:11.5,2026:63.5
+승헌 이	M	Korea, Republic of	70.1	180.8	3	34.2	2023:17.2,2024:21.8,2025:63.7
+건호 이	M	Korea, Republic of			2	34.7	2025:33.4,2026:36.0
+강산 이	M	Korea, Republic of	68.9		2	35.1	2023:45.4,2024:24.7
+유빈 이	W	Korea, Republic of			2	39.5	2023:45.8,2024:33.2
+은수 이	W	Korea, Republic of			2	41.4	2025:54.4,2026:28.4
+정윤 이	W	Korea, Republic of			4	41.8	2023:58.5,2024:31.1,2025:42.1,2026:35.7
+세윤 이	W	Korea, Republic of			3	42.6	2024:32.0,2025:50.1,2026:45.8
+다연 이	W	Korea, Republic of			4	43.6	2023:77.9,2024:53.1,2025:24.7,2026:18.8
+태호 이	M	Korea, Republic of			4	44.0	2023:73.5,2024:65.6,2025:17.8,2026:19.1
+종헌 이	M	Korea, Republic of			2	44.4	2025:45.5,2026:43.3
+석영 이	M	Korea, Republic of	70.9	160.9	5	44.6	2020:67.7,2021:54.6,2024:54.2,2025:27.3,2026:19.1
+샛별 이	W	Korea, Republic of			3	46.4	2023:79.5,2024:23.7,2025:35.9
+지선 이	W	Korea, Republic of			4	48.1	2023:52.3,2024:40.1,2025:50.9,2026:49.1
+현우 이	M	Korea, Republic of			3	48.4	2023:59.5,2024:46.5,2025:39.2
+지은 이	W	Korea, Republic of			3	48.7	2024:50.0,2025:48.3,2026:47.7
+겨레 이	W	Korea, Republic of			2	50.8	2019:50.0,2020:51.6
+금성 이	M	Korea, Republic of			2	52.7	2025:9.0,2026:96.4
+종휘 이	M	Korea, Republic of			2	53.8	2024:64.7,2025:43.0
+영경 이	W	Korea, Republic of			2	53.9	2024:69.3,2025:38.4
+태경 이	M	Korea, Republic of			2	54.5	2024:75.0,2025:34.1
+가민 이	W	Korea, Republic of			2	57.6	2023:69.8,2026:45.4
+선욱 이	M	Korea, Republic of			2	57.9	2024:61.0,2025:54.8
+상민 이	M	Korea, Republic of			2	58.6	2025:84.2,2026:33.1
+현진 이	W	Korea, Republic of	59.1	103.6	2	63.1	2023:91.6,2024:34.5
+연진 이	W	Korea, Republic of			3	64.6	2023:86.1,2024:54.8,2025:52.9
+슬 이이	W	Korea, Republic of	67.3	63.0	2	65.1	2025:65.4,2026:64.7
+태호 이	M	Korea, Republic of			2	65.9	2024:96.7,2025:35.1
+영주 이	W	Korea, Republic of			2	68.0	2023:78.5,2025:57.5
+한을 이	W	Korea, Republic of			2	77.3	2023:86.3,2025:68.2
+해진 이	M	Korea, Republic of			3	78.3	2024:72.8,2025:90.7,2026:71.4
+시훈 이	M	Korea, Republic of			2	85.0	2023:73.3,2024:96.7
+정철 이	M	Korea, Republic of			2	88.2	2025:85.5,2026:90.9
+상민 이	M	Korea, Republic of			2	89.0	2023:88.9,2025:89.1
+보람 이	W	Korea, Republic of			2	89.6	2025:82.5,2026:96.8
