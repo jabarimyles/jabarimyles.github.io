@@ -1,0 +1,16 @@
+Paweł Łukasiewicz	M	Poland	70.1	187.4	7	6.6	2016:16.1,2017:8.3,2018:3.5,2021:2.4,2022:5.9,2023:2.8,2024:7.5
+Dawid Łastowski	M	Poland			3	7.7	2024:7.8,2025:6.8,2026:8.6
+Daniel Łęczycki	M	Poland			3	11.5	2024:14.4,2025:14.3,2026:5.8
+Marcin Łowczyński	M	Poland	72.4	183.0	2	26.4	2016:26.9,2017:25.8
+Michał Łogwiniuk	M	Poland	71.3	178.6	2	28.4	2025:22.3,2026:34.4
+Paweł Łyp	M	Poland	70.9	187.4	2	34.2	2016:56.5,2018:11.9
+Maciej Łyszczarz	M	Poland	69.3	187.4	2	49.2	2017:0.8,2018:97.6
+Konrad Łucka	M	Poland			4	53.3	2021:57.4,2022:47.2,2023:59.9,2024:48.8
+Przemysław Łusiak	M	Poland	70.9	189.6	3	62.4	2023:58.0,2024:32.6,2026:96.4
+Agnieszka Łęcka	W	Poland	65.0		2	62.5	2016:72.0,2018:53.1
+Andrzej Łodziana	M	Poland	72.0	183.0	4	67.9	2018:62.6,2019:82.8,2020:78.9,2023:47.1
+Ignacy Łoziński	M	Norway			2	70.0	2017:42.4,2018:97.6
+Marcin Łapkowski	M	Poland	69.7	180.8	2	74.0	2021:51.6,2022:96.5
+Piotr Łabudzik	M	Poland	73.2	235.9	3	75.5	2023:78.8,2024:72.8,2025:75.0
+Piotr Łowin	M	Poland	69.3	145.5	3	76.1	2024:75.4,2025:73.1,2026:79.8
+Łukasz Łukasiewicz	M	Poland	71.3	156.5	3	89.8	2017:97.1,2018:81.2,2025:91.2
