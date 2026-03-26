@@ -1,0 +1,6 @@
+우 지민	W	Korea, Republic of			3	6.2	2023:7.1,2024:7.7,2026:3.9
+박 지훈	M	Korea, Republic of			2	16.1	2025:22.9,2026:9.3
+박 지혜	W	Korea, Republic of			3	24.7	2024:28.9,2025:29.6,2026:15.6
+손 지은	W	Korea, Republic of			2	36.3	2024:60.4,2025:12.3
+정 지원	M	Korea, Republic of			2	55.3	2023:74.8,2024:35.7
+허 지영	W	Korea, Republic of			2	81.6	2024:66.5,2026:96.8

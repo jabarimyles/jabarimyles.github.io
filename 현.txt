@@ -1,0 +1,4 @@
+김 현욱	M	Korea, Republic of			2	11.0	2023:12.0,2024:10.1
+박 현	W	Korea, Republic of			2	30.0	2023:29.4,2024:30.6
+송 현솔	M	Korea, Republic of			2	35.5	2024:12.8,2025:58.1
+문 현화	W	Korea, Republic of			2	82.7	2023:90.9,2024:74.4

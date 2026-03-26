@@ -1,0 +1,16 @@
+명흠 최	M	Korea, Republic of			2	17.9	2024:19.1,2025:16.7
+연준 최	M	Korea, Republic of			4	20.9	2023:34.8,2024:12.9,2025:7.4,2026:28.5
+현준 최	M	Korea, Republic of			3	23.0	2023:26.5,2025:21.9,2026:20.6
+은혁 최	M	Korea, Republic of			3	23.9	2024:20.0,2025:35.2,2026:16.6
+재훈 최	M	Korea, Republic of			4	24.3	2023:37.2,2024:23.0,2025:13.1,2026:23.9
+태준 최	M	Korea, Republic of			2	25.3	2025:32.5,2026:18.2
+원석 최	M	Korea, Republic of			2	32.6	2025:21.4,2026:43.7
+시환 최	M	Korea, Republic of			2	33.0	2023:31.5,2025:34.6
+은정 최	W	Korea, Republic of			2	37.4	2024:45.0,2025:29.8
+윤지 최	W	Korea, Republic of			3	41.7	2023:52.5,2024:40.0,2026:32.5
+우영 최	M	Korea, Republic of			2	47.2	2025:76.0,2026:18.5
+성현 최	M	Korea, Republic of			2	49.5	2023:63.5,2024:35.4
+무휘 최	M	Korea, Republic of			2	50.9	2024:36.1,2026:65.8
+강산 최	M	Korea, Republic of			2	56.7	2023:33.8,2024:79.7
+창근 최	M	Korea, Republic of			2	63.2	2025:73.6,2026:52.8
+운 최	M	Korea, Republic of			2	70.0	2024:58.2,2025:81.7

@@ -1,0 +1,4 @@
+김 한결	M	Korea, Republic of			2	10.6	2024:10.5,2025:10.8
+박 한주	M	Korea, Republic of			2	27.9	2023:48.8,2024:6.9
+임 한혁	M	Korea, Republic of			2	48.1	2025:51.4,2026:44.7
+새별 한	W	Korea, Republic of			2	72.3	2024:62.0,2025:82.5

@@ -1,0 +1,5 @@
+장 하주	W	Korea, Republic of			2	8.3	2023:11.0,2024:5.6
+종화 하	M	Korea, Republic of			3	9.7	2024:11.3,2025:7.5,2026:10.3
+현재 하	M	Korea, Republic of			3	30.3	2023:38.3,2024:32.6,2026:19.9
+김 하나	W	Korea, Republic of			2	42.3	2023:59.2,2025:25.5
+김 하연	W	Korea, Republic of			2	49.1	2024:69.9,2026:28.4
