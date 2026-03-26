@@ -1,0 +1,56 @@
+Reynir Þorvaldsson	M	Iceland	70.9	187.0	6	9.7	2013:11.2,2014:7.8,2015:5.5,2016:11.4,2017:15.7,2018:6.2
+Jón Víðir Þorvaldsson	M				3	10.0	2014:21.2,2015:5.9,2016:2.7
+Gunnar Snær Þórðarson	M	Iceland	73.2	191.8	6	10.6	2021:17.4,2022:11.1,2023:10.6,2024:11.6,2025:6.9,2026:6.2
+Högni Þórðarson	M	Iceland	70.1	174.2	8	11.0	2012:17.4,2013:13.1,2014:11.0,2015:11.7,2016:6.0,2017:4.5,2018:6.6,2021:17.2
+Birta Líf Þórarinsdóttir	W	Iceland	66.9	143.3	6	11.2	2019:0.9,2020:2.0,2021:59.2,2022:1.0,2023:3.7,2024:0.2
+Heiðrún Stella Þorvaldsdótti	W	Iceland	63.4	127.9	7	12.4	2015:16.3,2017:2.5,2018:3.9,2019:32.9,2020:6.4,2023:13.6,2024:10.8
+Ragnhildur Þrastardóttir	W	Iceland			3	13.0	2018:13.0,2019:11.6,2020:14.2
+Helgi Hrafn Þorláksson	M	Iceland	69.3	194.0	5	14.1	2019:24.7,2020:16.3,2021:11.1,2022:5.9,2023:12.3
+Gunnar Þorsteinsson	M	Iceland	68.5	172.0	6	16.6	2014:18.2,2015:5.3,2016:5.0,2017:2.9,2018:4.8,2021:63.3
+Bryndís Arna Þórarinsdóttir	W	Iceland	61.8	125.7	3	17.0	2018:13.5,2019:11.9,2020:25.6
+Davíð Þorgeirsson	M				2	17.4	2012:19.5,2013:15.3
+Þorsteinn Þorsteinsson	M	Iceland			6	21.5	2020:16.8,2021:55.7,2022:12.1,2023:14.9,2024:12.2,2025:17.1
+Kolfinna Þöll Þórðardóttir	W	Iceland			2	22.6	2024:31.0,2025:14.2
+Helgi Þór Þorsteinsson	M	Iceland			5	23.4	2013:40.2,2014:25.0,2016:27.0,2018:10.8,2019:14.1
+Stefán Tumi Þrastarson	M	Iceland	71.3	205.0	6	24.1	2019:43.9,2020:14.9,2021:11.5,2022:22.8,2024:30.5,2026:21.2
+Aðalsteinn Þorsteinsson	M	Iceland			2	24.7	2022:11.3,2024:38.1
+Ægir Þorsteinsson	M	Iceland			2	25.3	2021:29.1,2022:21.4
+Helga Rúna Þorsteinsdóttir	W	Iceland			2	27.1	2019:25.9,2020:28.4
+Harpa Þrastardóttir	W	Iceland	64.2	141.1	4	27.9	2020:80.7,2022:9.1,2023:8.3,2024:13.6
+Þröstur Þráinsson	M	Iceland	72.8	209.4	2	28.8	2018:22.5,2020:35.0
+Jón Ingi Þorgeirsson	M	Iceland			5	31.0	2022:53.2,2023:25.1,2024:10.2,2025:46.2,2026:20.3
+Kjartan Valur Þórðarson	M	Iceland	76.0	209.4	7	31.7	2017:56.9,2018:38.9,2019:14.9,2020:21.3,2021:33.3,2022:27.9,2023:28.5
+Dagur Þorgrímsson	M	Iceland	70.9	198.4	3	33.8	2017:39.2,2018:25.9,2019:36.4
+Margrét Bára Þórkelsdóttir	W	Iceland	65.7	152.1	4	36.1	2017:16.1,2018:6.7,2019:97.9,2020:24.0
+Fjóla Rún Þorsteinsdóttir	W	Iceland			2	38.0	2021:61.7,2022:14.2
+Birgitta Þrastardóttir	W	Iceland			3	38.6	2018:20.1,2019:40.3,2020:55.4
+Kristófer Guðjón Þórðarson	M	Iceland	71.3	207.2	2	39.7	2019:42.0,2020:37.5
+Birgir þór Þrastarson	M	Iceland	67.7	159.0	4	41.3	2014:62.5,2015:45.5,2016:24.0,2017:33.4
+Berglind Þorsteinsdóttir	W	Iceland	65.4	156.5	2	41.6	2019:45.1,2020:38.1
+Finnur Þórðarson	M	Iceland	71.3	185.2	4	43.3	2014:84.5,2017:42.7,2018:24.0,2019:22.2
+Egill þórarinsson	M				2	45.0	2012:55.4,2013:34.6
+Asmir Þór Þórsson	M	Iceland			4	47.2	2018:54.1,2019:22.1,2020:41.6,2022:71.0
+Hjörleifur Steinn Þórisson	M	Iceland			2	47.3	2019:44.1,2020:50.6
+Bryndís Eir Þorsteinsdóttir	W	Iceland		143.3	4	52.1	2015:72.7,2016:52.5,2017:46.0,2020:37.1
+Þórður Þrastarson	M	Iceland	72.0	229.3	2	54.7	2018:53.8,2019:55.6
+Elínbet Þórólfsdóttir	W	Iceland			2	54.9	2021:66.0,2022:43.7
+Sigurlaug A Þorsteinsdóttir	W	Iceland		139.0	2	58.3	2015:72.2,2018:44.5
+Bryndis Þora Þorarinsdottir	W	Iceland			3	60.7	2018:72.1,2019:69.3,2020:40.7
+Hjalti Þórsson	M	Iceland			2	62.1	2015:83.8,2019:40.4
+Ási Þórðarson	M	Iceland	71.3	191.8	2	70.2	2018:71.0,2019:69.4
+Hildur Þórðardóttir	W	Iceland			2	70.5	2020:49.5,2021:91.6
+Katrín Þórhallsdóttir	W	Iceland	65.0	121.3	2	70.8	2018:90.3,2019:51.3
+Elín Þorsteinsdóttir	W	Iceland			2	72.3	2019:75.0,2020:69.5
+Ásdís Björk Þorvaldsdóttir	W	Iceland	66.5	158.7	3	73.0	2015:79.5,2016:77.1,2017:62.3
+Sunna Dögg Þorsteinsdóttir	W	Iceland	63.8		2	74.9	2017:92.5,2026:57.3
+Gunnar Þorleifsson	M	Iceland			3	75.2	2022:77.5,2023:70.3,2024:77.7
+Bjarni Þrastarson	M	Iceland	72.8	209.4	2	76.1	2017:78.4,2018:73.9
+Haukur Þorsteinsson	M	Iceland			3	76.5	2019:88.1,2021:77.5,2024:63.7
+Freyja Þórhallsdóttir	W	Iceland			2	80.7	2022:88.3,2023:73.1
+Auður Þórðardóttir	W	Iceland			2	82.4	2019:97.9,2020:67.0
+Ágúst Þorvaldsson	M	Iceland			2	84.2	2023:88.8,2024:79.6
+Hólmfríður Bryndís Þrúðmarsdóttir	W	Iceland	64.2	136.7	2	84.5	2022:72.2,2023:96.7
+Auður Freydís Þórsdóttir	W	Iceland	65.4	125.7	2	87.2	2018:86.4,2020:88.0
+Sólveig Þrastardóttir	W	Iceland			2	89.1	2020:93.1,2022:85.2
+Lúðvík Þórisson	M	Iceland			3	91.9	2019:92.9,2020:91.0,2023:91.9
+Jón Viðar Þorsteinsson	M	Iceland	69.7	277.8	2	93.8	2018:95.1,2021:92.5
