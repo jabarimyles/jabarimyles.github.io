@@ -350,11 +350,47 @@
 
 <script>
 let DATA = null;
+let ATH_INDEX = null;   // lightweight: array of {name, div, country, h, w, n, avg}
+let ATH_DETAILS = {};   // letter -> array of full records (loaded on demand)
 
 async function loadData() {
-    const resp = await fetch('dashboard_data.json');
-    DATA = await resp.json();
+    const [dashResp, idxResp] = await Promise.all([
+        fetch('dashboard_data.json'),
+        fetch('athlete_index.txt'),
+    ]);
+    DATA = await dashResp.json();
+
+    // Parse compact athlete index (name\tdiv per line)
+    const idxText = await idxResp.text();
+    ATH_INDEX = idxText.split('\n').map(line => {
+        const [name, div] = line.split('\t');
+        return { name, div };
+    });
+
     initPage();
+}
+
+async function loadAthleteDetail(letter) {
+    if (ATH_DETAILS[letter]) return ATH_DETAILS[letter];
+    try {
+        const resp = await fetch(`athletes/${letter}.txt`);
+        const text = await resp.text();
+        ATH_DETAILS[letter] = text.split('\n').map(line => {
+            const [name, div, country, h, w, n, avg, yearlyStr] = line.split('\t');
+            const yearly = yearlyStr ? yearlyStr.split(',').map(p => {
+                const [y, pct] = p.split(':');
+                return { year: +y, pct: +pct };
+            }) : [];
+            return {
+                name, division: div === 'M' ? 'Men' : 'Women', country,
+                height: h ? +h : null, weight: w ? +w : null,
+                years_competed: +n, career_avg_pct: +avg, yearly
+            };
+        });
+    } catch(e) {
+        ATH_DETAILS[letter] = [];
+    }
+    return ATH_DETAILS[letter];
 }
 
 function initPage() {
@@ -573,13 +609,77 @@ function renderUnder() {
     document.getElementById('underList').innerHTML = items.slice(0, 50).map(d => athleteCard(d, 'under')).join('');
 }
 
-function renderSearch(query) {
+async function renderSearch(query) {
     const el = document.getElementById('searchResults');
     if (!query || query.length < 2) { el.innerHTML = '<div class="no-data">Type at least 2 characters to search.</div>'; return; }
-    const q = query.toLowerCase();
-    const results = DATA.athletes.filter(a => a.name.toLowerCase().includes(q)).slice(0, 30);
+    const words = query.toLowerCase().split(/\s+/).filter(w => w.length > 0);
+
+    // Quick match on lightweight index (just names)
+    const matches = [];
+    for (let i = 0; i < ATH_INDEX.length && matches.length < 30; i++) {
+        const name = ATH_INDEX[i].name.toLowerCase();
+        if (words.every(w => name.includes(w))) {
+            matches.push(ATH_INDEX[i]);
+        }
+    }
+    if (!matches.length) { el.innerHTML = '<div class="no-data">No athletes found.</div>'; return; }
+
+    // Load detail files for matched athletes' last-name letters
+    const letters = [...new Set(matches.map(m => {
+        const parts = m.name.trim().split(' ');
+        const l = parts[parts.length - 1][0].toUpperCase();
+        return l.match(/[A-Z]/) ? l : 'X';
+    }))];
+    el.innerHTML = '<div class="no-data">Loading...</div>';
+    await Promise.all(letters.map(l => loadAthleteDetail(l)));
+
+    // Find full records from detail data
+    const results = [];
+    for (const m of matches) {
+        const parts = m.name.trim().split(' ');
+        const letter = parts[parts.length - 1][0].toUpperCase().match(/[A-Z]/) ? parts[parts.length - 1][0].toUpperCase() : 'X';
+        const details = ATH_DETAILS[letter] || [];
+        const mDiv = m.div === 'M' ? 'Men' : 'Women';
+        const full = details.find(d => d.name === m.name && d.division === mDiv);
+        if (full) {
+            results.push(buildSearchResult(full));
+        }
+    }
     if (!results.length) { el.innerHTML = '<div class="no-data">No athletes found.</div>'; return; }
     el.innerHTML = results.map(a => athleteSearchCard(a)).join('');
+}
+
+function buildSearchResult(d) {
+    const pcts = d.yearly.map(y => y.pct);
+    const bestIdx = pcts.indexOf(Math.min(...pcts));
+    const worstIdx = pcts.indexOf(Math.max(...pcts));
+    const n = d.yearly.length;
+    let trend = null;
+    if (n >= 3) {
+        const years = d.yearly.map(y => y.year);
+        const meanY = years.reduce((a,b) => a+b, 0) / n;
+        const meanP = pcts.reduce((a,b) => a+b, 0) / n;
+        const num = years.reduce((s, y, j) => s + (y - meanY) * (pcts[j] - meanP), 0);
+        const den = years.reduce((s, y) => s + (y - meanY) ** 2, 0);
+        trend = den > 0 ? Math.round(num / den * 100) / 100 : null;
+    }
+    return {
+        name: d.name,
+        division: d.division,
+        country: d.country,
+        height: d.height,
+        weight: d.weight,
+        years_competed: n,
+        first_year: d.yearly[0].year,
+        last_year: d.yearly[n - 1].year,
+        career_avg_pct: d.career_avg_pct,
+        best_pct: Math.min(...pcts),
+        best_year: d.yearly[bestIdx].year,
+        worst_pct: Math.max(...pcts),
+        worst_year: d.yearly[worstIdx].year,
+        trend: trend,
+        yearly: d.yearly,
+    };
 }
 
 function athleteCard(d, type) {
