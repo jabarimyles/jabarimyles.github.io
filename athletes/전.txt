@@ -1,0 +1,8 @@
+도원 전	W	Korea, Republic of			4	6.4	2023:14.1,2024:5.8,2025:2.2,2026:3.6
+민성 전	M	Korea, Republic of			2	14.1	2025:20.4,2026:7.9
+현호 전	M	Korea, Republic of			2	28.6	2024:33.6,2025:23.6
+미나 전	W	Korea, Republic of			2	48.0	2023:44.8,2024:51.3
+두령 전	M	Korea, Republic of			3	55.0	2020:65.1,2022:52.6,2026:47.4
+현주 전	W	Korea, Republic of			4	67.2	2023:93.0,2024:57.2,2025:61.0,2026:57.5
+지혜 전	W	Korea, Republic of			2	72.3	2024:84.9,2026:59.7
+성하 전	M	Korea, Republic of			2	73.9	2025:78.4,2026:69.4

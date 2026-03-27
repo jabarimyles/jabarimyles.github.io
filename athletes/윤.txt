@@ -1,0 +1,7 @@
+제현 윤	M	Korea, Republic of			2	28.7	2023:28.4,2024:28.9
+김 윤서	M	Korea, Republic of			2	41.2	2024:64.2,2025:18.1
+이 윤주	W	Korea, Republic of			2	45.8	2023:57.5,2024:34.1
+경원 윤	W	Korea, Republic of			2	61.9	2023:61.6,2024:62.3
+영기 윤	M	Korea, Republic of			2	67.9	2025:78.6,2026:57.1
+김 윤형	M	Korea, Republic of			2	69.0	2024:75.5,2025:62.5
+곽 윤숙	W	Korea, Republic of			2	69.4	2023:59.2,2024:79.5

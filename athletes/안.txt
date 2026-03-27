@@ -1,0 +1,5 @@
+웅 안	M	Korea, Republic of			2	1.5	2024:2.3,2025:0.6
+승현 안	M	Korea, Republic of	66.9	156.5	2	23.7	2025:28.2,2026:19.1
+지원 안	W	Korea, Republic of			2	35.9	2023:36.1,2024:35.8
+호준 안	M	Korea, Republic of	62.2	169.8	2	43.5	2024:32.7,2026:54.3
+태근 안	M	Korea, Republic of			2	48.4	2025:63.5,2026:33.4

@@ -1,0 +1,10 @@
+성민 강	M	Korea, Republic of			2	1.4	2024:2.0,2025:0.8
+유리 강	W	Korea, Republic of			3	27.6	2024:39.2,2025:31.7,2026:12.1
+혜린 강	W	Korea, Republic of	68.9	132.3	3	28.1	2024:27.7,2025:35.2,2026:21.5
+권우 강	M	Korea, Republic of			2	31.2	2024:32.7,2025:29.8
+경진 강	W	Korea, Republic of			2	35.3	2025:38.4,2026:32.2
+성혁 강	M	Korea, Republic of			2	37.0	2025:38.9,2026:35.1
+현준 강	M	Korea, Republic of			3	38.8	2023:33.6,2024:54.0,2026:28.8
+유진 강	W	Korea, Republic of			2	46.1	2024:51.5,2025:40.8
+근우 강	M	Korea, Republic of			2	62.9	2023:70.3,2024:55.4
+동건 강	M	Korea, Republic of			2	83.7	2024:86.6,2025:80.8

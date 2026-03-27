@@ -1,0 +1,6 @@
+원준 장	M	Korea, Republic of			3	16.7	2024:30.6,2025:12.9,2026:6.5
+슬기 장	W	Korea, Republic of			2	25.4	2024:32.1,2025:18.6
+혁준 장	M	Korea, Republic of			4	28.9	2023:51.1,2024:20.3,2025:27.0,2026:17.2
+희원 장	W	Korea, Republic of			2	52.9	2024:56.3,2025:49.4
+성 장	M	Korea, Republic of			2	68.8	2024:96.7,2025:40.8
+준호 장	M	Korea, Republic of			2	72.0	2025:74.6,2026:69.3
