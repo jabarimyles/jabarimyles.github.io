@@ -354,20 +354,31 @@ let ATH_INDEX = null;   // lightweight: array of {name, div}
 let ATH_DETAILS = {};   // letter -> array of full records (loaded on demand)
 
 async function loadData() {
-    const [dashResp, idxResp] = await Promise.all([
-        fetch('dashboard_data.json'),
-        fetch('athlete_index.txt'),
-    ]);
-    DATA = await dashResp.json();
+    try {
+        const [dashResp, idxResp] = await Promise.all([
+            fetch('dashboard_data.json'),
+            fetch('athlete_index.txt'),
+        ]);
+        if (!dashResp.ok) throw new Error('Failed to load dashboard_data.json: ' + dashResp.status);
+        if (!idxResp.ok) throw new Error('Failed to load athlete_index.txt: ' + idxResp.status);
 
-    // Parse compact athlete index (name\tdiv per line)
-    const idxText = await idxResp.text();
-    ATH_INDEX = idxText.split('\n').map(line => {
-        const [name, div] = line.split('\t');
-        return { name, div };
-    });
+        DATA = await dashResp.json();
+        console.log('Dashboard loaded:', Object.keys(DATA));
 
-    initPage();
+        const idxText = await idxResp.text();
+        ATH_INDEX = idxText.split('\n').filter(l => l).map(line => {
+            const [name, div] = line.split('\t');
+            return { name, div };
+        });
+        console.log('Athlete index loaded:', ATH_INDEX.length, 'athletes');
+
+        initPage();
+        console.log('initPage complete');
+    } catch(e) {
+        console.error('Data load error:', e);
+        document.getElementById('summaryStats').innerHTML =
+            '<div class="no-data" style="grid-column:1/-1;color:red">Error: ' + e.message + '</div>';
+    }
 }
 
 async function loadAthleteDetail(letter) {
@@ -399,8 +410,6 @@ function initPage() {
     initTierFilters();
     initHeatmap();
     initAthletes();
-    initTabs();
-    initNav();
 }
 
 // --- Summary Stats ---
@@ -724,7 +733,7 @@ function athleteSearchCard(a) {
 
     const trendStr = a.trend !== null
         ? (a.trend < -1 ? '<span class="highlight-green">Improving</span>'
-           : a.trend > 1 ? '<span class="highlight-red">Declining</span>'
+           : a.trend > 1 ? '<span style="color:var(--gray-500)">Stable</span>'
            : '<span style="color:var(--gray-500)">Stable</span>')
         : '';
 
@@ -796,6 +805,9 @@ function inchesToFeetStr(inches) {
 }
 
 // --- Load ---
+// Wire up tabs and nav immediately (don't wait for data)
+initTabs();
+initNav();
 loadData();
 </script>
 </body>
